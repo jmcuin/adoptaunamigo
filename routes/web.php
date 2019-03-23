@@ -46,8 +46,6 @@ Route::get('municipios', function(){
 	return \App\Municipio::with('estado')->get();
 });
 
-Route::resource('Alumno', 'AlumnoController');
-
 Route::resource('Estado', 'EstadoController');
 
 Route::resource('Informe', 'InformeController');
@@ -142,5 +140,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('downloadFile/{id_planeacion}', ['as' => 'downloadFile', 'uses' => 'PlaneacionController@downloadFile']);
-
 

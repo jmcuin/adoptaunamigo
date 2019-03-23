@@ -58,7 +58,7 @@ class RescatistaRequest extends FormRequest
                     'colonia' => 'required|min:2',
                     'cp' => 'required|integer|min:5',
                     'telefono' => 'required|min:5',
-                    'email' => 'required|email',
+                    'email' => 'required|email|unique:rescatistas,email,'.$this->route('Rescatistum').',id_rescatista',
                     'confirmaemail' => 'required|same:email',
                     'foto' => 'image'
                 ];
