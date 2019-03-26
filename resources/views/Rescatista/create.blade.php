@@ -140,7 +140,7 @@
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">
-						<label for="confrimaemail">
+						<label for="confirmaemail">
 							Confirmación Correo Electrónico	
 							<input type="email" name="confirmaemail" id="confirmaemail" value="{{old('confirmaemail')}}" class="form-control" placeholder="mail@algo.com">
 							{{ $errors -> first('confirmaemail') }}
@@ -154,6 +154,30 @@
 							<input type="radio" name="es_asociacion" value="true"> Sí<br>
 							<input type="radio" name="es_asociacion" value="false" checked="checked"> No
 						</label>
+					</div>
+					<div class="col-sm-4 form-group"> 
+						<label for="asociacion">
+							¿Cuál?	
+							<input type="text" name="asociacion" id="asociacion" value="{{old('asociacion')}}" class="form-control" placeholder="Nombre de la asociación">
+							{{ $errors -> first('asociacion') }}
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<div class="input-group">
+							<label for="id_rol">
+								Rol<br>
+								<select name="id_rol" id="id_rol">
+									<option value="0">Seleccione un Rol</option>
+									@foreach($roles as $rol)
+										<option value="{{ $rol -> id_rol }}" @if(old('id_rol') == $rol -> id_rol ) selected @endif>{{ $rol -> rol}}	
+										</option>	
+									@endforeach
+								</select>
+							</label>
+						</div>
+						{{ $errors -> first('id_rol') }}
 					</div>
 				</div>
 			</div>
