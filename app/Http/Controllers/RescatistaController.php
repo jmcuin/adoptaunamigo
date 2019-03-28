@@ -52,7 +52,7 @@ class RescatistaController extends Controller
         $municipios = Municipio::orderBy('id_estado_municipio') -> paginate(50);
         $roles = Rol::orderBy('id_rol') -> paginate(50);
         
-        return view('Rescatista.create', compact('municipios', 'estados'));
+        return view('Rescatista.create', compact('municipios', 'estados', 'roles'));
     }
 
     /**
@@ -78,6 +78,8 @@ class RescatistaController extends Controller
         $rescatista -> telefono = $request -> telefono;
         $rescatista -> email = $request -> email;
         $rescatista -> es_asociacion = $request -> es_asociacion;
+        if($request -> es_asociacion === "true")
+            $rescatista -> asociacion = $request -> asociacion;
 
         if($request -> hasFile('foto')){
             $rescatista -> foto = $request -> file('foto') -> storeAs('public/rescatistas', strtoupper($request -> alias).'.'.$request -> file('foto') -> extension());
@@ -149,12 +151,16 @@ class RescatistaController extends Controller
         $rescatista -> telefono = $request -> telefono;
         $rescatista -> email = $request -> email;
         $rescatista -> es_asociacion = $request -> es_asociacion;
+        if($request -> es_asociacion === "true")
+            $rescatista -> asociacion = $request -> asociacion;
         
         if($request -> hasFile('foto')){
             Storage::delete($rescatista -> foto);
             $rescatista -> foto = $request -> file('foto') -> storeAs('public/rescatistas', strtoupper($request -> alias).'.'.$request -> file('foto') -> extension());
         }
         $guardado = $rescatista -> save();
+
+        $this -> updateUser($request -> id_rol, $id);
 
         if($guardado)
             return redirect()->route('Rescatista.index')->with('info','Rescatista actualizado con éxito.');
@@ -192,7 +198,17 @@ class RescatistaController extends Controller
         $user -> password = bcrypt('123123');
         $user -> photo = $rescatista -> foto;
         $user -> save();
-        $user -> roles() -> attach(2);
-        //$user -> roles() -> attach($request -> id_rol);
+        $user -> roles() -> attach($request -> id_rol);
+    }
+
+    public function updateUser($rol,$id){
+        $user = User::where('id_rescatista', $id)->first();
+        $rescatista = Rescatista::findOrFail($id);
+        $user -> name = $rescatista -> nombre.' '.$rescatista -> a_paterno.' '.$rescatista -> a_materno;
+        $user -> email = $rescatista -> email;
+        //$user -> password = bcrypt(substr($rescatista -> curp, 0, 6));
+        $user -> photo = $rescatista -> foto;
+        $user -> save();
+        $user -> roles() -> sync($rol);
     }
 }

@@ -147,6 +147,22 @@
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-sm-4 form-group"> 
+					<label for="es_asociacion">
+						¿Es Usted parte de una asociación civil?<br>
+						<input type="radio" name="es_asociacion" value="true" @if($rescatista -> es_asociacion == true ) checked="checked" @endif> Sí<br>
+						<input type="radio" name="es_asociacion" value="false" @if($rescatista -> es_asociacion == false ) checked="checked" @endif> No
+					</label>
+				</div>
+				<div class="col-sm-4 form-group"> 
+					<label for="asociacion">
+						¿Cuál?	
+						<input type="text" name="asociacion" id="asociacion" value="{{ $rescatista -> asociacion }}" class="form-control" placeholder="Nombre de la asociación">
+						{{ $errors -> first('asociacion') }}
+					</label>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-sm-4 form-group">
 					<label for="id_rol">
 						Rol<br>
@@ -158,15 +174,6 @@
 							@endforeach
 						</select>
 						{{ $errors -> first('id_rol') }}
-					</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 form-group"> 
-					<label for="es_asociacion">
-						¿Es Usted parte de una asociación civil?<br>
-						<input type="radio" name="es_asociacion" value="true" @if($rescatista -> es_asociacion == true ) checked="checked" @endif> Sí<br>
-						<input type="radio" name="es_asociacion" value="false" @if($rescatista -> es_asociacion == false ) checked="checked" @endif> No
 					</label>
 				</div>
 			</div>
