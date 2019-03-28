@@ -34,7 +34,7 @@ class CreateAmigosTable extends Migration
             $table->foreign('id_especie')
                   ->references('id_especie')
                   ->on('cat_especies')
-                  ->onDelete('set null')
+                  ->onDelete('cascade')
                   ->onUpdate('cascade');
             $table->boolean('solicita_adopcion')->default(false);
             $table->boolean('solicita_esterilizacion')->default(false);      
