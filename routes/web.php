@@ -28,6 +28,10 @@ Route::get('/', function () {
 
 Route::resource('Amigo', 'AmigoController');
 
+Route::resource('Especie', 'EspecieController');
+
+Route::resource('Raza', 'RazaController');
+
 Route::resource('Rescatista', 'RescatistaController');
 
 /*Route::get('inicio', function () {

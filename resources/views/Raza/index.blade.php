@@ -1,10 +1,10 @@
 @extends('layout')
 
 @section('contenido')
-	<div class="col-med-8" align="center" style="overflow: auto;"> 
+	<div class="col-sm-8" style="overflow: auto;"> 
 		<h1>
-			Listado de Amigos
-			<a href="{{ route('Amigo.create') }}" class="btn btn-primary pull-right">Nuevo</a>
+			Catálogo de Razas
+			<a href="{{ route('Raza.create') }}" class="btn btn-primary pull-right">Nuevo</a>
 		</h1>
 		@if (session('info'))
     		<strong>
@@ -22,7 +22,7 @@
     			</div>
     		</strong>
     	@endif
-    	{!! Form::open(['method'=>'GET','url'=>'Amigo','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
+    	{!! Form::open(['method'=>'GET','url'=>'Estado','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
 			<div class="input-group custom-search-form">
 			    <input type="text" class="form-control" name="search" placeholder="Buscar...">
 			    <span class="input-group-btn">
@@ -32,54 +32,39 @@
 			    </span>
 			</div>
 		{!! Form::close() !!}
-		<table class="table table-hover table-striped">
+		<table class="table table-hover table-striped" id="tablaEstadoCivil">
 			<thead>
 				<tr>
 					<th>
-						@sortablelink('id_amigo')
+						@sortablelink('id_estado')
 					</th>
 					<th>
-						@sortablelink('nombre')
-					</th>
-					<th>
-						@sortablelink('raza')
-					</th>
-					<th>
-						@sortablelink('tamanio')
-					</th>
-					<th colspan="3" align="center">
-						Acciones
+						@sortablelink('estado')
 					</th>
 				</tr>
 			</thead>
 			<tbody>
-			@if($amigos-> isEmpty())
+			@if($razas -> isEmpty())
 					<tr>
-						<td colspan="18" align="center">No hay datos para mostrar.</td>
+						<td colspan="5" align="center">No hay datos para mostrar.</td>
 					</tr>
 				@else
-					@foreach($amigos as $amigo)
+					@foreach($razas as $raza)
 						<tr>
 							<td>
-								{{ $amigo -> id_amigo }}
+								{{ $raza -> id_raza }}
 							</td>
 							<td>
-								{{ $amigo -> nombre }}
+								{{ $raza -> raza }}
 							</td>
 							<td>
-								{{ $amigo -> raza -> raza }}
+								<a href="{{ route('Raza.show', $raza -> id_raza)}}" class="btn btn-primary">Ver</a>
 							</td>
 							<td>
-								{{ $amigo -> tamanio }}
+								<a href="{{ route('Raza.edit', $raza -> id_raza)}}" class="btn btn-primary">Editar</a>
 							</td>
 							<td>
-								<a href="{{ route('Amigo.show', $amigo -> id_amigo) }}" class="btn btn-primary">Ver</a>
-							</td>
-							<td>
-								<a href="{{ route('Amigo.edit', $amigo -> id_amigo) }}" class="btn btn-primary">Editar</a>
-							</td>
-							<td>
-								<form method="POST" action="{{ route('Amigo.destroy', $amigo-> id_amigo)}}">
+								<form method="POST" action="{{ route('Raza.destroy', $raza-> id_raza)}}">
 									{!! method_field('DELETE') !!}
 								 	{!! csrf_field() !!}
 									<button type="submit" class="btn btn-primary">Eliminar</button>
@@ -90,10 +75,10 @@
 				@endif
 			</tbody>
 		</table>
-	{!! $amigos->appends(\Request::except('page'))->render() !!}		
+		{!! $razas->appends(\Request::except('page'))->render() !!}		
 <style type="text/css">
-	.btn-primary{
-		background-color: #20193D !important;
-	}
-</style>
+			.btn-primary{
+				background-color: #20193D !important;
+			}
+		</style>
 @endsection

@@ -7,8 +7,8 @@ use App\Http\Requests\AmigoRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Amigo;
-use App\Municipio;
-use App\Estado;
+use App\Especie;
+use App\Raza;
 use App\Rescatista;
 use App\Solicitud;
 use App\User;
@@ -31,21 +31,16 @@ class AmigoController extends Controller
     {
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
-
-        $estados = Estado::orderBy('id_estado') -> paginate(50);
-        $municipios = Municipio::orderBy('id_estado_municipio')->paginate(10);
                 
         $amigos = Amigo::where('nombre', 'like', '%'.$criterio.'%')
-        ->orwhere('id_alumno',$criterio)
-        ->orwhere('a_paterno','like','%'.$criterio.'%')
-        ->orwhere('a_materno','like','%'.$criterio.'%')
-        ->orwhere('curp','like','%'.$criterio.'%')
+        ->orwhere('id_amigo',$criterio)
+        ->orwhere('nombre','like','%'.$criterio.'%')
         ->sortable()
-        ->orderBy('id_alumno')
+        ->orderBy('id_amigo')
         ->orderBy('nombre')
         ->paginate(10);
         
-        return view('Amigo.index', compact('alumnos', 'estados', 'municipios', 'religiones', 'areasdetrabajo'));
+        return view('Amigo.index', compact('amigos'));
     } 
 
     /**
@@ -56,10 +51,10 @@ class AmigoController extends Controller
     public function create()
     {
         //
-        $estados = Estado::orderBy('id_estado') -> paginate(50);
-        $municipios = Municipio::orderBy('id_estado_municipio') -> paginate(50);
+        $especies = Especie::orderBy('especie') -> get();
+        $razas = Raza::orderBy('raza') -> get();
         
-        return view('Amigo.create', compact('municipios', 'estados'));
+        return view('Amigo.create', compact('municipios', 'especies', 'razas'));
     }
 
     /**
@@ -68,34 +63,41 @@ class AmigoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AlumnoRequest $request)
+    public function store(AmigoRequest $request)
     {
         //
-        $amigo = new Alumno;
+        //dd($request);
+        $fotos_amigo = '';
+        $archivos;
+        $amigo = new Amigo;
+        $amigo -> id_rescatista = 15;
         $amigo -> nombre = $request -> nombre;
-        $amigo -> a_paterno = $request -> a_paterno;
-        $amigo -> a_materno = $request -> a_materno;
-        $amigo -> curp = strtoupper($request -> curp);
-        $amigo -> id_estado_municipio = $request -> id_estado_municipio;
-        $amigo -> extranjero = $request -> extranjero;
-        $amigo -> calle = $request -> calle;
-        $amigo -> numero_interior = $request -> numero_interior;
-        $amigo -> numero_exterior = $request -> numero_exterior;
-        $amigo -> colonia = $request -> colonia;
-        $amigo -> cp = $request -> cp;
-        $amigo -> telefono = $request -> telefono;
-        $amigo -> email = $request -> email;
-        $amigo -> id_religion = $request -> id_religion;
-        $amigo -> tipo_sangre = $request -> tipo_sangre;
-        if($request -> hasFile('foto')){
-            $amigo -> foto = $request -> file('foto') -> storeAs('public/alumnos', strtoupper($request -> curp).'.'.$request -> file('foto') -> extension());
+        $amigo -> id_raza = $request -> id_raza;
+        $amigo -> tamanio = $request -> tamanio;
+        $amigo -> caracter = $request -> caracter;
+        $amigo -> convivencia = $request -> convivencia;
+        $amigo -> recomendaciones = $request -> recomendaciones;
+        $amigo -> requisitos = $request -> requisitos;
+        $amigo -> otros = $request -> otros;
+        $amigo -> id_especie = $request -> id_especie;
+        $amigo -> solicita_adopcion = $request -> solicita_adopcion;
+        $amigo -> solicita_esterilizacion = $request -> solicita_esterilizacion;
+        $amigo -> solicita_hogar_temporal = $request -> solicita_hogar_temporal;
+        $amigo -> solicita_ayuda_medica = $request -> solicita_ayuda_medica;
+        $amigo -> solicita_ayuda_alimenticia = $request -> solicita_ayuda_alimenticia;
+        array_filter($request -> fotos);
+        $archivos = $request -> fotos;
+        //dd($request -> fotos[0]);
+        for($i = 0; $i < count($request -> fotos); $i++ ) {
+            $fotos_amigo = $fotos_amigo.'&'.'15_'.strtoupper($request -> nombre).'_'.$i.'.'.$request -> fotos[$i] -> extension();
+            $request -> fotos[$i] -> storeAs('public/Amigos', '15_'.strtoupper($request -> nombre).'_'.$i.'.'.$archivos[$i] -> extension());
         }
+        $amigo -> fotos = $fotos_amigo;
+            
         $guardado = $amigo -> save();
 
-        $this -> addUser($request);
-
         if($guardado)
-            return redirect()->route('Amigo.index')->with('info','Alumno creado con éxito.');
+            return redirect()->route('Amigo.index')->with('info','Amigo creado con éxito.');
         else
             return redirect()->route('Amigo.index')->with('error','Imposible guardar Amigo.');
     }
@@ -110,7 +112,7 @@ class AmigoController extends Controller
     {
         $amigo = Amigo::findOrFail($id);
 
-        return view('Amigo.show', compact('alumno', 'padres', 'padres_trabajadores', 'padecimiento', 'expediente'));
+        return view('Amigo.show', compact('amigo'));
     }
 
     /**
@@ -122,12 +124,11 @@ class AmigoController extends Controller
     public function edit($id)
     {
         //
-        $trabajadores = Trabajador::orderBy('nombre') -> paginate(50);
-        $estados = Estado::orderBy('id_estado') -> paginate(50);
-        $municipios = Municipio::orderBy('id_estado_municipio') -> paginate(50);
+        $especies = Especie::orderBy('especie') -> get();
+        $razas = Raza::orderBy('raza') -> get();
         $amigo = Amigo::findOrFail($id);
 
-        return view('Amigo.edit', compact('alumno', 'trabajadores', 'estados', 'municipios', 'religiones', 'papa_externo', 'mama_externa', 'papa_trabajador', 'mama_trabajadora', 'padecimiento', 'expediente'));
+        return view('Amigo.edit', compact('amigo', 'razas', 'especies'));
     }
 
     /**
@@ -137,34 +138,31 @@ class AmigoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AlumnoRequest $request, $id)
+    public function update(AmigoRequest $request, $id)
     {
         $amigo = Amigo::findOrFail($id);
         $amigo -> nombre = $request -> nombre;
-        $amigo -> a_paterno = $request -> a_paterno;
-        $amigo -> a_materno = $request -> a_materno;
-        $amigo -> curp = $request -> curp;
-        $amigo -> id_estado_municipio = $request -> id_estado_municipio;
-        $amigo -> extranjero = $request -> extranjero;
-        $amigo -> calle = $request -> calle;
-        $amigo -> numero_interior = $request -> numero_interior;
-        $amigo -> numero_exterior = $request -> numero_exterior;
-        $amigo -> colonia = $request -> colonia;
-        $amigo -> cp = $request -> cp;
-        $amigo -> telefono = $request -> telefono;
-        $amigo -> email = $request -> email;
-        $amigo -> id_religion = $request -> id_religion;
-        $amigo -> tipo_sangre = $request -> tipo_sangre;
-        if($request -> hasFile('foto')){
-            Storage::delete($amigo -> foto);
-            $amigo -> foto = $request -> file('foto') -> storeAs('public/alumnos', strtoupper($request -> curp).'.'.$request -> file('foto') -> extension());
+        $amigo -> id_raza = $request -> id_raza;
+        $amigo -> tamanio = $request -> tamanio;
+        $amigo -> caracter = $request -> caracter;
+        $amigo -> convivencia = $request -> convivencia;
+        $amigo -> recomendaciones = $request -> recomendaciones;
+        $amigo -> requisitos = $request -> requisitos;
+        $amigo -> otros = $request -> otros;
+        $amigo -> id_especie = $request -> id_especie;
+        $amigo -> solicita_adopcion = $request -> solicita_adopcion;
+        $amigo -> solicita_esterilizacion = $request -> solicita_esterilizacion;
+        $amigo -> solicita_hogar_temporal = $request -> solicita_hogar_temporal;
+        $amigo -> solicita_ayuda_medica = $request -> solicita_ayuda_medica;
+        $amigo -> solicita_ayuda_alimenticia = $request -> solicita_ayuda_alimenticia;
+        if($request -> hasFile('fotos')){
+            Storage::delete($amigo -> fotos);
+            $amigo -> fotos = $request -> file('fotos') -> storeAs('public/Amigos', strtoupper($request -> nombre).'.'.$request -> file('fotos') -> extension());
         }
         $guardado = $amigo -> save();
 
-        $this -> UpdateUser($request, $id);
-
         if($guardado)
-            return redirect()->route('Amigo.index')->with('info','Alumno actualizado con éxito.');
+            return redirect()->route('Amigo.index')->with('info','Amigo actualizado con éxito.');
         else
             return redirect()->route('Amigo.index')->with('error','Imposible guardar Amigo.');
     }
@@ -182,38 +180,13 @@ class AmigoController extends Controller
         $destruido = null;
 
         $amigo = Amigo::findOrFail($id);
-        $amigo -> inscripciones() -> delete();
         Storage::delete($amigo -> foto);
         
         $destruido = Amigo::destroy($id);
 
         if($destruido)
-            return redirect()->route('Amigo.index')->with('info','Alumno eliminado con éxito.');
+            return redirect()->route('Amigo.index')->with('info','Amigo eliminado con éxito.');
         else
             return redirect()->route('Amigo.index')->with('error','Imposible borrar Amigo.');
     }
-
-    public function addUser(Request $request){
-        $user = new User;
-        $amigo = Amigo::find(DB::table('alumnos')->max('id_alumno'));
-        $user -> id_alumno = $amigo -> id_alumno;
-        $user -> name = $request -> nombre.' '.$request -> a_paterno.' '.$request -> a_materno;
-        $user -> email = $request -> email;
-        $user -> password = bcrypt(substr($request -> curp, 0, 6));
-        $user -> photo = $amigo -> foto;
-        $user -> save();
-        $user -> roles() -> attach('7');
-        //$user -> roles() -> attach($request -> id_rol);
-    }
-
-    public function updateUser(Request $request, $id){
-        $user = User::where('id_alumno', $id) -> first();
-        $amigo = Amigo::findOrFail($id);
-        $user -> name = $request -> nombre.' '.$request -> a_paterno.' '.$request -> a_materno;
-        $user -> email = $request -> email;
-        $user -> photo = $amigo -> foto;
-        $user -> save();
-        //$user -> roles() -> attach($request -> id_rol);
-    }
-
 }

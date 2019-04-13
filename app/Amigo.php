@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
-
 class Amigo extends Model
 {
     //
@@ -35,6 +34,11 @@ class Amigo extends Model
     public function especie()
     {
         return $this->belongsTo(Especie::class,'id_especie');
+    }
+
+    public function raza()
+    {
+        return $this->belongsTo(Raza::class,'id_raza');
     }
     
     public function solicitudes()

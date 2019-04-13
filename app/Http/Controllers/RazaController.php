@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Especie;
+use App\Raza;
 use Illuminate\Http\Request;
-use App\Http\Requests\EspecieRequest;
+use App\Http\Requests\RazaRequest;
 
-class EspecieController extends Controller
+class RazaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +17,13 @@ class EspecieController extends Controller
     {
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
 
-        $especies = Especie::where('especie', 'like', '%'.$criterio.'%')
-        ->orwhere('id_especie', $criterio)
+        $razas = Raza::where('raza', 'like', '%'.$criterio.'%')
+        ->orwhere('id_raza', $criterio)
         ->sortable()
-        ->orderBy('id_especie')
+        ->orderBy('id_raza')
         ->paginate(10);
         
-        return view('Especie.index', compact('especies'));
+        return view('Raza.index', compact('razas'));
     }
 
     /**
@@ -34,7 +34,7 @@ class EspecieController extends Controller
     public function create()
     {
         //
-        return view('Especie.create');
+        return view('Raza.create');
     }
 
     /**
@@ -43,16 +43,16 @@ class EspecieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EspecieRequest $request)
+    public function store(RazaRequest $request)
     {
         //
-        $especie = new Especie;
-        $especie -> especie = $request -> especie;
-        $guardado = $especie -> save();
+        $raza = new Raza;
+        $raza -> raza = $request -> raza;
+        $guardado = $raza -> save();
         if($guardado)
-            return redirect()->route('Especie.index')->with('info','Especie creada con éxito.');
+            return redirect()->route('Raza.index')->with('info','Raza creada con éxito.');
         else
-            return redirect()->route('Especie.index')->with('error','Imposible guardar Especie.');
+            return redirect()->route('Raza.index')->with('error','Imposible guardar Raza.');
     }
 
     /**
@@ -64,8 +64,8 @@ class EspecieController extends Controller
     public function show($id)
     {
         //
-        $especie = Especie::findOrFail($id);
-        return view('Especie.show', compact('especie'));
+        $raza = Raza::findOrFail($id);
+        return view('Raza.show', compact('raza'));
     }
 
     /**
@@ -77,8 +77,8 @@ class EspecieController extends Controller
     public function edit($id)
     {
         //
-        $especie = Especie::findOrFail($id);
-        return view('Especie.edit', compact('especie'));
+        $raza = Raza::findOrFail($id);
+        return view('Raza.edit', compact('raza'));
     }
 
     /**
@@ -88,16 +88,16 @@ class EspecieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EspecieRequest $request, $id)
+    public function update(RazaRequest $request, $id)
     {
         //
-        $especie = Especie::findOrFail($id);
-        $especie -> especie = $request -> especie;
-        $guardado = $especie -> save();
+        $raza = Raza::findOrFail($id);
+        $raza -> raza = $request -> raza;
+        $guardado = $raza -> save();
         if($guardado)
-            return redirect()->route('Especie.index')->with('info','Especie actualizada con éxito.');
+            return redirect()->route('Raza.index')->with('info','Raza actualizada con éxito.');
         else
-            return redirect()->route('Especie.index')->with('error','Imposible actualizar Especie.');
+            return redirect()->route('Raza.index')->with('error','Imposible actualizar Raza.');
     }
 
     /**
@@ -109,11 +109,11 @@ class EspecieController extends Controller
     public function destroy($id)
     {
         //
-        $destruido = Especie::destroy($id);
+        $destruido = Raza::destroy($id);
 
         if($destruido)
-            return redirect()->route('Especie.index')->with('info','Especie eliminada con éxito.');
+            return redirect()->route('Raza.index')->with('info','Raza eliminada con éxito.');
         else
-            return redirect()->route('Especie.index')->with('error','Imposible borrar Especie.');
+            return redirect()->route('Raza.index')->with('error','Imposible borrar Raza.');
     }
 }

@@ -29,11 +29,17 @@ class CreateAmigosTable extends Migration
             $table->string('fotos')->default('default.jpg');
             $table->string('recomendaciones');
             $table->string('requisitos');
-            $table->string('otros');
+            $table->string('otros')->nullable();
             $table->integer('id_especie')->unsigned();
             $table->foreign('id_especie')
                   ->references('id_especie')
                   ->on('cat_especies')
+                  ->onDelete('set null')
+                  ->onUpdate('cascade');
+            $table->integer('id_raza')->unsigned();
+            $table->foreign('id_raza')
+                  ->references('id_raza')
+                  ->on('cat_razas')
                   ->onDelete('set null')
                   ->onUpdate('cascade');
             $table->boolean('solicita_adopcion')->default(false);

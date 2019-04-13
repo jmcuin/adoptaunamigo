@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EspecieRequest extends FormRequest
+class RazaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,14 +33,14 @@ class EspecieRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    'especie' => 'unique:cat_especies|required|min:2'
+                    'raza' => 'unique:cat_razas|required|min:2'
                 ];
             }
             case 'PUT':
             case 'PATCH':
             {
                 return [
-                    'especie' => 'required|min:2'
+                    'raza' => 'required|min:2'
                 ];
             }
             default:break;
