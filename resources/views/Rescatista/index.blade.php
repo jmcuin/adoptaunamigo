@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
 	<div class="col-med-8" style="overflow: auto;"> 

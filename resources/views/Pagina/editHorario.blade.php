@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
 <form method="POST" action="{{ route('updateHorario')}}" id="registrar_horario" enctype="multipart/form-data">

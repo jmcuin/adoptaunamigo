@@ -1,110 +1,150 @@
-"use strict";
-jQuery(document).ready(function ($) {
+(function ($) {
+  "use strict";
+  
+  // Preloader
+  $(window).on('load', function () {
+    if ($('#preloader').length) {
+      $('#preloader').delay(100).fadeOut('slow', function () {
+        $(this).remove();
+      });
+    }
+  });
 
-//for Preloader
+  // Back to top button
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 100) {
+      $('.back-to-top').fadeIn('slow');
+    } else {
+      $('.back-to-top').fadeOut('slow');
+    }
+  });
+  $('.back-to-top').click(function(){
+    $('html, body').animate({scrollTop : 0},1500, 'easeInOutExpo');
+    return false;
+  });
+  
+	var nav = $('nav');
+	var navHeight = nav.outerHeight();
 
-    $(window).load(function () {
-        $("#loading").fadeOut(500);
-    });
+	/*--/ ScrollReveal /Easy scroll animations for web and mobile browsers /--*/
+	window.sr = ScrollReveal();
+	sr.reveal('.foo', { duration: 1000, delay: 15 });
 
+	/*--/ Carousel owl /--*/
+	$('#carousel').owlCarousel({
+		loop: true,
+		margin: -1,
+		items: 1,
+		nav: true,
+		navText: ['<i class="ion-ios-arrow-back" aria-hidden="true"></i>', '<i class="ion-ios-arrow-forward" aria-hidden="true"></i>'],
+		autoplay: true,
+		autoplayTimeout: 3000,
+		autoplayHoverPause: true
+	});
 
-    /*---------------------------------------------*
-     * Mobile menu
-     ---------------------------------------------*/
-    $('#navbar-menu').find('a[href*=#]:not([href=#])').click(function () {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                $('html,body').animate({
-                    scrollTop: (target.offset().top - 80)
-                }, 1000);
-                if ($('.navbar-toggle').css('display') != 'none') {
-                    $(this).parents('.container').find(".navbar-toggle").trigger("click");
-                }
-                return false;
-            }
-        }
-    });
+	/*--/ Animate Carousel /--*/
+	$('.intro-carousel').on('translate.owl.carousel', function () {
+		$('.intro-content .intro-title').removeClass('zoomIn animated').hide();
+		$('.intro-content .intro-price').removeClass('fadeInUp animated').hide();
+		$('.intro-content .intro-title-top, .intro-content .spacial').removeClass('fadeIn animated').hide();
+	});
 
+	$('.intro-carousel').on('translated.owl.carousel', function () {
+		$('.intro-content .intro-title').addClass('zoomIn animated').show();
+		$('.intro-content .intro-price').addClass('fadeInUp animated').show();
+		$('.intro-content .intro-title-top, .intro-content .spacial').addClass('fadeIn animated').show();
+	});
 
+	/*--/ Navbar Collapse /--*/
+	$('.navbar-toggle-box-collapse').on('click', function () {
+		$('body').removeClass('box-collapse-closed').addClass('box-collapse-open');
+	});
+	$('.close-box-collapse, .click-closed').on('click', function () {
+		$('body').removeClass('box-collapse-open').addClass('box-collapse-closed');
+		$('.menu-list ul').slideUp(700);
+	});
 
-    /*---------------------------------------------*
-     * WOW
-     ---------------------------------------------*/
+	/*--/ Navbar Menu Reduce /--*/
+	$(window).trigger('scroll');
+	$(window).bind('scroll', function () {
+		var pixels = 50;
+		var top = 1200;
+		if ($(window).scrollTop() > pixels) {
+			$('.navbar-default').addClass('navbar-reduce');
+			$('.navbar-default').removeClass('navbar-trans');
+		} else {
+			$('.navbar-default').addClass('navbar-trans');
+			$('.navbar-default').removeClass('navbar-reduce');
+		}
+		if ($(window).scrollTop() > top) {
+			$('.scrolltop-mf').fadeIn(1000, "easeInOutExpo");
+		} else {
+			$('.scrolltop-mf').fadeOut(1000, "easeInOutExpo");
+		}
+	});
 
-    var wow = new WOW({
-        mobile: false // trigger animations on mobile devices (default is true)
-    });
-    wow.init();
+	/*--/ Property owl /--*/
+	$('#property-carousel').owlCarousel({
+		loop: true,
+		margin: 30,
+		responsive: {
+			0: {
+				items: 1,
+			},
+			769: {
+				items: 2,
+			},
+			992: {
+				items: 3,
+			}
+		}
+	});
 
-// magnificPopup
+	/*--/ Property owl owl /--*/
+	$('#property-single-carousel').owlCarousel({
+		loop: true,
+		margin: 0,  
+		nav: true,
+		navText: ['<i class="ion-ios-arrow-back" aria-hidden="true"></i>', '<i class="ion-ios-arrow-forward" aria-hidden="true"></i>'],
+		responsive: {
+			0: {
+				items: 1,
+			}
+		}
+	});
 
-    $('.popup-img').magnificPopup({
-        type: 'image',
-        gallery: {
-            enabled: true
-        }
-    });
+	/*--/ News owl /--*/
+	$('#new-carousel').owlCarousel({
+		loop: true,
+		margin: 30,
+		responsive: {
+			0: {  
+				items: 1,
+			},
+			769: {
+				items: 2,
+			},
+			992: {
+				items: 3,
+			}
+		}
+	});
 
-    $('.video-link').magnificPopup({
-        type: 'iframe'
-    });
+	/*--/ Testimonials owl /--*/
+	$('#testimonial-carousel').owlCarousel({
+		margin: 0,
+		autoplay: true,
+		nav: true,
+		animateOut: 'fadeOut',
+		animateIn: 'fadeInUp',
+		navText: ['<i class="ion-ios-arrow-back" aria-hidden="true"></i>', '<i class="ion-ios-arrow-forward" aria-hidden="true"></i>'],
+		autoplayTimeout: 4000,
+		autoplayHoverPause: true,
+		responsive: {
+			0: {
+				items: 1,
+			}
+		}
+	});
 
-
-
-// slick slider active Home Page Tow
-    $(".hello_slid").slick({
-        dots: true,
-        infinite: false,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: true,
-        prevArrow: "<i class='icon icon-chevron-left nextprevleft'></i>",
-        nextArrow: "<i class='icon icon-chevron-right nextprevright'></i>",
-        autoplay: true,
-        autoplaySpeed: 2000
-    });
-    
-    
-    
-    $(".business_items").slick({
-        dots: true,
-        infinite: false,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: true,
-        prevArrow: "<i class='icon icon-chevron-left nextprevleft'></i>",
-        nextArrow: "<i class='icon icon-chevron-right nextprevright'></i>",
-        autoplay: true,
-        autoplaySpeed: 2000
-    });
-
-
-
-
-//---------------------------------------------
-// Scroll Up 
-//---------------------------------------------
-
-    $('.scrollup').click(function () {
-        $("html, body").animate({scrollTop: 0}, 1000);
-        return false;
-    });
-
-
-
-
-
-
-
-
-
-
-
-    //End
-
-});
-
-
-
+})(jQuery);

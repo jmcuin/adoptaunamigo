@@ -13,18 +13,26 @@ class EspecieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct(){
+        /*$this -> middleware('auth', ['except' => ['checkScores']]);
+        $this -> middleware('roles:dir_general,director,profesor', ['except' => ['checkScores']]);*/
+    }
+
     public function index()
     {
+        //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
-
+                
         $especies = Especie::where('especie', 'like', '%'.$criterio.'%')
-        ->orwhere('id_especie', $criterio)
+        ->orwhere('id_especie',$criterio)
+        ->orwhere('especie','like','%'.$criterio.'%')
         ->sortable()
         ->orderBy('id_especie')
+        ->orderBy('especie')
         ->paginate(10);
         
         return view('Especie.index', compact('especies'));
-    }
+    } 
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +41,7 @@ class EspecieController extends Controller
      */
     public function create()
     {
-        //
+        //        
         return view('Especie.create');
     }
 
@@ -46,9 +54,12 @@ class EspecieController extends Controller
     public function store(EspecieRequest $request)
     {
         //
+        //dd($request);
         $especie = new Especie;
         $especie -> especie = $request -> especie;
+            
         $guardado = $especie -> save();
+
         if($guardado)
             return redirect()->route('Especie.index')->with('info','Especie creada con éxito.');
         else
@@ -63,8 +74,8 @@ class EspecieController extends Controller
      */
     public function show($id)
     {
-        //
         $especie = Especie::findOrFail($id);
+
         return view('Especie.show', compact('especie'));
     }
 
@@ -78,6 +89,7 @@ class EspecieController extends Controller
     {
         //
         $especie = Especie::findOrFail($id);
+
         return view('Especie.edit', compact('especie'));
     }
 
@@ -90,15 +102,17 @@ class EspecieController extends Controller
      */
     public function update(EspecieRequest $request, $id)
     {
-        //
         $especie = Especie::findOrFail($id);
         $especie -> especie = $request -> especie;
+
         $guardado = $especie -> save();
+
         if($guardado)
             return redirect()->route('Especie.index')->with('info','Especie actualizada con éxito.');
         else
-            return redirect()->route('Especie.index')->with('error','Imposible actualizar Especie.');
+            return redirect()->route('Especie.index')->with('error','Imposible guardar Especie.');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -109,11 +123,13 @@ class EspecieController extends Controller
     public function destroy($id)
     {
         //
+        $destruido = null;
+              
         $destruido = Especie::destroy($id);
 
         if($destruido)
-            return redirect()->route('Especie.index')->with('info','Especie eliminada con éxito.');
+            return redirect()->route('Evento.index')->with('info','Especie eliminada con éxito.');
         else
-            return redirect()->route('Especie.index')->with('error','Imposible borrar Especie.');
+            return redirect()->route('Evento.index')->with('error','Imposible borrar Especie.');
     }
 }

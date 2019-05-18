@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
-<div class="container">
+<div class="container" style="overflow: auto; margin-top: 180px;">
       <div class="row">
       <div class="col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
           <div class="panel panel-info">
@@ -11,16 +11,16 @@
             <div class="panel-body">
               	<div class="row">
                 	<h3 class="panel-title" id="titulo-padres" align="center">
-                		{{ $estado -> estado}}
+                		{{ $especie -> especie }}
                 	</h3>
               	</div>
             </div>
             <div class="panel-footer">
                 <table>
                 	<tr>
-                		<td><a href="{{ route('Estado.edit', $estado -> id_estado)}}" class="btn btn-primary">Editar</a>
+                		<td><a href="{{ route('Especie.edit', $especie -> id_especie)}}" class="btn btn-primary">Editar</a>
                 		</td>
-                		<td><form method="POST" action="{{ route('Estado.destroy', $estado -> id_estado)}}">
+                		<td><form method="POST" action="{{ route('Especie.destroy', $especie -> id_especie)}}">
 								{!! method_field('DELETE') !!}
 							 	{!! csrf_field() !!}
 								<button type="submit" class="btn btn-primary">Eliminar</button>
@@ -31,7 +31,7 @@
 		           		</td>
 		           		<td>
 		           			<span class="pull-right">
-		               			<a href="{{ route('Estado.index') }}" class="btn btn-primary">Regresar</a>
+		               			<a href="{{ route('Especie.index') }}" class="btn btn-primary">Regresar</a>
 		           			</span>
 		           		</td>
                 	</tr>

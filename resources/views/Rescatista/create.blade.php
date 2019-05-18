@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
 <form method="POST" id="registrar_rescatista" enctype="multipart/form-data" action="{{ route('Rescatista.store') }}">

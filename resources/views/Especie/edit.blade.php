@@ -1,26 +1,26 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
 
-<form method="POST" action="{{ route('Estado.update', $estado -> id_estado)}}">
+<form method="POST" action="{{ route('Especie.update', $especie -> id_especie)}}">
 	 {!! method_field('PUT') !!}
 	 {!! csrf_field() !!}
-	<div class="container">
-	    <h1 align="center">Edición de Estado</h1>
+	<div class="container" style="overflow: auto; margin-top: 180px;">
+	    <h1 align="center">Edición de Especie</h1>
 		<div class="col-lg-12 well">
 			<div class="col-sm-12">
 				<div class="row" align="center">
-					<label for="estado">
-						Estado
-						<input type="text" name="estado" value="{{$estado -> estado}}" class="form-control">
-						{{ $errors -> first('estado') }}
+					<label for="especie">
+						Especie
+						<input type="text" name="especie" value="{{ $especie -> especie }}" class="form-control">
+						{{ $errors -> first('especie') }}
 					</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group pull-right">
 					<input type="submit" value="Enviar" class="btn btn-primary">
-					<a href="{{ route('Estado.index') }}" class="btn btn-primary">Regresar</a>
+					<a href="{{ route('Especie.index') }}" class="btn btn-primary">Regresar</a>
 				</div>
 			</div>
 		</div>

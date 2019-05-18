@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
 <form method="POST" id="editar_alumno" enctype="multipart/form-data" action="{{ route('Amigo.update', $amigo -> id_amigo) }}">
@@ -11,7 +11,10 @@
 			<div class="row">
 				<div class="form-group" align="center">
 					<label for="foto">
-						<img width="130px" src="{{ Storage::url($amigo -> foto) }}"><input type="file" name="foto" value="{{ $amigo -> foto }}" accept="image/*">
+					<?php 
+                		$fotos = explode('&',$amigo -> fotos); 
+                	?>
+               		<img width="130px" src="{{ Storage::url('public/Amigos/'.$fotos[1]) }}"><input type="file" name="foto" accept="image/*">
 						{{ $errors -> first('foto') }}
 					</label>
 				</div>
@@ -23,6 +26,13 @@
 						<input type="text" name="nombre" value="{{ $amigo -> nombre }}" class="form-control" placeholder="Nombre(s) del Alumno">
 						{{ $errors -> first('nombre') }}
 					</label>	
+				</div>
+				<div class="col-sm-4 form-group"> 
+					<label for="edad">
+						Edad
+						<input type="text" name="edad" value="{{ $amigo -> edad }}" class="form-control" placeholder="Edad del amigo">
+						{{ $errors -> first('edad') }}
+					</label>
 				</div>
 			</div>
 			<div class="row">
@@ -57,10 +67,10 @@
 						Tamaño<br>
 						<select name="tamanio" id="tamanio">
 							<option value="0">Seleccione un Tamaño</option>
-							<option value="Miniatura">Miniatura</option>
-							<option value="Chico">Chico</option>
-							<option value="Mediano">Mediano</option>
-							<option value="Grande">Grande</option>
+							<option value="Miniatura" @if($amigo -> tamanio == 'Miniatura') selected @endif>Miniatura</option>
+							<option value="Chico" @if($amigo -> tamanio == 'Chico') selected @endif>Chico</option>
+							<option value="Mediano" @if($amigo -> tamanio == 'Mediano') selected @endif>Mediano</option>
+							<option value="Grande" @if($amigo -> tamanio == 'Grande') selected @endif>Grande</option>
 						</select>
 					</label>
 				</div>
@@ -108,22 +118,22 @@
 				<div class="col-sm-4 form-group">
 					<label for="solicita_adopcion">
 						En Adopción<br>
-						<input type="radio" name="solicita_adopcion" value="true" checked="checked">Sí<br>
-						<input type="radio" name="solicita_adopcion" value="false">No
+						<input type="radio" name="solicita_adopcion" value="true" @if($amigo -> solicita_adopcion == true) checked="checked" @endif>Sí<br>
+						<input type="radio" name="solicita_adopcion" value="false" @if($amigo -> solicita_adopcion == false) checked="checked" @endif>No
 					</label>
 				</div>
 				<div class="col-sm-4 form-group">
 					<label for="solicita_esterilizacion">
 						Solicita Padrinos de Esterilización<br>
-						<input type="radio" name="solicita_esterilizacion" value="true" checked="checked">Sí<br>
-						<input type="radio" name="solicita_esterilizacion" value="false">No
+						<input type="radio" name="solicita_esterilizacion" value="true" @if($amigo -> solicita_esterilizacion == true) checked="checked" @endif>Sí<br>
+						<input type="radio" name="solicita_esterilizacion" value="false" @if($amigo -> solicita_esterilizacion == false) checked="checked" @endif>No
 					</label>
 				</div>
 				<div class="col-sm-4 form-group">
 					<label for="solicita_hogar_temporal">
 						Solicita Hogar Temporal<br>
-						<input type="radio" name="solicita_hogar_temporal" value="true" checked="checked">Sí<br>
-						<input type="radio" name="solicita_hogar_temporal" value="false">No
+						<input type="radio" name="solicita_hogar_temporal" value="true" @if($amigo -> solicita_hogar_temporal == true) checked="checked" @endif>Sí<br>
+						<input type="radio" name="solicita_hogar_temporal" value="false" @if($amigo -> solicita_hogar_temporal == false) checked="checked" @endif>No
 					</label>
 				</div>
 			</div>
@@ -131,15 +141,15 @@
 				<div class="col-sm-4 form-group">
 					<label for="solicita_ayuda_medica">
 						Solicita Ayuda Médica<br>
-						<input type="radio" name="solicita_ayuda_medica" value="true" checked="checked">Sí<br>
-						<input type="radio" name="solicita_ayuda_medica" value="false">No
+						<input type="radio" name="solicita_ayuda_medica" value="true" @if($amigo -> solicita_ayuda_medica == true) checked="checked" @endif>Sí<br>
+						<input type="radio" name="solicita_ayuda_medica" value="false" @if($amigo -> solicita_ayuda_medica == false) checked="checked" @endif>No
 						</label>
 				</div>
 				<div class="col-sm-4 form-group">
 					<label for="solicita_ayuda_alimenticia">
 						Solicita Ayuda Alimenticia<br>
-						<input type="radio" name="solicita_ayuda_alimenticia" value="true" checked="checked">Sí<br>
-						<input type="radio" name="solicita_ayuda_alimenticia" value="false">No
+						<input type="radio" name="solicita_ayuda_alimenticia" value="true" @if($amigo -> solicita_ayuda_alimenticia == true) checked="checked" @endif>Sí<br>
+						<input type="radio" name="solicita_ayuda_alimenticia" value="false" @if($amigo -> solicita_ayuda_alimenticia == false) checked="checked" @endif>No
 					</label>
 				</div>
 			</div>

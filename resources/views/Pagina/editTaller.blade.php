@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
 <form method="POST" action="{{ route('updateTaller')}}" id="registrar_taller" enctype="multipart/form-data">

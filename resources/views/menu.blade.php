@@ -1,319 +1,279 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <title>Colegio Fernández de Lizardi</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="favicon.ico">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Adopta un amigo</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
 
-        <!--Google Font link-->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
-        <link rel="stylesheet" href="css/slick/slick.css"> 
-        <link rel="stylesheet" href="css/slick/slick-theme.css">
-        <link rel="stylesheet" href="css/animate.css">
-        <link rel="stylesheet" href="css/iconfont.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/magnific-popup.css">
-        <link rel="stylesheet" href="css/bootsnav.css">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+  <!-- Bootstrap CSS File -->
+  <link href="{{URL::to('/')}}/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- xsslider slider css -->
+  <!-- Libraries CSS Files -->
+  <link href="{{URL::to('/')}}/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{URL::to('/')}}/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="{{URL::to('/')}}/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="{{URL::to('/')}}/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
+  <!-- Main Stylesheet File -->
+  <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
 
-        <!--<link rel="stylesheet" href="css/xsslider.css">-->
+  <!-- =======================================================
+    Theme Name: EstateAgency
+    Theme URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
 
-        <!--For Plugins external css-->
-        <!--<link rel="stylesheet" href="css/plugins.css" />-->
+<body>
 
-        <!--Theme custom css -->
-        <link rel="stylesheet" href="css/style.css">
-        <!--<link rel="stylesheet" href="css/colors/maron.css">-->
-
-        <!--Theme Responsive css-->
-        <link rel="stylesheet" href="css/responsive.css" />
-
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    </head>
-
-    <body data-spy="scroll" data-target=".navbar-collapse">
-
-        <!-- Preloader -->
-        <div id="loading">
-            <div id="loading-center">
-                <div id="loading-center-absolute">
-                    <div class="object" id="object_one"></div>
-                    <div class="object" id="object_two"></div>
-                    <div class="object" id="object_three"></div>
-                    <div class="object" id="object_four"></div>
-                </div>
+  <div class="click-closed"></div>
+  <!--/ Form Search Star /-->
+  <div class="box-collapse">
+    <div class="title-box-d">
+      <h3 class="title-d">Search Property</h3>
+    </div>
+    <span class="close-box-collapse right-boxed ion-ios-close"></span>
+    <div class="box-collapse-wrap form">
+      <form class="form-a">
+        <div class="row">
+          <div class="col-md-12 mb-2">
+            <div class="form-group">
+              <label for="Type">Keyword</label>
+              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
             </div>
-        </div><!--End off Preloader -->
-
-
-        <div class="culmn">
-            <!--Home page style-->
-
-
-            <nav class="navbar navbar-default bootsnav navbar-fixed">
-                <div class="navbar-top bg-grey fix">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="navbar-callus text-left sm-text-center">
-                                    <ul class="list-inline">
-                                        <li>Llámanos: 123456</i></li>
-                                        <li><a href="mailto:direccion@lizardi.edu.mx?Subject=Informes" target="_top">Contáctanos: direccion@lizardi.edu.mx</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="navbar-socail text-right sm-text-center">
-                                    <ul class="list-inline">
-                                        <li><a href="http://www.facebook.com" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href=""><i class="fa fa-behance"></i></a></li>
-                                        <li><a href=""><i class="fa fa-dribbble"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Start Top Search -->
-                <!--div class="top-search">
-                    <div class="container">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input type="text" class="form-control" placeholder="Search">
-                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-                        </div>
-                    </div>
-                </div-->
-                <!-- End Top Search -->
-
-
-                <div class="container"> 
-                    <!--<div class="attr-nav">
-                        <ul>
-                            <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        </ul>
-                    </div> -->
-
-                    <!-- Start Header Navigation -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <a class="navbar-brand" href="{{ route('inicio') }}">
-                            <img src="images/logo.png" class="logo" alt="Colegio Fernández de Lizardi" width="70px" height="50px">
-                            <!--<img src="images/footer-logo.png" class="logo logo-scrolled" alt="">-->
-                        </a>
-
-                    </div>
-                    <!-- End Header Navigation -->
-
-                    <!-- navbar menu -->
-                    <div class="collapse navbar-collapse" id="navbar-menu">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#home">Inicio</a></li>                    
-                            <li><a href="#features">Oferta Educativa</a></li>
-                            <li><a href="#business">Talleres</a></li>
-                            <li><a href="#product">Instalaciones</a></li>
-                            <li><a href="#test">Horario Extendido</a></li>
-                            <li><a href="#brand">Convenios</a></li>
-                            <li><a href="#contact">Encuéntranos</a></li>
-                            <!--li><a href="#contact">Contacto</a></li-->
-                            <li><a id="demo01" href="#animatedModal">Contacto</a></li>
-                            <li><a href={{ route('login') }}>Ingresar</a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                    @if (session('info'))
-                        <strong>
-                            <div class="alert alert-success alert-dismissable fade in">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                {{ session('info') }}
-                            </div>
-                        </strong>
-                    @endif
-                </div> 
-            </nav>
-            
-            @yield('contenido')
-
-            <footer id="contact" class="footer action-lage bg-black p-top-80">
-                <!--<div class="action-lage"></div>-->
-                <!--Call your modal-->
-    
-
-    <!--DEMO01-->
-                <div class="container">
-                    <div class="row">
-                        <div class="widget_area">
-                            <div class="col-md-3">
-                                <div class="widget_item widget_about">
-                                    <h5 class="text-white">Acerca de Nosotros</h5>
-                                    <p class="m-top-20">Somos una institución educativa con más de 25 años de experiencia.</p>
-                                    <div class="widget_ab_item m-top-30">
-                                        <div class="item_icon"><i class="fa fa-location-arrow"></i></div>
-                                        <div class="widget_ab_item_text">
-                                            <h6 class="text-white">Dirección</h6>
-                                            <p>
-                                                Calle 30 de Julio #123. Col. Nueva Valladolid</p>
-                                        </div>
-                                    </div>
-                                    <div class="widget_ab_item m-top-30">
-                                        <div class="item_icon"><i class="fa fa-phone"></i></div>
-                                        <div class="widget_ab_item_text">
-                                            <h6 class="text-white">Teléfono :</h6>
-                                            <p>+1 2345 6789</p>
-                                        </div>
-                                    </div>
-                                    <div class="widget_ab_item m-top-30">
-                                        <div class="item_icon"><i class="fa fa-envelope-o"></i></div>
-                                        <div class="widget_ab_item_text">
-                                            <h6 class="text-white">Correo Electrónico :</h6>
-                                            <p>direccion@lizardi.edu.mx</p>
-                                        </div>
-                                    </div>
-                                </div><!--End off widget item -->
-                            </div><!-- End off col-md-3 -->
-
-                            <div class="col-md-3">
-                                <div class="widget_item widget_latest sm-m-top-50">
-                                    <h5 class="text-white">Noticias Relevantes</h5>
-                                    <div class="widget_latst_item m-top-30">
-                                        <div class="item_icon"><img src="images/ltst-img-1.jpg" alt="" /></div>
-                                        <div class="widget_latst_item_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                            <a href="">21<sup>th</sup> July 2016</a>
-                                        </div>
-                                    </div>
-                                    <div class="widget_latst_item m-top-30">
-                                        <div class="item_icon"><img src="images/ltst-img-2.jpg" alt="" /></div>
-                                        <div class="widget_latst_item_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                            <a href="">21<sup>th</sup> July 2016</a>
-                                        </div>
-                                    </div>
-                                    <div class="widget_latst_item m-top-30">
-                                        <div class="item_icon"><img src="images/ltst-img-3.jpg" alt="" /></div>
-                                        <div class="widget_latst_item_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                            <a href="">21<sup>th</sup> July 2016</a>
-                                        </div>
-                                    </div>
-                                </div><!-- End off widget item-->
-                            </div><!--End off col-md-3 -->
-
-                            <div class="col-md-3">
-                                <div class="widget_item widget_service sm-m-top-50">
-                                    <h5 class="text-white">Latest News</h5>
-                                    <ul class="m-top-20">
-                                        <li class="m-top-20"><a href=""><i class="fa fa-angle-right"></i> Web Design</a></li>
-                                        <li class="m-top-20"><a href=""><i class="fa fa-angle-right"></i> User Interface Design</a></li>
-                                        <li class="m-top-20"><a href=""><i class="fa fa-angle-right"></i> E- Commerce</a></li>
-                                        <li class="m-top-20"><a href=""><i class="fa fa-angle-right"></i> Web Hosting</a></li>
-                                        <li class="m-top-20"><a href=""><i class="fa fa-angle-right"></i> Themes</a></li>
-                                        <li class="m-top-20"><a href=""><i class="fa fa-angle-right"></i> Support Forums</a></li>
-                                    </ul>
-                                </div><!-- End off widget item -->
-                            </div><!-- End off col-md-3 -->
-
-                            <div class="col-md-3">
-                                <div class="widget_item widget_newsletter sm-m-top-50">
-                                    <h5 class="text-white">Newsletter</h5>
-                                    <form class="form-inline m-top-30">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Enter you Email">
-                                            <button type="submit" class="btn text-center"><i class="fa fa-arrow-right"></i></button>
-                                        </div>
-
-                                    </form>
-                                    <div class="widget_brand m-top-40">
-                                        <a href="" class="text-uppercase">Your Logo</a>
-                                        <p>Lorem ipsum dolor sit amet consec tetur 
-                                            adipiscing elit nulla aliquet pretium nisi in</p>
-                                    </div>
-                                    <ul class="list-inline m-top-20">
-                                        <li>-  <a href=""><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href=""><i class="fa fa-behance"></i></a></li>
-                                        <li><a href=""><i class="fa fa-dribbble"></i></a>  - </li>
-                                    </ul>
-
-                                </div><!--End off widget item-->
-                            </div><!--End off col-md-3 -->
-                        </div>
-                    </div>
-                </div>
-                <div class="main_footer fix bg-mega text-center p-top-40 p-bottom-30 m-top-80">
-                    <div class="col-md-12">
-                        <p class="wow fadeInRight" data-wow-duration="1s">
-                            Desarrollado por: MGTI José Manuel Cuin Jacuinde. 2018. Interfaz de 
-                            <a target="_blank" href="https://bootstrapthemes.co">Bootstrap Themes</a>.
-                            2016. All Rights Reserved
-                        </p>
-                    </div>
-                </div>
-            </footer>
-
-
-
-
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label for="Type">Type</label>
+              <select class="form-control form-control-lg form-control-a" id="Type">
+                <option>All Type</option>
+                <option>For Rent</option>
+                <option>For Sale</option>
+                <option>Open House</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label for="city">City</label>
+              <select class="form-control form-control-lg form-control-a" id="city">
+                <option>All City</option>
+                <option>Alabama</option>
+                <option>Arizona</option>
+                <option>California</option>
+                <option>Colorado</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label for="bedrooms">Bedrooms</label>
+              <select class="form-control form-control-lg form-control-a" id="bedrooms">
+                <option>Any</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label for="garages">Garages</label>
+              <select class="form-control form-control-lg form-control-a" id="garages">
+                <option>Any</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label for="bathrooms">Bathrooms</label>
+              <select class="form-control form-control-lg form-control-a" id="bathrooms">
+                <option>Any</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label for="price">Min Price</label>
+              <select class="form-control form-control-lg form-control-a" id="price">
+                <option>Unlimite</option>
+                <option>$50,000</option>
+                <option>$100,000</option>
+                <option>$150,000</option>
+                <option>$200,000</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-b">Search Property</button>
+          </div>
         </div>
+      </form>
+    </div>
+  </div>
+  <!--/ Form Search End /-->
 
-        <!-- JS includes -->
+  <!--/ Nav Star /-->
+  <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+    <div class="container">
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="navbar-brand text-brand" href="index.html">Estate<span class="color-b">Agency</span></a>
+      <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
+        data-target="#navbarTogglerDemo01" aria-expanded="false">
+        <span class="fa fa-search" aria-hidden="true"></span>
+      </button>
+      <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#amigos">Amigos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="property-grid.html">Property</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#eventos">Eventos</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Pages
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="property-single.html">Property Single</a>
+              <a class="dropdown-item" href="blog-single.html">Blog Single</a>
+              <a class="dropdown-item" href="agents-grid.html">Agents Grid</a>
+              <a class="dropdown-item" href="agent-single.html">Agent Single</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
+        data-target="#navbarTogglerDemo01" aria-expanded="false">
+        <span class="fa fa-search" aria-hidden="true"></span>
+      </button>
+    </div>
+  </nav>
+  <!--/ Nav End /-->
+            
+@yield('contenido')
 
-        <script src="js/vendor/jquery-1.11.2.min.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <nav class="nav-footer">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="#">Home</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">About</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Property</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Blog</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Contact</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="socials-a">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-dribbble" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="copyright-footer">
+            <p class="copyright color-text-a">
+              &copy; Copyright
+              <span class="color-a">EstateAgency</span> All Rights Reserved.
+            </p>
+          </div>
+          <div class="credits">
+            <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=EstateAgency
+            -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--/ Footer End /-->
 
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.magnific-popup.js"></script>
-        <script src="js/jquery.easing.1.3.js"></script>
-        <script src="css/slick/slick.js"></script>
-        <script src="css/slick/slick.min.js"></script>
-        <script src="js/jquery.collapse.js"></script>
-        <script src="js/bootsnav.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-        
-        <script src="js/animatedModal.min.js"></script>
-        <script>
-            $("#demo01").animatedModal();
-        </script>
-        <style type="text/css">
-            .btn-primary{
-                background-color: #20193D !important;
-            }
-            #animatedModal{
-                margin: auto !important;
-            }
-            .close-animatedModal{
-                cursor: pointer;
-            }
-            .modal-content{
-                width: 50% !important;
-                margin: auto !important;
-            }
-            .modal-content2{
-                width: 80% !important;
-                margin: auto !important;
-            }
-            .buttonHolder{ 
-                text-align: center; 
-            }
-        </style>
-    </body>
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <div id="preloader"></div>
+
+  <!-- JavaScript Libraries -->
+  <script src="{{URL::to('/')}}/lib/jquery/jquery.min.js"></script>
+  <script src="{{URL::to('/')}}/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="{{URL::to('/')}}/lib/popper/popper.min.js"></script>
+  <script src="{{URL::to('/')}}/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{URL::to('/')}}/lib/easing/easing.min.js"></script>
+  <script src="{{URL::to('/')}}/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="{{URL::to('/')}}/lib/scrollreveal/scrollreveal.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{{URL::to('/')}}/js/main.js"></script>
+
+</body>
 </html>

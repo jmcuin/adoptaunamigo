@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    $pagina = App\Pagina::where('activo', '=', 1) -> first();
+   /* $pagina = App\Pagina::where('activo', '=', 1) -> first();
     $banner_principal_texto = explode('&', $pagina -> banner_principal_texto);
     $pagina_convenios = App\Pagina_convenios::where('id_pagina', $pagina -> id)->get();
     $pagina_horarios = App\Pagina_horarios::where('id_pagina', $pagina -> id)->get();
@@ -23,12 +23,18 @@ Route::get('/', function () {
     $visita = new App\Visita;
     $visita -> save();
     $escolaridades = App\Escolaridad::all();
-    return view('inicio', compact('pagina','banner_principal_texto','pagina_convenios','pagina_horarios','pagina_instalaciones','pagina_oferta','pagina_talleres','escolaridades'));
+    return view('inicio', compact('pagina','banner_principal_texto','pagina_convenios','pagina_horarios','pagina_instalaciones','pagina_oferta','pagina_talleres','escolaridades'));*/
+    $amigos = App\Amigo::where('solicita_adopcion', '=', true) -> get();
+    $amigostop = App\Amigo::where('solicita_adopcion', '=', true) -> take(3) -> get();
+    $eventos = App\Evento::whereDate('fecha', '>=', date('Y-m-d')) -> get();
+    return view('inicio', compact('amigostop', 'amigos', 'eventos'));
 })->name('inicio');
 
 Route::resource('Amigo', 'AmigoController');
 
 Route::resource('Especie', 'EspecieController');
+
+Route::resource('Evento', 'EventoController');
 
 Route::resource('Raza', 'RazaController');
 

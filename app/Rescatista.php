@@ -36,4 +36,9 @@ class Rescatista extends Model
     {
         return $this->hasMany(Amigo::class,'id_amigo');
     }
+
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class,'id_rescatista');
+    }
 }

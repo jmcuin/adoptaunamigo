@@ -1,9 +1,9 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
-<form method="POST" id="registrar_amigo" enctype="multipart/form-data" action="{{ route('Amigo.store') }}">
+<form method="POST" id="registrar_amigo" enctype="multipart/form-data" action="{{ route('Amigo.store') }}" style="margin-top: 150px">
 	{!! csrf_field() !!}
-<div class="container">
+
     <h1 align="center">Registro de Amigo</h1>
 	<div class="col-lg-12 well">
 			<div class="col-sm-12">
@@ -11,7 +11,7 @@
 					<div class="col-sm-12 form-group" align="center"> 
 						 <label for="foto" class="label-foto">
 							Foto(s) del Amigo
-							<input type="file" name="fotos[]" id="foto" placeholder="Fotos del amigo" accept="image/*" multiple="multiple">
+							<input type="file" name="fotos[]" id="foto" placeholder="Fotos del amigo" accept="image/*" multiple="multiple" required="required">
 						</label>
 						<div class="preview">
 						</div>
@@ -23,6 +23,13 @@
 							Nombre
 							<input type="text" name="nombre" value="{{old('nombre')}}" class="form-control" placeholder="Nombre(s) del amigo">
 							{{ $errors -> first('nombre') }}
+						</label>
+					</div>
+					<div class="col-sm-4 form-group"> 
+						<label for="edad">
+							Edad
+							<input type="text" name="edad" value="{{old('edad')}}" class="form-control" placeholder="Edad del amigo">
+							{{ $errors -> first('edad') }}
 						</label>
 					</div>
 				</div>
@@ -154,7 +161,7 @@
 			</div>
 		</div>		
 	</div>
-</div>
+
 </form>
 
 <script>

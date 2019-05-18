@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
-	<div class="col-sm-8" style="overflow: auto;"> 
+	<div class="col-sm-8" style="overflow: auto; margin-top: 180px;"> 
 		<h1>
 			Catálogo de Especies
 			<a href="{{ route('Especie.create') }}" class="btn btn-primary pull-right">Nuevo</a>
@@ -22,7 +22,7 @@
     			</div>
     		</strong>
     	@endif
-    	{!! Form::open(['method'=>'GET','url'=>'Estado','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
+    	{!! Form::open(['method'=>'GET','url'=>'Especie','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
 			<div class="input-group custom-search-form">
 			    <input type="text" class="form-control" name="search" placeholder="Buscar...">
 			    <span class="input-group-btn">

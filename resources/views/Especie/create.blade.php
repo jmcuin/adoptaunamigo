@@ -1,9 +1,9 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
 <form method="POST" action="{{ route('Especie.store')}}">
 	 {!! csrf_field() !!}
-	<div class="container">
+	<div class="container" style="overflow: auto; margin-top: 180px;">
 	    <h1 align="center">Registro de Especie</h1>
 		<div class="col-lg-12 well">
 			<div class="col-sm-12">

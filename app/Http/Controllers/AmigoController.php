@@ -54,7 +54,7 @@ class AmigoController extends Controller
         $especies = Especie::orderBy('especie') -> get();
         $razas = Raza::orderBy('raza') -> get();
         
-        return view('Amigo.create', compact('municipios', 'especies', 'razas'));
+        return view('Amigo.create', compact('especies', 'razas'));
     }
 
     /**
@@ -72,6 +72,7 @@ class AmigoController extends Controller
         $amigo = new Amigo;
         $amigo -> id_rescatista = 15;
         $amigo -> nombre = $request -> nombre;
+        $amigo -> edad = $request -> edad;
         $amigo -> id_raza = $request -> id_raza;
         $amigo -> tamanio = $request -> tamanio;
         $amigo -> caracter = $request -> caracter;
@@ -87,7 +88,6 @@ class AmigoController extends Controller
         $amigo -> solicita_ayuda_alimenticia = $request -> solicita_ayuda_alimenticia;
         array_filter($request -> fotos);
         $archivos = $request -> fotos;
-        //dd($request -> fotos[0]);
         for($i = 0; $i < count($request -> fotos); $i++ ) {
             $fotos_amigo = $fotos_amigo.'&'.'15_'.strtoupper($request -> nombre).'_'.$i.'.'.$request -> fotos[$i] -> extension();
             $request -> fotos[$i] -> storeAs('public/Amigos', '15_'.strtoupper($request -> nombre).'_'.$i.'.'.$archivos[$i] -> extension());
@@ -142,6 +142,7 @@ class AmigoController extends Controller
     {
         $amigo = Amigo::findOrFail($id);
         $amigo -> nombre = $request -> nombre;
+        $amigo -> edad = $request -> edad;
         $amigo -> id_raza = $request -> id_raza;
         $amigo -> tamanio = $request -> tamanio;
         $amigo -> caracter = $request -> caracter;

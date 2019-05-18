@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
 <form method="POST" action="{{ route('Rol.update', $rol -> id_rol)}}">

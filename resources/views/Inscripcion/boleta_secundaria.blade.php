@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
 	<div align="center" style="overflow: scroll;"> 

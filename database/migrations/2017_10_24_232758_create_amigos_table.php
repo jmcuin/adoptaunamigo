@@ -22,6 +22,7 @@ class CreateAmigosTable extends Migration
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
             $table->string('nombre');
+            $table->string('edad');
             $table->string('raza');
             $table->string('tamanio');
             $table->string('caracter');

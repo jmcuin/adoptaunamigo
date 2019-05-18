@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
 	<form method="POST" action="{{ route('Municipio.update', $municipio -> id_estado_municipio)}}">

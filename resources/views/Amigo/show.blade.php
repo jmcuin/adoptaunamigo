@@ -1,20 +1,22 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
-	<div class="container">
+	<div class="container" style="overflow: auto; margin-top: 150px;>
       <div class="row">
       <div class="col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title" >Amigo: {{ $amigo  -> nombre }}</h3>
+              <h3 class="panel-title" >Amigo: {{ $amigo -> nombre }}</h3>
             </div>
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-3 col-lg-3 " align="center"> 
-                	<?php $fotos = explode('&',$amigo  -> fotos); ?>
-                	@foreach($fotos as $foto)
-                		<img width="130px" src="{{ Storage::url($foto) }}">
-                	@endforeach 
+                	<?php 
+                		$fotos = explode('&',$amigo -> fotos); 
+                	?>
+                	@for($i = 1; $i < count($fotos); $i++)
+                		<img width="130px" src="{{ Storage::url('public/Amigos/'.$fotos[$i]) }}">
+                	@endfor
                 </div>
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
@@ -22,6 +24,10 @@
                       <tr>
                         <td>Nombre:</td>
                         <td>{{ $amigo -> nombre }}</td>
+                      </tr>
+                      <tr>
+                        <td>Edad:</td>
+                        <td>{{ $amigo -> edad }}</td>
                       </tr>
                       <tr>
                         <td>Tamaño:</td>
@@ -54,29 +60,29 @@
                     </tbody>
                   </table>
                 </div>
-                <h3 class="panel-title" id="titulo-padres" align="center">Padres o Tutores</h3>
+                <h3 class="panel-title" id="titulo-padres" align="center">Información Complementaria</h3>
                 <div id="panel-padres"> 
                   <table class="table table-user-information">
                     <tbody>
                    		<tr>
                         	<td>Solicita Adopción:</td>
-                        	<td>{{ $amigo -> solicita_adopcion }}</td>
+                        	<td>@if($amigo -> solicita_adopcion == 1) Sí @else No @endif</td>
                       	</tr>
                       	<tr>
                         	<td>Solicita Esterilización:</td>
-                        	<td>{{ $amigo -> solicita_esterilizacion }}</td>
+                        	<td>@if($amigo -> solicita_esterilizacion) Sí @else No @endif</td>
                       	</tr>
                       	<tr>
                         	<td>Solicita Hogar Temporal:</td>
-                        	<td>{{ $amigo -> solicita_hogar_temporal }}</td>
+                        	<td>@if($amigo -> solicita_hogar_temporal) Sí @else No @endif</td>
                       	</tr>
                       	<tr>
                         	<td>Solicita Ayuda Médica:</td>
-                        	<td>{{ $amigo -> solicita_ayuda_medica }}</td>
+                        	<td>@if($amigo -> solicita_ayuda_medica) Sí @else No @endif</td>
                       	</tr>
                       	<tr>
                         	<td>Solicita Ayuda Alimenticia:</td>
-                        	<td>{{ $amigo -> solicita_ayuda_alimenticia }}</td>
+                        	<td>@if($amigo -> solicita_ayuda_alimenticia) Sí @else No @endif</td>
                       	</tr>
                     </tbody>
                   </table>

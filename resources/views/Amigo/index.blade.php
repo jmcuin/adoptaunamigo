@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('menu')
 
 @section('contenido')
-	<div class="col-med-8" align="center" style="overflow: auto;"> 
+	<div class="col-med-8" align="center" style="overflow: auto; margin-top: 180px;"> 
 		<h1>
 			Listado de Amigos
 			<a href="{{ route('Amigo.create') }}" class="btn btn-primary pull-right">Nuevo</a>
