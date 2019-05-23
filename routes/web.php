@@ -25,7 +25,7 @@ Route::get('/', function () {
     $escolaridades = App\Escolaridad::all();
     return view('inicio', compact('pagina','banner_principal_texto','pagina_convenios','pagina_horarios','pagina_instalaciones','pagina_oferta','pagina_talleres','escolaridades'));*/
     $amigos = App\Amigo::where('solicita_adopcion', '=', true) -> get();
-    $amigostop = App\Amigo::where('solicita_adopcion', '=', true) -> take(3) -> get();
+    $amigostop = App\Amigo::where('solicita_adopcion', '=', true) -> take(6) -> get();
     $eventos = App\Evento::whereDate('fecha', '>=', date('Y-m-d')) -> get();
     return view('inicio', compact('amigostop', 'amigos', 'eventos'));
 })->name('inicio');
@@ -39,6 +39,13 @@ Route::resource('Evento', 'EventoController');
 Route::resource('Raza', 'RazaController');
 
 Route::resource('Rescatista', 'RescatistaController');
+
+Route::get('/gridAmigos', function () {
+	$amigos = App\Amigo::where('solicita_adopcion', '=', true) -> get();
+    return view('amigoGrid', compact('amigos'));
+})->name('gridAmigos');
+
+Route::get('amigo-single/{id_amigo}', ['as' => 'amigo-single', 'uses' =>'AmigoController@getSingle']);
 
 /*Route::get('inicio', function () {
     return view('inicio');

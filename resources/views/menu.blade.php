@@ -147,16 +147,16 @@
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">Home</a>
+            <a class="nav-link active" href="{{ route('inicio') }}">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#amigos">Amigos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="property-grid.html">Property</a>
+            <a class="nav-link" href="#eventos">Eventos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#eventos">Eventos</a>
+            <a class="nav-link" href="#donativos">Donativos</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"

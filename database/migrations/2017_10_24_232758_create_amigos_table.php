@@ -31,6 +31,7 @@ class CreateAmigosTable extends Migration
             $table->string('recomendaciones');
             $table->string('requisitos');
             $table->string('otros')->nullable();
+            $table->string('historia')->nullable();
             $table->integer('id_especie')->unsigned();
             $table->foreign('id_especie')
                   ->references('id_especie')

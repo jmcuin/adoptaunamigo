@@ -3,7 +3,7 @@
 @section('contenido')
 
 <!--/ Carousel Star /-->
-  <div class="intro intro-carousel">
+  <div class="intro intro-carousel" id="inicio">
     <div id="carousel" class="owl-carousel owl-theme">
       @foreach($amigos as $amigo)
         <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
@@ -19,7 +19,7 @@
                     <h1 class="intro-title mb-4">
                       {{ $amigo -> nombre }}</h1>
                     <p class="intro-subtitle intro-price">
-                      <a href="#"><span class="price-a">{{ $amigo -> edad }} / {{ $amigo -> tamanio }} / {{ $amigo -> caracter }}</span></a>
+                      <a href="#"><span class="price-a">{{ $amigo -> caracter }}</span></a>
                     </p>
                   </div>
                 </div>
@@ -176,10 +176,10 @@
         <div class="col-md-12">
           <div class="title-wrap d-flex justify-content-between">
             <div class="title-box">
-              <h2 class="title-a">Agregados Recientemente</h2>
+              <h2 class="title-a">Recien Llegados</h2>
             </div>
             <div class="title-link">
-              <a href="property-grid.html">Todos nuestros amigos
+              <a href="{{ route('gridAmigos') }}">Todos nuestros amigos
                 <span class="ion-ios-arrow-forward"></span>
               </a>
             </div>
@@ -206,7 +206,7 @@
                   <div class="price-box d-flex">
                     <span class="price-a">Talla: {{ $amigo -> tamanio }}</span>
                   </div>
-                  <a href="#" class="link-a">Ver más
+                  <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}" class="link-a">Ver más
                     <span class="ion-ios-arrow-forward"></span>
                   </a>
                 </div>

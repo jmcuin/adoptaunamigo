@@ -190,4 +190,11 @@ class AmigoController extends Controller
         else
             return redirect()->route('Amigo.index')->with('error','Imposible borrar Amigo.');
     }
+
+    public function getSingle($id)
+    {
+        $amigo = Amigo::findOrFail($id);
+        //dd($amigo);        
+        return view('Amigo.amigo-single', compact('amigo'));
+    }
 }

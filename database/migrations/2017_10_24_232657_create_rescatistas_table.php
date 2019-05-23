@@ -19,6 +19,7 @@ class CreateRescatistasTable extends Migration
             $table->string('a_paterno');
             $table->string('a_materno')->nullable();
             $table->string('alias')->unique();
+            $table->string('redes_sociales')->unique();
             $table->integer('id_estado_municipio')->unsigned();      
             $table->foreign('id_estado_municipio')
                   ->references('id_estado_municipio')
