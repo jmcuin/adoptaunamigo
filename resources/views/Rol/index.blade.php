@@ -1,7 +1,7 @@
 @extends('menu')
 
 @section('contenido')
-	<div class="col-sm-8" align="center" style="overflow: auto;"> 
+	<div class="col-sm-12" align="center" style="overflow: auto;margin-top: 150px">
 		<h1>
 			Catálogo de Roles
 			<a href="{{ route('Rol.create') }}" class="btn btn-primary pull-right">Nuevo</a>

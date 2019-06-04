@@ -1,7 +1,7 @@
 @extends('menu')
 
 @section('contenido')
-	<div class="col-sm-8" style="overflow: auto;"> 
+	<div class="col-sm-8" style="overflow: auto; margin-top: 150px"> 
 		<h1>
 			Catálogo de Municipios
 			<a href="{{ route('Municipio.create') }}" class="btn btn-primary pull-right">Nuevo</a>

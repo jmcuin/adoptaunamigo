@@ -3,12 +3,13 @@
 @section('contenido')
 
 <!--/ Carousel Star /-->
+  
   <div class="intro intro-carousel" id="inicio">
     <div id="carousel" class="owl-carousel owl-theme">
       @foreach($amigos as $amigo)
         <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
         
-        <div class="carousel-item-a intro-item bg-image" style="background-image: url({{ Storage::url('public/Amigos/'.$foto_amigo[1]) }})">
+        <div class="carousel-item-a intro-item bg-image" style="background-image: url({{ Storage::url('public/amigos/'.$foto_amigo[1]) }})">
         <div class="overlay overlay-a"></div>
         <div class="intro-content display-table">
           <div class="table-cell">
@@ -17,7 +18,8 @@
                 <div class="col-lg-8">
                   <div class="intro-body">
                     <h1 class="intro-title mb-4">
-                      {{ $amigo -> nombre }}</h1>
+                      <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}" class="intro-title mb-4" target="_blank">{{ $amigo -> nombre }}</a>
+                    </h1>
                     <p class="intro-subtitle intro-price">
                       <a href="#"><span class="price-a">{{ $amigo -> caracter }}</span></a>
                     </p>
@@ -28,52 +30,6 @@
           </div>
         </div>
       </div>
-      <!--div class="carousel-item-a intro-item bg-image" style="background-image: url(img/slide-2.jpg)">
-        <div class="overlay overlay-a"></div>
-        <div class="intro-content display-table">
-          <div class="table-cell">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-8">
-                  <div class="intro-body">
-                    <p class="intro-title-top">Doral, Florida
-                      <br> 78345</p>
-                    <h1 class="intro-title mb-4">
-                      <span class="color-b">204 </span> Rino
-                      <br> Venda Road Five</h1>
-                    <p class="intro-subtitle intro-price">
-                      <a href="#"><span class="price-a">rent | $ 12.000</span></a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item-a intro-item bg-image" style="background-image: url(img/slide-3.jpg)">
-        <div class="overlay overlay-a"></div>
-        <div class="intro-content display-table">
-          <div class="table-cell">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-8">
-                  <div class="intro-body">
-                    <p class="intro-title-top">Doral, Florida
-                      <br> 78345</p>
-                    <h1 class="intro-title mb-4">
-                      <span class="color-b">204 </span> Alira
-                      <br> Roan Road One</h1>
-                    <p class="intro-subtitle intro-price">
-                      <a href="#"><span class="price-a">rent | $ 12.000</span></a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div-->
       @endforeach
     </div>
   </div>
@@ -176,7 +132,7 @@
         <div class="col-md-12">
           <div class="title-wrap d-flex justify-content-between">
             <div class="title-box">
-              <h2 class="title-a">Recien Llegados</h2>
+              <h2 class="title-a">Recién Llegados</h2>
             </div>
             <div class="title-link">
               <a href="{{ route('gridAmigos') }}">Todos nuestros amigos
@@ -193,13 +149,13 @@
           <div class="card-box-a card-shadow" style="height: 260px !important;">
             <div class="img-box-a">
               <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
-              <img src="{{ Storage::url('public/Amigos/'.$foto_amigo[1]) }}" alt="" class="img-a img-fluid">
+              <img src="{{ Storage::url('public/amigos/'.$foto_amigo[1]) }}" alt="" class="img-a img-fluid">
             </div>
             <div class="card-overlay">
               <div class="card-overlay-a-content">
                 <div class="card-header-a">
                   <h2 class="card-title-a">
-                    <a href="property-single.html">{{ $amigo -> nombre }}</a>
+                    <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}">{{ $amigo -> nombre }}</a>
                   </h2>
                 </div>
                 <div class="card-body-a">
@@ -442,7 +398,7 @@
               <h2 class="title-a">Próximos Eventos</h2>
             </div>
             <div class="title-link">
-              <a href="agents-grid.html">Todos los eventos
+              <a href="{{ route('gridEventos') }}">Todos los eventos
                 <span class="ion-ios-arrow-forward"></span>
               </a>
             </div>
@@ -454,19 +410,19 @@
         <div class="col-md-4">
           <div class="card-box-d" style="height: 350px !important;">
             <div class="card-img-d">
-              <img src="{{ Storage::url($evento -> imagen) }}" alt="" class="img-d img-fluid" style="height: 350px !important;">
+              <img src="{{ Storage::url('public/eventos/'.$evento -> imagen) }}" alt="" class="img-d img-fluid" style="height: 350px !important;">
             </div>
             <div class="card-overlay card-overlay-hover">
               <div class="card-header-d">
                 <div class="card-title-d align-self-center">
                   <h3 class="title-d">
-                    <a href="agent-single.html" class="link-two">{{ $evento -> nombre }}</a>
+                    <a href="{{ route('gridEventos') }}" class="link-two">{{ $evento -> nombre }}</a>
                   </h3>
                 </div>
               </div>
               <div class="card-body-d">
                 <p class="content-d color-text-a">
-                  {{ $evento -> descripcion }}
+                  {{ substr($evento -> descripcion, 0, 15) }}...
                 </p>
                 <div class="info-agents color-a">
                   <p>

@@ -1,9 +1,9 @@
 @extends('menu')
 
 @section('contenido')
-<form method="POST" id="registrar_amigo" enctype="multipart/form-data" action="{{ route('Amigo.store') }}" style="margin-top: 150px">
+<form method="POST" id="registrar_amigo" enctype="multipart/form-data" action="{{ route('Amigo.store') }}">
 	{!! csrf_field() !!}
-
+	<div class="container" style="margin-top: 150px">
     <h1 align="center">Registro de Amigo</h1>
 	<div class="col-lg-12 well">
 			<div class="col-sm-12">
@@ -75,7 +75,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-4 form-group"> 
-						<label for="alias">
+						<label for="caracter">
 							Carácter
 							<input type="text" name="caracter" id="caracter" value="{{old('caracter')}}" class="form-control" placeholder="Carácter del amigo">
 							{{ $errors -> first('caracter') }}
@@ -105,10 +105,28 @@
 						</label>
 					</div>
 					<div class="col-sm-6 form-group">
-						<label for="otros">
-							Otra Información
-							<textarea name="otros" class="form-control" placeholder="Información adicional" cols="80">{{old('otros')}}</textarea>
-							{{ $errors -> first('otros') }}
+						<label for="lugar_adopcion">
+							Lugares de Adopción
+							<textarea name="lugar_adopcion" class="form-control" placeholder="Lugares donde podrá ser dado en adopción" cols="80">{{old('lugar_adopcion')}}</textarea>
+							{{ $errors -> first('lugar_adopcion') }}
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="historia">
+							Historia de Vida
+							<textarea name="historia" class="form-control" placeholder="Historia de vida antes de ser rescatado" cols="160">{{old('historia')}}</textarea>
+							{{ $errors -> first('historia') }}
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 form-group"> 
+						<label for="enlace_video">
+							Enlace Youtube
+							<input type="text" name="enlace_video" id="enlace_video" value="{{old('enlace_video')}}" class="form-control" placeholder="Enlace al video de youtube">
+							{{ $errors -> first('enlace_video') }}
 						</label>
 					</div>
 				</div>
@@ -161,6 +179,7 @@
 			</div>
 		</div>		
 	</div>
+</div>
 
 </form>
 

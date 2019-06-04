@@ -17,8 +17,7 @@ class RazaController extends Controller
     {
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
 
-        $razas = Raza::where('raza', 'like', '%'.$criterio.'%')
-        ->orwhere('id_raza', $criterio)
+        $razas = Raza::where('raza', 'ilike', '%'.$criterio.'%')
         ->sortable()
         ->orderBy('id_raza')
         ->paginate(10);

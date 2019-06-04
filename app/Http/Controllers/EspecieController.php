@@ -23,9 +23,7 @@ class EspecieController extends Controller
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
                 
-        $especies = Especie::where('especie', 'like', '%'.$criterio.'%')
-        ->orwhere('id_especie',$criterio)
-        ->orwhere('especie','like','%'.$criterio.'%')
+        $especies = Especie::where('especie', 'ilike', '%'.$criterio.'%')
         ->sortable()
         ->orderBy('id_especie')
         ->orderBy('especie')

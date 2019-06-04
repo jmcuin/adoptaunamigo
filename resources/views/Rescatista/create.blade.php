@@ -3,7 +3,7 @@
 @section('contenido')
 <form method="POST" id="registrar_rescatista" enctype="multipart/form-data" action="{{ route('Rescatista.store') }}">
 	{!! csrf_field() !!}
-<div class="container">
+<div class="container" style="margin-top: 150px">
     <h1 align="center">Registro de Rescatista</h1>
 	<div class="col-lg-12 well">
 			<div class="col-sm-12">
@@ -45,8 +45,15 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="alias">
 							Alias
-							<input type="text" name="alias" id="alias" value="{{old('alias')}}" class="form-control" placeholder="alias del rescatista">
+							<input type="text" name="alias" id="alias" value="{{old('alias')}}" class="form-control" placeholder="Alias del rescatista">
 							{{ $errors -> first('alias') }}
+						</label>
+					</div>
+					<div class="col-sm-6 form-group"> 
+						<label for="historia">
+							Historia
+							<textarea name="historia" class="form-control" placeholder="Cuéntanos un poco de tu labor" cols="80">{{old('historia')}}</textarea>
+							{{ $errors -> first('historia') }}
 						</label>
 					</div>
 				</div>
@@ -80,7 +87,7 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="extranjero">
 							Otro
-							<input type="text" name="extranjero" value="{{old('extranjero')}}" class="form-control" placeholder="Lugar de Origen del rescatista">
+							<input type="text" name="extranjero" value="{{old('extranjero')}}" class="form-control" placeholder="Lugar de origen del rescatista">
 							{{ $errors -> first('extranjero') }}
 						</label>
 					</div>
@@ -140,10 +147,19 @@
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">
-						<label for="confrimaemail">
+						<label for="confirmaemail">
 							Confirmación Correo Electrónico	
 							<input type="email" name="confirmaemail" id="confirmaemail" value="{{old('confirmaemail')}}" class="form-control" placeholder="mail@algo.com">
 							{{ $errors -> first('confirmaemail') }}
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label for="redes_sociales">
+							Enlace de Facebook	
+							<input type="text" name="redes_sociales" id="redes_sociales" value="{{old('redes_sociales')}}" class="form-control" placeholder="Enlace al facebook del rescatista">
+							{{ $errors -> first('redes_sociales') }}
 						</label>
 					</div>
 				</div>

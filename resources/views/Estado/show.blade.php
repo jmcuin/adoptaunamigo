@@ -2,7 +2,7 @@
 
 @section('contenido')
 <div class="container">
-      <div class="row">
+      <div class="row" style="margin-top: 150px">
       <div class="col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
           <div class="panel panel-info">
             <div class="panel-heading">

@@ -31,21 +31,30 @@ Route::get('/', function () {
 })->name('inicio');
 
 Route::resource('Amigo', 'AmigoController');
+Route::post('registerSolicitud', ['as' => 'registerSolicitud', 'uses' => 'AmigoController@storeSolicitud']);
+
+Route::get('/gridAmigos', function () {
+	$amigos = App\Amigo::where('solicita_adopcion', '=', true) -> get();
+    return view('amigogrid', compact('amigos'));
+})->name('gridAmigos');
+
+Route::get('amigo-single/{id_amigo}', ['as' => 'amigo-single', 'uses' =>'AmigoController@getSingle']);
 
 Route::resource('Especie', 'EspecieController');
 
 Route::resource('Evento', 'EventoController');
+Route::get('/gridEventos', function () {
+	$eventos = App\Evento::whereDate('fecha', '>=', date('Y-m-d')) -> get();
+    return view('eventogrid', compact('eventos'));
+})->name('gridEventos');
+
+Route::get('evento-single/{id_evento}', ['as' => 'evento-single', 'uses' =>'eventoController@getSingle']);
 
 Route::resource('Raza', 'RazaController');
 
 Route::resource('Rescatista', 'RescatistaController');
-
-Route::get('/gridAmigos', function () {
-	$amigos = App\Amigo::where('solicita_adopcion', '=', true) -> get();
-    return view('amigoGrid', compact('amigos'));
-})->name('gridAmigos');
-
-Route::get('amigo-single/{id_amigo}', ['as' => 'amigo-single', 'uses' =>'AmigoController@getSingle']);
+Route::get('commentSolicitud/{id_solicitud}', ['as' => 'commentSolicitud', 'uses' =>'RescatistaController@comment']);
+Route::post('storeComment', ['as' => 'storeComment', 'uses' => 'RescatistaController@storeComment']);
 
 /*Route::get('inicio', function () {
     return view('inicio');
@@ -71,6 +80,7 @@ Route::resource('Informe', 'InformeController');
 Route::post('InformeAttention', ['as' => 'InformeAttention', 'uses' => 'InformeController@attend']);
 
 Route::resource('Solicitud', 'SolicitudController');
+Route::get('editPagina/{id}', ['as' => 'editPagina', 'uses' =>'PaginaController@editarPagina']);
 
 Route::resource('Municipio', 'MunicipioController');
 

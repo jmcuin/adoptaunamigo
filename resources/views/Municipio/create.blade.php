@@ -3,7 +3,7 @@
 @section('contenido')
 <form method="POST" action="{{ route('Municipio.store')}}">
 	 {!! csrf_field() !!}
-	<div class="container">
+	<div class="container" style="margin-top: 150px">
 	    <h1 align="center">Registro de Municipio</h1>
 		<div class="col-lg-12 well">
 			<div class="col-sm-12">

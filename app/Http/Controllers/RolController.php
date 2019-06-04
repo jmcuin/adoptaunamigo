@@ -23,9 +23,8 @@ class RolController extends Controller
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
 
-        $roles = Rol::where('rol_key', 'like', '%'.$criterio.'%')
-        ->orwhere('rol', $criterio)
-        ->orwhere('id_rol', $criterio)
+        $roles = Rol::where('rol_key', 'ilike', '%'.$criterio.'%')
+        ->orwhere('rol', 'ilike', '%'.$criterio.'%')
         ->sortable()
         ->orderBy('id_rol')
         ->paginate(10);

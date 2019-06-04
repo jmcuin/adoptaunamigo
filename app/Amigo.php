@@ -23,7 +23,8 @@ class Amigo extends Model
             'convivencia',
             'recomendaciones',
             'requisitos',
-            'otros'
+            'lugar_adopcion',
+            'historia'
     ];
 
     public function rescatista()

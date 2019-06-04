@@ -4,7 +4,7 @@
 <form method="POST" action="{{ route('Rol.update', $rol -> id_rol)}}">
 	{!! csrf_field() !!}
 	{!! method_field('PUT') !!}
-	<div class="container">
+	<div class="container" style="margin-top: 150px">
 	    <h1 align="center">Edición de Rol</h1>
 		<div class="col-lg-12 well">
 			<div class="col-sm-12">

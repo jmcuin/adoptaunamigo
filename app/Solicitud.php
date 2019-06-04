@@ -13,7 +13,7 @@ class Solicitud extends Model
 
     use Sortable;
 
-	public $sortable = ['id_amigo'];
+	public $sortable = ['id_amigo', 'nombre'];
 
 	public function amigo()
     {

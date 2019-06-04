@@ -1,7 +1,7 @@
 @extends('menu')
 
 @section('contenido')
-<div class="container">
+<div class="container" style="margin-top: 150px;">
       <div class="row">
       <div class="col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
           <div class="panel panel-info">
@@ -36,6 +36,18 @@
                         <td>{{ $rescatista -> email }}</td> 
                       </tr>
                       <tr>
+                        <td>Enlace de Facebook:</td>
+                        <td>{{ $rescatista -> redes_sociales }}</td> 
+                      </tr>
+                      <tr>
+                        <td>Asociación:</td>
+                        <td>@if($rescatista -> es_asociacion == true){{ $rescatista -> asociacion }}@else NA @endif</td> 
+                      </tr>
+                      <tr>
+                        <td>Historia:</td>
+                        <td>{{ $rescatista -> historia }}</td>
+                      </tr>
+                      <tr>
                         <td>Rol:</td>
                         <td>{{ $rescatista -> user -> roles[0] -> rol }}</td> 
                       </tr>
@@ -44,6 +56,7 @@
                 </div>
               </div>
             </div>
+          </div>
             <div class="panel-footer">
                 <table>
                 	<tr>
@@ -68,6 +81,7 @@
             </div>       
         </div>
     </div>
+  </div>
 <style type="text/css">
 	.btn-primary{
 		background-color: #20193D !important;

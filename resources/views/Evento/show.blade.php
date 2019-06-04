@@ -6,52 +6,43 @@
       <div class="col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title" >Amigo: {{ $amigo -> nombre }}</h3>
+              <h3 class="panel-title" >Evento: {{ $evento -> nombre }}</h3>
             </div>
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-3 col-lg-3 " align="center"> 
-                	<?php 
-                		$fotos = explode('&',$amigo -> fotos); 
-                	?>
-                	@for($i = 1; $i < count($fotos); $i++)
-                		<img width="130px" src="{{ Storage::url('public/Amigos/'.$fotos[$i]) }}">
-                	@endfor
+                	<img width="130px" src="{{ Storage::url('public/eventos/'.$evento -> imagen) }}">
                 </div>
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td>Nombre:</td>
-                        <td>{{ $amigo -> nombre }}</td>
+                        <td>Descripción:</td>
+                        <td>{{ $evento -> descripcion }}</td>
                       </tr>
                       <tr>
-                        <td>Tamaño:</td>
-                        <td>{{ $amigo -> tamanio }}</td>
-                      </tr>
-                      <tr>
-                        <td>Carácter:</td>
-                        <td>{{ $amigo -> caracter }}</td>
+                        <td>Lugar:</td>
+                        <td>{{ $evento -> lugar }}</td>
                       </tr>
                         <tr>
-                        <td>Convivencia:</td>
-                        <td>{{ $amigo -> convivencia }}<br></td>
+                        <td>Fecha:</td>
+                        <td>{{ $evento -> fecha }}<br></td>
                       </tr>
                       <tr>
-                        <td>Recomendaciones:</td>
-                        <td>{{ $amigo -> recomendaciones }}</td>
+                        <td>Hora:</td>
+                        <td>{{ $evento -> hora }}</td>
                       </tr>
                       <tr>
-                        <td>Requisitos:</td>
-                        <td>{{ $amigo -> requisitos }}</td> 
+                        <td>Facebook:</td>
+                        <td>{{ $evento -> enlace_facebook }}</td> 
                       </tr>
                       <tr>
-                        <td>Otros:</td>
-                        <td>{{ $amigo -> otros }}</td> 
+                        <td>Correo Electrónico:</td>
+                        <td>{{ $evento -> email }}</td> 
                       </tr>
                       <tr>
-                        <td>Especie:</td>
-                        <td>{{ $amigo -> especie -> especie }}</td> 
+                        <td>Teléfono:</td>
+                        <td>{{ $evento -> telefono }}</td> 
                       </tr>
                     </tbody>
                   </table>
@@ -61,24 +52,24 @@
                   <table class="table table-user-information">
                     <tbody>
                    		<tr>
-                        	<td>Solicita Adopción:</td>
-                        	<td>@if($amigo -> solicita_adopcion == 1) Sí @else No @endif</td>
+                        	<td>Se reciben donaciones de alimento:</td>
+                        	<td>@if($evento -> donativos_alimento == 1) Sí @else No @endif</td>
                       	</tr>
                       	<tr>
-                        	<td>Solicita Esterilización:</td>
-                        	<td>@if($amigo -> solicita_esterilizacion) Sí @else No @endif</td>
+                        	<td>Se reciben donaciones de ropa, correas, casas, etc.:</td>
+                        	<td>@if($evento -> donativos_objetos) Sí @else No @endif</td>
                       	</tr>
                       	<tr>
-                        	<td>Solicita Hogar Temporal:</td>
-                        	<td>@if($amigo -> solicita_hogar_temporal) Sí @else No @endif</td>
+                        	<td>Se reciben donaciones de juguetes:</td>
+                        	<td>@if($evento -> donativos_juguetes) Sí @else No @endif</td>
                       	</tr>
                       	<tr>
-                        	<td>Solicita Ayuda Médica:</td>
-                        	<td>@if($amigo -> solicita_ayuda_medica) Sí @else No @endif</td>
+                        	<td>Se reciben donaciones en efectivo:</td>
+                        	<td>@if($evento -> donativos_efectivo) Sí @else No @endif</td>
                       	</tr>
                       	<tr>
-                        	<td>Solicita Ayuda Alimenticia:</td>
-                        	<td>@if($amigo -> solicita_ayuda_alimenticia) Sí @else No @endif</td>
+                        	<td>Se reciben paseos para los resctadados:</td>
+                        	<td>@if($evento -> donativos_paseos) Sí @else No @endif</td>
                       	</tr>
                     </tbody>
                   </table>
@@ -88,9 +79,9 @@
             <div class="panel-footer">
                 <table>
                 	<tr>
-                		<td><a href="{{ route('Amigo.edit', $amigo -> id_amigo) }}" class="btn btn-primary">Editar</a>
+                		<td><a href="{{ route('Evento.edit', $evento -> id_evento) }}" class="btn btn-primary">Editar</a>
                 		</td>
-                		<td><form method="POST" action="{{ route('Amigo.destroy', $amigo  -> id_amigo)}}">
+                		<td><form method="POST" action="{{ route('Evento.destroy', $evento  -> id_evento)}}">
 								{!! method_field('DELETE') !!}
 				 				{!! csrf_field() !!}
 								<button type="submit" class="btn btn-primary">Eliminar</button>
@@ -101,7 +92,7 @@
                 		</td>
                 		<td>
                 			<span class="pull-right">
-                    			<a href="{{ route('Amigo.index') }}" class="btn btn-primary">Regresar</a>
+                    			<a href="{{ route('Evento.index') }}" class="btn btn-primary">Regresar</a>
                 			</span>
                 		</td>
                 	</tr>

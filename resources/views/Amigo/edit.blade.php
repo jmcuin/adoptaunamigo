@@ -1,10 +1,10 @@
 @extends('menu')
 
 @section('contenido')
-<form method="POST" id="editar_alumno" enctype="multipart/form-data" action="{{ route('Amigo.update', $amigo -> id_amigo) }}">
+<form method="POST" enctype="multipart/form-data" action="{{ route('Amigo.update', $amigo -> id_amigo) }}">
 	{!! csrf_field() !!}
 	{!! method_field('PUT') !!}
-	<div class="container">
+	<div class="container" style="margin-top: 150px">
     <h1 align="center">Edición de Amigo(a)</h1>
 	<div class="col-lg-12 well">
 		<div class="col-sm-12">
@@ -14,7 +14,7 @@
 					<?php 
                 		$fotos = explode('&',$amigo -> fotos); 
                 	?>
-               		<img width="130px" src="{{ Storage::url('public/Amigos/'.$fotos[1]) }}"><input type="file" name="foto" accept="image/*">
+               		<img width="130px" src="{{ Storage::url('public/amigos/'.$fotos[1]) }}"><input type="file" name="foto" accept="image/*">
 						{{ $errors -> first('foto') }}
 					</label>
 				</div>
@@ -107,13 +107,31 @@
 					</label>
 				</div>
 				<div class="col-sm-6 form-group">
-					<label for="otros">
-						Otra Información
-						<textarea name="otros" class="form-control" placeholder="Información adicional" cols="80">{{ $amigo -> otros }}</textarea>
-						{{ $errors -> first('otros') }}
+					<label for="lugar_adopcion">
+						Lugares de Adopción
+						<textarea name="lugar_adopcion" class="form-control" placeholder="Lugares donde podrá ser dado en adopción" cols="80">{{ $amigo -> lugar_adopcion }}</textarea>
+						{{ $errors -> first('lugar_adopcion') }}
 					</label>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-sm-12 form-group">
+					<label for="historia">
+						Historia de Vida
+						<textarea name="historia" class="form-control" placeholder="Historia de vida antes de ser rescatado" cols="160">{{ $amigo -> historia }}</textarea>
+						{{ $errors -> first('historia') }}
+					</label>
+				</div>
+			</div>
+			<div class="row">
+					<div class="col-sm-6 form-group"> 
+						<label for="enlace_video">
+							Enlace Youtube
+							<input type="text" name="enlace_video" id="enlace_video" value="{{ $amigo -> enlace_video }}" class="form-control" placeholder="Enlace al video de youtube">
+							{{ $errors -> first('enlace_video') }}
+						</label>
+					</div>
+				</div>
 			<div class="row">
 				<div class="col-sm-4 form-group">
 					<label for="solicita_adopcion">

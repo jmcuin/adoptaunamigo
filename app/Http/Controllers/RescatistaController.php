@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Rescatista;
 use App\Municipio;
 use App\Estado;
+use App\Solicitud;
 use App\Rol;
 use App\User;
 use DB;
@@ -28,11 +29,10 @@ class RescatistaController extends Controller
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
         
-        $rescatistas = Rescatista::where('nombre', 'like', '%'.$criterio.'%')
-        ->orwhere('id_rescatista',$criterio)
-        ->orwhere('a_paterno','like','%'.$criterio.'%')
-        ->orwhere('a_materno','like','%'.$criterio.'%')
-        ->orwhere('alias','like','%'.$criterio.'%')
+        $rescatistas = Rescatista::where('nombre', 'ilike', '%'.$criterio.'%')
+        ->orwhere('a_paterno','ilike','%'.$criterio.'%')
+        ->orwhere('a_materno','ilike','%'.$criterio.'%')
+        ->orwhere('alias','ilike','%'.$criterio.'%')
         ->sortable()
         ->orderBy('id_rescatista')
         ->orderBy('nombre')
@@ -78,6 +78,8 @@ class RescatistaController extends Controller
         $rescatista -> telefono = $request -> telefono;
         $rescatista -> email = $request -> email;
         $rescatista -> es_asociacion = $request -> es_asociacion;
+        $rescatista -> redes_sociales = $request -> redes_sociales;
+        $rescatista -> historia = $request -> historia;
 
         if($request -> hasFile('foto')){
             $rescatista -> foto = $request -> file('foto') -> storeAs('public/rescatistas', strtoupper($request -> alias).'.'.$request -> file('foto') -> extension());
@@ -149,6 +151,8 @@ class RescatistaController extends Controller
         $rescatista -> telefono = $request -> telefono;
         $rescatista -> email = $request -> email;
         $rescatista -> es_asociacion = $request -> es_asociacion;
+        $rescatista -> redes_sociales = $request -> redes_sociales;
+        $rescatista -> historia = $request -> historia;
         
         if($request -> hasFile('foto')){
             Storage::delete($rescatista -> foto);
@@ -194,5 +198,24 @@ class RescatistaController extends Controller
         $user -> save();
         $user -> roles() -> attach(2);
         //$user -> roles() -> attach($request -> id_rol);
+    }
+
+    public function comment($id)
+    {
+        //
+        return view('Rescatista.comment', compact('id'));
+    }
+
+    public function storeComment(Request $request)
+    {
+        
+        $solicitud = Solicitud::findOrFail($request -> id_solicitud);
+        $comentarios = $request -> comentario.'&'.$solicitud -> comentarios_rescatista;
+        $solicitud -> comentarios_rescatista = $comentarios;
+          
+        if($solicitud -> save())
+            return redirect()->route('Solicitud.index')->with('info','Comentario registrado con éxito.');
+        else
+            return redirect()->route('Solicitud.index')->with('error','Imposible guardar Comentario.');       
     }
 }

@@ -24,7 +24,7 @@ class CreateSolicitudesTable extends Migration
             $table->string('nombre_solicitante');
             $table->string('email')->nullable();
             $table->string('telefono')->nullable();
-            $table->tinyInteger('edad');
+            $table->string('edad');
             $table->text('mensaje');
             $table->boolean('atendida')->default(false);
             $table->string('comentarios_rescatista')->nullable();

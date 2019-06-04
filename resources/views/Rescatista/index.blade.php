@@ -1,7 +1,7 @@
 @extends('menu')
 
 @section('contenido')
-	<div class="col-med-8" style="overflow: auto;"> 
+	<div class="col-med-8" align="center" style="overflow: auto; margin-top: 150px"> 
 		<h1>
 			Listado de Rescatistas
 			<a href="{{ route('Rescatista.create') }}" class="btn btn-primary pull-right">Nuevo</a>

@@ -37,8 +37,7 @@ class EventoRequest extends FormRequest
                     'descripcion' => 'required|min:2',
                     'lugar' => 'required|min:2',
                     'fecha' => 'required|after:today',
-                    'hora' => 'required',
-                    'enlace_facebook' => 'required'
+                    'hora' => 'required'
                 ];
             }
             case 'PUT':
@@ -49,8 +48,7 @@ class EventoRequest extends FormRequest
                     'descripcion' => 'required|min:2',
                     'lugar' => 'required|min:2',
                     'fecha' => 'required|after:today',
-                    'hora' => 'required',
-                    'enlace_facebook' => 'required'
+                    'hora' => 'required'
                 ];
             }
             default:break;

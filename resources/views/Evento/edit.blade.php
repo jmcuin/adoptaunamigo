@@ -1,148 +1,124 @@
 @extends('menu')
 
 @section('contenido')
-<form method="POST" id="editar_alumno" enctype="multipart/form-data" action="{{ route('Amigo.update', $amigo -> id_amigo) }}">
+<form method="POST" id="editar_alumno" enctype="multipart/form-data" action="{{ route('Evento.update', $evento -> id_evento) }}">
 	{!! csrf_field() !!}
 	{!! method_field('PUT') !!}
-	<div class="container">
-    <h1 align="center">Edición de Amigo(a)</h1>
+	<div class="container" style="margin-top: 150px">
+    <h1 align="center">Edición de Evento</h1>
 	<div class="col-lg-12 well">
 		<div class="col-sm-12">
-			<div class="row">
-				<div class="form-group" align="center">
-					<label for="foto">
-						<img width="130px" src="{{ Storage::url($amigo -> foto) }}"><input type="file" name="foto" value="{{ $amigo -> foto }}" accept="image/*">
-						{{ $errors -> first('foto') }}
-					</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 form-group">
-					<label for="nombre">
-						Nombre
-						<input type="text" name="nombre" value="{{ $amigo -> nombre }}" class="form-control" placeholder="Nombre(s) del Alumno">
-						{{ $errors -> first('nombre') }}
-					</label>	
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 form-group"> 
-						<label for="id_especie">
-							Especie<br>
-							<select name="id_especie" id="id_especie">
-								<option value="0">Seleccione una Especie</option>
-								<@foreach($especies as $especie)
-									<option value="{{ $especie -> id_especie }}" @if($amigo -> id_especie == $especie -> id_especie ) selected @endif>{{ $especie -> especie}}	
-									</option>	
-								@endforeach
-							</select>
-							{{ $errors -> first('id_especie') }}
+				<div class="row">
+					<div class="col-sm-12 form-group" align="center"> 
+						 <label for="foto" class="label-foto">
+							Foto(s) del Evento
+							<input type="file" name="imagen" id="imagen" placeholder="Imagen del Evento" accept="image/*" required="required">
 						</label>
+						<div class="preview">
+						</div>
+					</div>
 				</div>
-				<div class="col-sm-4 form-group"> 
-					<label for="id_raza">
-						Raza<br>
-						<select name="id_raza" id="id_raza">
-							<option value="0">Seleccione una Raza</option>
-							@foreach($razas as $raza)
-								<option value="{{ $raza -> id_raza }}" @if($amigo -> id_raza == $raza -> id_raza ) selected @endif>{{ $raza -> raza}}	
-								</option>	
-							@endforeach
-						</select>
-						{{ $errors -> first('id_raza') }}
-					</label>
-				</div>
-				<div class="col-sm-4 form-group"> 
-					<label for="tamanio">
-						Tamaño<br>
-						<select name="tamanio" id="tamanio">
-							<option value="0">Seleccione un Tamaño</option>
-							<option value="Miniatura" @if($amigo -> tamanio == 'Miniatura') selected @endif>Miniatura</option>
-							<option value="Chico" @if($amigo -> tamanio == 'Chico') selected @endif>Chico</option>
-							<option value="Mediano" @if($amigo -> tamanio == 'Mediano') selected @endif>Mediano</option>
-							<option value="Grande" @if($amigo -> tamanio == 'Grande') selected @endif>Grande</option>
-						</select>
-					</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 form-group"> 
-					<label for="alias">
-						Carácter
-						<input type="text" name="caracter" id="caracter" value="{{ $amigo -> caracter }}" class="form-control" placeholder="Carácter del amigo">
-						{{ $errors -> first('caracter') }}
-					</label>
-				</div>
-				<div class="col-sm-4 form-group">
-					<label for="convivencia">
-						Convivencia	
-						<input type="text" name="convivencia" value="{{ $amigo -> convivencia }}" class="form-control" placeholder="Convive con perros, gatos, etc...">
-						{{ $errors -> first('convivencia') }}
-					</label>
-				</div>
-				<div class="col-sm-4 form-group">
-					<label for="recomendaciones">
-						Recomendaciones
-						<input type="text" name="recomendaciones" value="{{ $amigo -> recomendaciones }}" class="form-control" placeholder="Recomendaciones del amigo">
-						{{ $errors -> first('recomendaciones') }}
-					</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-6 form-group">
-					<label for="requisitos">
-						Requisitos de Adopción
-						<textarea name="requisitos" class="form-control" placeholder="Requisitos de adopción" cols="80">{{ $amigo -> requisitos }}</textarea>
-						{{ $errors -> first('requisitos') }}
-					</label>
-				</div>
-				<div class="col-sm-6 form-group">
-					<label for="otros">
-						Otra Información
-						<textarea name="otros" class="form-control" placeholder="Información adicional" cols="80">{{ $amigo -> otros }}</textarea>
-						{{ $errors -> first('otros') }}
-					</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 form-group">
-					<label for="solicita_adopcion">
-						En Adopción<br>
-						<input type="radio" name="solicita_adopcion" value="true" @if($amigo -> solicita_adopcion == true) checked="checked" @endif>Sí<br>
-						<input type="radio" name="solicita_adopcion" value="false" @if($amigo -> solicita_adopcion == false) checked="checked" @endif>No
-					</label>
-				</div>
-				<div class="col-sm-4 form-group">
-					<label for="solicita_esterilizacion">
-						Solicita Padrinos de Esterilización<br>
-						<input type="radio" name="solicita_esterilizacion" value="true" @if($amigo -> solicita_esterilizacion == true) checked="checked" @endif>Sí<br>
-						<input type="radio" name="solicita_esterilizacion" value="false" @if($amigo -> solicita_esterilizacion == false) checked="checked" @endif>No
-					</label>
-				</div>
-				<div class="col-sm-4 form-group">
-					<label for="solicita_hogar_temporal">
-						Solicita Hogar Temporal<br>
-						<input type="radio" name="solicita_hogar_temporal" value="true" @if($amigo -> solicita_hogar_temporal == true) checked="checked" @endif>Sí<br>
-						<input type="radio" name="solicita_hogar_temporal" value="false" @if($amigo -> solicita_hogar_temporal == false) checked="checked" @endif>No
-					</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 form-group">
-					<label for="solicita_ayuda_medica">
-						Solicita Ayuda Médica<br>
-						<input type="radio" name="solicita_ayuda_medica" value="true" @if($amigo -> solicita_ayuda_medica == true) checked="checked" @endif>Sí<br>
-						<input type="radio" name="solicita_ayuda_medica" value="false" @if($amigo -> solicita_ayuda_medica == false) checked="checked" @endif>No
+				<div class="row">
+					<div class="col-sm-4 form-group"> 
+						<label for="nombre">
+							Nombre
+							<input type="text" name="nombre" value="{{ $evento -> nombre }}" class="form-control" placeholder="Nombre(s) del Evento">
+							{{ $errors -> first('nombre') }}
 						</label>
+					</div>
+					<div class="col-sm-6 form-group"> 
+						<label for="descripcion">
+							Descripción
+							<textarea name="descripcion" class="form-control" placeholder="Descripción del evento" cols="80">{{ $evento -> descripcion }}</textarea>
+							{{ $errors -> first('descripcion') }}
+						</label>
+					</div>
 				</div>
-				<div class="col-sm-4 form-group">
-					<label for="solicita_ayuda_alimenticia">
-						Solicita Ayuda Alimenticia<br>
-						<input type="radio" name="solicita_ayuda_alimenticia" value="true" @if($amigo -> solicita_ayuda_alimenticia == true) checked="checked" @endif>Sí<br>
-						<input type="radio" name="solicita_ayuda_alimenticia" value="false" @if($amigo -> solicita_ayuda_alimenticia == false) checked="checked" @endif>No
-					</label>
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<label for="lugar">
+							Lugar	
+							<input type="text" name="lugar" value="{{ $evento -> lugar }}" class="form-control" placeholder="Lugar del evento">
+							{{ $errors -> first('lugar') }}
+						</label>
+					</div>
+					<div class="col-sm-4 form-group">
+						<label for="fecha">
+							Fecha
+							<input type="date" name="fecha" value="{{ $evento -> fecha }}" class="form-control" min="{{ date('Y-m-d') }}">
+							{{ $errors -> first('fecha') }}
+						</label>
+					</div>
+					<div class="col-sm-4 form-group">
+						<label for="hora">
+							Hora
+							<input type="text" name="hora" value="{{ $evento -> hora }}" class="form-control" placeholder="Hora del evento">
+							{{ $errors -> first('hora') }}
+						</label>
+					</div>
 				</div>
-			</div>
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<label for="enlace">
+							Enlace de Facebook
+							<input type="text" name="enlace_facebook" value="{{ $evento -> enlace }}" class="form-control" placeholder="enlace del evento">
+							{{ $errors -> first('enlace') }}
+						</label>
+					</div>
+					<div class="col-sm-4 form-group">
+						<label for="email">
+							Correo Electrónico
+							<input type="email" name="email" value="{{ $evento -> email }}" class="form-control" placeholder="mail@mail.com">
+							{{ $errors -> first('email') }}
+						</label>
+					</div>
+					<div class="col-sm-4 form-group">
+						<label for="telefono">
+							Teléfono
+							<input type="text" name="telefono" value="{{ $evento -> telefono }}" class="form-control" placeholder="Teléfono de contacto">
+							{{ $errors -> first('telefono') }}
+						</label>
+					</div>
+				</div>
+			<div class="row">
+					<div class="col-sm-4 form-group">
+						<label for="donativos_alimento">
+							Ene el evento se reciben también donaciones de alimento<br>
+							<input type="radio" name="donativos_alimento" value="true" @if($evento -> donativos_alimento == true) checked="checked" @endif>Sí<br>
+							<input type="radio" name="donativos_alimento" value="false" @if($evento -> donativos_alimento == false) checked="checked" @endif>No
+						</label>
+					</div>
+					<div class="col-sm-4 form-group">
+						<label for="donativos_objetos">
+							Ene el evento se reciben también donaciones de ropa, correas, casas, etc.<br>
+							<input type="radio" name="donativos_objetos" value="true" @if($evento -> donativos_objetos == true) checked="checked" @endif>Sí<br>
+							<input type="radio" name="donativos_objetos" value="false" @if($evento -> donativos_objetos == false) checked="checked" @endif>No
+						</label>
+					</div>
+					<div class="col-sm-4 form-group">
+						<label for="donativos_juguetes">
+							Ene el evento se reciben también donaciones de juguetes<br>
+							<input type="radio" name="donativos_juguetes" value="true" @if($evento -> donativos_juguetes == true) checked="checked" @endif>Sí<br>
+							<input type="radio" name="donativos_juguetes" value="false" @if($evento -> donativos_juguetes == false) checked="checked" @endif>No
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<label for="donativos_efectivo">
+							Ene el evento se reciben también donaciones de dinero en efectivo<br>
+							<input type="radio" name="donativos_efectivo" value="true" @if($evento -> donativos_efectivo == true) checked="checked" @endif>Sí<br>
+							<input type="radio" name="donativos_efectivo" value="false" @if($evento -> donativos_efectivo == false) checked="checked" @endif>No
+						</label>
+					</div>
+					<div class="col-sm-4 form-group">
+						<label for="donativos_paseos">
+							Ene el evento se reciben también donaciones de paseos para los rescatados<br>
+							<input type="radio" name="donativos_paseos" value="true" @if($evento -> donativos_paseos == true) checked="checked" @endif>Sí<br>
+							<input type="radio" name="donativos_paseos" value="false" @if($evento -> donativos_paseos == false) checked="checked" @endif>No
+						</label>
+					</div>
+				</div>
 		</div>
 	</div>	
 	<div class="col-lg-12 well">

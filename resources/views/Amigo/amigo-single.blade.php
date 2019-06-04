@@ -8,6 +8,12 @@
       <div class="row">
         <div class="col-md-12 col-lg-8">
           <div class="title-single-box">
+            @if (session('info'))
+                <div class="alert alert-success alert-dismissable">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ session('info') }}
+                </div>
+            @endif
             <h1 class="title-single">{{ $amigo -> nombre }}</h1>
             <span class="color-text-a">{{ $amigo -> caracter }}</span>
           </div>
@@ -41,7 +47,7 @@
             <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
             @for($i = 1; $i < count($foto_amigo); $i++)
               <div class="carousel-item-b">
-                <img src="{{ Storage::url('public/Amigos/'.$foto_amigo[$i]) }}" alt="" style="width: 1110px;">
+                <img src="{{ Storage::url('public/amigos/'.$foto_amigo[$i]) }}" alt="" style="width: 1110px;">
               </div>
             @endfor
           </div>
@@ -84,7 +90,7 @@
                       <span>{{ $amigo -> tamanio }}</span>
                     </li>
                     <li class="d-flex justify-content-between">
-                      <strong>Caracter:</strong>
+                      <strong>Carácter:</strong>
                       <span>{{ $amigo -> caracter }}</span>
                     </li>
                     <li class="d-flex justify-content-between">
@@ -92,8 +98,8 @@
                       <span>{{ $amigo -> convivencia }}</span>
                     </li>
                     <li class="d-flex justify-content-between">
-                      <strong>Otros:</strong>
-                      <span>{{ $amigo -> ptros }}</span>
+                      <strong>Lugares para Adopción:</strong>
+                      <span>{{ $amigo -> lugar_adopcion }}</span>
                     </li>
                   </ul>
                 </div>
@@ -150,7 +156,7 @@
           </ul>
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
-              <iframe src="https://www.youtube.com/embed/VzPKA9_yEiY" width="100%" height="460" frameborder="0"
+              <iframe src="{{ $amigo -> enlace_video }}" width="100%" height="460" frameborder="0"
                 webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             </div>
             <div class="tab-pane fade" id="pills-plans" role="tabpanel" aria-labelledby="pills-plans-tab">
@@ -178,9 +184,7 @@
               <div class="property-agent">
                 <h4 class="title-agent">{{ $amigo -> rescatista -> alias }}</h4>
                 <p class="color-text-a">
-                  Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-                  dui. Quisque velit nisi,
-                  pretium ut lacinia in, elementum id enim.
+                  {{ $amigo -> rescatista -> historia }}
                 </p>
                 <ul class="list-unstyled">
                   <li class="d-flex justify-content-between">
@@ -188,19 +192,15 @@
                     <span class="color-text-a">{{ $amigo -> rescatista -> telefono }}</span>
                   </li>
                   <li class="d-flex justify-content-between">
-                    <strong>Mobile:</strong>
-                    <span class="color-text-a">777 287 378 737</span>
-                  </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Email:</strong>
+                    <strong>Correo Electrónico:</strong>
                     <span class="color-text-a">{{ $amigo -> rescatista -> email }}</span>
                   </li>
                   <li class="d-flex justify-content-between">
-                    <strong>Skype:</strong>
-                    <span class="color-text-a">Annabela.ge</span>
+                    <strong>Facebook:</strong>
+                    <span class="color-text-a">{{ $amigo -> rescatista -> redes_sociales }}</span>
                   </li>
-                </ul>
-                <div class="socials-a">
+                </ul> 
+                <!--div class="socials-a">
                   <ul class="list-inline">
                     <li class="list-inline-item">
                       <a href="#">
@@ -228,33 +228,47 @@
                       </a>
                     </li>
                   </ul>
-                </div>
+                </div-->
               </div>
             </div>
             <div class="col-md-12 col-lg-4">
               <div class="property-contact">
-                <form class="form-a">
+                <form method="POST" id="registrar_solicitud" enctype="multipart/form-data" action="{{ route('registerSolicitud') }}">
+                  {!! csrf_field() !!}
+                  <input type="text" name="id_amigo" value="{{ $amigo -> id_amigo }}" hidden="hidden">
                   <div class="row">
                     <div class="col-md-12 mb-1">
                       <div class="form-group">
                         <input type="text" class="form-control form-control-lg form-control-a" id="inputName"
-                          placeholder="Nombre" required>
+                          placeholder="Tu nombre" required name="nombre">
                       </div>
                     </div>
                     <div class="col-md-12 mb-1">
                       <div class="form-group">
-                        <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1"
-                          placeholder="Correo Electrónico" required>
+                        <input type="email" name="email" class="form-control form-control-lg form-control-a" id="inputEmail1"
+                          placeholder="Tu correo electrónico" required>
                       </div>
                     </div>
                     <div class="col-md-12 mb-1">
                       <div class="form-group">
-                        <textarea id="textMessage" class="form-control" placeholder="Comentarios" name="message" cols="45"
-                          rows="8" required></textarea>
+                        <input type="text" name="telefono" class="form-control form-control-lg form-control-a" id="inputtelefono1"
+                          placeholder="Tú número de teléfono" required>
                       </div>
                     </div>
-                    <div class="col-md-12">
-                      <button type="submit" class="btn btn-a">Enviar petición</button>
+                    <div class="col-md-12 mb-1">
+                      <div class="form-group">
+                        <input type="text" name="edad" class="form-control form-control-lg form-control-a" id="inputedad1"
+                          placeholder="Tu edad" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12 mb-1">
+                      <div class="form-group">
+                        <textarea id="textMessage" class="form-control" placeholder="¿Por qué quieres adoptarlo?" name="mensaje" cols="45"
+                          rows="4" required></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-12"> 
+                      <button type="submit" class="btn btn-a">Quiero adoptarlo(a)</button>
                     </div>
                   </div>
                 </form>

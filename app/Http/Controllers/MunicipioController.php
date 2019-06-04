@@ -23,9 +23,7 @@ class MunicipioController extends Controller
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
         $estados = Estado::orderBy('id_estado')->paginate(10);
-        $municipios = Municipio::where('municipio', 'like', '%'.$criterio.'%')
-        ->orwhere('id_municipio',$criterio)
-        ->orwhere('id_estado',$criterio)
+        $municipios = Municipio::where('municipio', 'ilike', '%'.$criterio.'%')
         ->sortable()
         ->orderBy('id_estado')
         ->orderBy('id_municipio')

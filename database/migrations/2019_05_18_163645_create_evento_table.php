@@ -30,6 +30,11 @@ class CreateEventoTable extends Migration
             $table->string('enlace_facebook');
             $table->string('email')->nullable();
             $table->string('telefono')->nullable();
+            $table->boolean('donativos_alimento')->default(false);
+            $table->boolean('donativos_objetos')->default(false);      
+            $table->boolean('donativos_juguetes')->default(false);
+            $table->boolean('donativos_efectivo')->default(false);
+            $table->boolean('donativos_paseos')->default(false);
             $table->timestamps();
         });
     }

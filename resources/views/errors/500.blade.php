@@ -1,7 +1,7 @@
 @extends('menu')
 
 @section('contenido')
-<div align="center">
+<div align="center" style="margin-top: 150px">
 	<img width="400px" src="/storage/warning.jpg">
 	<h2>Lo sentimos, la página que está buscando no se encuentra disponible.</h2>
 	<a href="{{ route('Panel.index') }}" class="btn btn-primary">Regresar</a>

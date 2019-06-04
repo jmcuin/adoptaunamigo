@@ -5,7 +5,7 @@
 <form method="POST" action="{{ route('Estado.update', $estado -> id_estado)}}">
 	 {!! method_field('PUT') !!}
 	 {!! csrf_field() !!}
-	<div class="container">
+	<div class="container" style="margin-top: 150px">
 	    <h1 align="center">Edición de Estado</h1>
 		<div class="col-lg-12 well">
 			<div class="col-sm-12">

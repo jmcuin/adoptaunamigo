@@ -32,9 +32,7 @@ class AmigoController extends Controller
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
                 
-        $amigos = Amigo::where('nombre', 'like', '%'.$criterio.'%')
-        ->orwhere('id_amigo',$criterio)
-        ->orwhere('nombre','like','%'.$criterio.'%')
+        $amigos = Amigo::where('nombre', 'ilike', '%'.$criterio.'%')
         ->sortable()
         ->orderBy('id_amigo')
         ->orderBy('nombre')
@@ -79,7 +77,9 @@ class AmigoController extends Controller
         $amigo -> convivencia = $request -> convivencia;
         $amigo -> recomendaciones = $request -> recomendaciones;
         $amigo -> requisitos = $request -> requisitos;
-        $amigo -> otros = $request -> otros;
+        $amigo -> lugar_adopcion = $request -> lugar_adopcion;
+        $amigo -> historia = $request -> historia;
+        $amigo -> enlace_video = $request -> enlace_video;
         $amigo -> id_especie = $request -> id_especie;
         $amigo -> solicita_adopcion = $request -> solicita_adopcion;
         $amigo -> solicita_esterilizacion = $request -> solicita_esterilizacion;
@@ -90,7 +90,7 @@ class AmigoController extends Controller
         $archivos = $request -> fotos;
         for($i = 0; $i < count($request -> fotos); $i++ ) {
             $fotos_amigo = $fotos_amigo.'&'.'15_'.strtoupper($request -> nombre).'_'.$i.'.'.$request -> fotos[$i] -> extension();
-            $request -> fotos[$i] -> storeAs('public/Amigos', '15_'.strtoupper($request -> nombre).'_'.$i.'.'.$archivos[$i] -> extension());
+            $request -> fotos[$i] -> storeAs('public/amigos', '15_'.strtoupper($request -> nombre).'_'.$i.'.'.$archivos[$i] -> extension());
         }
         $amigo -> fotos = $fotos_amigo;
             
@@ -149,7 +149,9 @@ class AmigoController extends Controller
         $amigo -> convivencia = $request -> convivencia;
         $amigo -> recomendaciones = $request -> recomendaciones;
         $amigo -> requisitos = $request -> requisitos;
-        $amigo -> otros = $request -> otros;
+        $amigo -> lugar_adopcion = $request -> lugar_adopcion;
+        $amigo -> historia = $request -> historia;
+        $amigo -> enlace_video = $request -> enlace_video;
         $amigo -> id_especie = $request -> id_especie;
         $amigo -> solicita_adopcion = $request -> solicita_adopcion;
         $amigo -> solicita_esterilizacion = $request -> solicita_esterilizacion;
@@ -158,7 +160,8 @@ class AmigoController extends Controller
         $amigo -> solicita_ayuda_alimenticia = $request -> solicita_ayuda_alimenticia;
         if($request -> hasFile('fotos')){
             Storage::delete($amigo -> fotos);
-            $amigo -> fotos = $request -> file('fotos') -> storeAs('public/Amigos', strtoupper($request -> nombre).'.'.$request -> file('fotos') -> extension());
+            $amigo -> fotos = strtoupper($request -> nombre).'.'.$request -> file('fotos') -> extension();
+            $request -> file('fotos') -> storeAs('public/amigos', strtoupper($request -> nombre).'.'.$request -> file('fotos') -> extension());
         }
         $guardado = $amigo -> save();
 
@@ -193,8 +196,23 @@ class AmigoController extends Controller
 
     public function getSingle($id)
     {
-        $amigo = Amigo::findOrFail($id);
-        //dd($amigo);        
+        $amigo = Amigo::findOrFail($id);       
         return view('Amigo.amigo-single', compact('amigo'));
+    }
+
+    public function storeSolicitud(Request $request)
+    {
+        $amigo = Amigo::findOrFail($request -> id_amigo);  
+
+        $solicitud = new Solicitud;
+        $solicitud -> id_amigo = $request -> id_amigo;
+        $solicitud -> nombre_solicitante = $request -> nombre;
+        $solicitud -> email = $request -> email;
+        $solicitud -> telefono = $request -> telefono;
+        $solicitud -> edad = $request -> edad;
+        $solicitud -> mensaje = $request -> mensaje;
+        $solicitud -> save();
+
+        return redirect() -> route('amigo-single', $request -> id_amigo) -> with('info','¡¡Gracias por adoptar!! El rescatista de '.$amigo -> nombre.' se pondrá en contacto contigo a la brevedad posible.');
     }
 }

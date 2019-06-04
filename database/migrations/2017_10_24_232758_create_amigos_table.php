@@ -30,8 +30,9 @@ class CreateAmigosTable extends Migration
             $table->string('fotos')->default('default.jpg');
             $table->string('recomendaciones');
             $table->string('requisitos');
-            $table->string('otros')->nullable();
+            $table->string('lugar_adopcion')->nullable();
             $table->string('historia')->nullable();
+            $table->string('enlace_video')->nullable();
             $table->integer('id_especie')->unsigned();
             $table->foreign('id_especie')
                   ->references('id_especie')

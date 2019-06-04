@@ -1,7 +1,7 @@
 @extends('menu')
 
 @section('contenido')
-	<div class="container" style="overflow: auto; margin-top: 150px;>
+	<div class="container" style="margin-top: 150px;">
       <div class="row">
       <div class="col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
           <div class="panel panel-info">
@@ -15,7 +15,7 @@
                 		$fotos = explode('&',$amigo -> fotos); 
                 	?>
                 	@for($i = 1; $i < count($fotos); $i++)
-                		<img width="130px" src="{{ Storage::url('public/Amigos/'.$fotos[$i]) }}">
+                		<img width="130px" src="{{ Storage::url('public/amigos/'.$fotos[$i]) }}">
                 	@endfor
                 </div>
                 <div class=" col-md-9 col-lg-9 "> 
@@ -24,6 +24,14 @@
                       <tr>
                         <td>Nombre:</td>
                         <td>{{ $amigo -> nombre }}</td>
+                      </tr>
+                      <tr>
+                        <td>Especie:</td>
+                        <td>{{ $amigo -> especie -> especie }}</td> 
+                      </tr>
+                      <tr>
+                        <td>Raza:</td>
+                        <td>{{ $amigo -> raza -> raza }}</td> 
                       </tr>
                       <tr>
                         <td>Edad:</td>
@@ -50,18 +58,22 @@
                         <td>{{ $amigo -> requisitos }}</td> 
                       </tr>
                       <tr>
-                        <td>Otros:</td>
-                        <td>{{ $amigo -> otros }}</td> 
+                        <td>Lugar de Adopción:</td>
+                        <td>{{ $amigo -> lugar_adopcion }}</td> 
                       </tr>
                       <tr>
-                        <td>Especie:</td>
-                        <td>{{ $amigo -> especie -> especie }}</td> 
+                        <td>Historia:</td>
+                        <td>{{ $amigo -> historia }}</td> 
+                      </tr>
+                      <tr>
+                        <td>Enlace Youtube:</td>
+                        <td>{{ $amigo -> enlace_video }}</td> 
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <h3 class="panel-title" id="titulo-padres" align="center">Información Complementaria</h3>
-                <div id="panel-padres"> 
+                <h3 class="panel-title" id="informacion_complementaria" align="center">Información Complementaria</h3>
+                <div id="informacion_complementaria"> 
                   <table class="table table-user-information">
                     <tbody>
                    		<tr>
@@ -88,6 +100,7 @@
                   </table>
                 </div>
               </div>
+            </div>
             </div>
             <div class="panel-footer">
                 <table>
@@ -131,11 +144,11 @@
 		$('#panel-contactos').hide();
 		$('#panel-padecimientos').hide();
 		$('#panel-expediente').hide();
-		$('#titulo-padres').css('cursor', 'pointer');
+		$('#informacion_complementaria').css('cursor', 'pointer');
 		$('#titulo-contactos').css('cursor', 'pointer');
 		$('#titulo-padecimientos').css('cursor', 'pointer');
 		$('#titulo-expediente').css('cursor', 'pointer');
-		$("#titulo-padres").click(function(){
+		$("#informacion_complementaria").click(function(){
 			$('#panel-padres').slideToggle( "slow" );
 		});
 		$("#titulo-padecimientos").click(function(){

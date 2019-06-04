@@ -26,9 +26,8 @@ class EventoController extends Controller
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
                 
-        $eventos = Evento::where('nombre', 'like', '%'.$criterio.'%')
-        ->orwhere('id_evento',$criterio)
-        ->orwhere('nombre','like','%'.$criterio.'%')
+        $eventos = Evento::where('nombre', 'ilike', '%'.$criterio.'%')
+        ->orwhere('nombre','ilike','%'.$criterio.'%')
         ->sortable()
         ->orderBy('id_evento')
         ->orderBy('nombre')
@@ -69,8 +68,14 @@ class EventoController extends Controller
         $evento -> email = $request -> email;
         $evento -> telefono = $request -> telefono;
         if($request -> hasFile('imagen')){
-            $evento -> imagen = $request -> file('imagen') -> storeAs('public/eventos', strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
+            $evento -> imagen = strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension();
+            $request -> file('imagen') -> storeAs('public/eventos', strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
         }
+        $evento -> donativos_alimento = $request -> donativos_alimento;
+        $evento -> donativos_objetos = $request -> donativos_objetos;
+        $evento -> donativos_juguetes = $request -> donativos_juguetes;
+        $evento -> donativos_efectivo = $request -> donativos_efectivo;
+        $evento -> donativos_paseos = $request -> donativos_paseos;
             
         $guardado = $evento -> save();
 
@@ -102,7 +107,8 @@ class EventoController extends Controller
     public function edit($id)
     {
         //
-        return view('Evento.edit');
+        $evento = Evento::findOrFail($id);
+        return view('Evento.edit', compact('evento'));
     }
 
     /**
@@ -126,8 +132,14 @@ class EventoController extends Controller
         $evento -> telefono = $request -> telefono;
         if($request -> hasFile('imagen')){
             Storage::delete($evento -> imagen);
-            $evento -> imagen = $request -> file('imagen') -> storeAs('public/eventos', strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
+            $evento -> imagen = strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension();
+            $request -> file('imagen') -> storeAs('public/eventos', strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
         }
+        $evento -> donativos_alimento = $request -> donativos_alimento;
+        $evento -> donativos_objetos = $request -> donativos_objetos;
+        $evento -> donativos_juguetes = $request -> donativos_juguetes;
+        $evento -> donativos_efectivo = $request -> donativos_efectivo;
+        $evento -> donativos_paseos = $request -> donativos_paseos;
         
         $guardado = $evento -> save();
 
@@ -158,5 +170,11 @@ class EventoController extends Controller
             return redirect()->route('Evento.index')->with('info','Evento eliminado con éxito.');
         else
             return redirect()->route('Evento.index')->with('error','Imposible borrar Evento.');
+    }
+
+    public function getSingle($id)
+    {
+        $evento = Evento::findOrFail($id);       
+        return view('Evento.evento-single', compact('evento'));
     }
 }

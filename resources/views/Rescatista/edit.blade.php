@@ -4,11 +4,11 @@
 <form method="POST" enctype="multipart/form-data" action="{{ route('Rescatista.update', $rescatista -> id_rescatista) }}">
 	{!! csrf_field() !!}
 	{!! method_field('PUT') !!}
-<div class="container">
-    <h1 align="center">Registro de Rescatista</h1>
+<div class="container" style="margin-top: 150px">
+    <h1 align="center">Edicion de Rescatista</h1>
 		<div class="col-lg-12 well">
-			<div class="col-sm-12">
-				<div class="row">
+			<div class="col-sm-12" align="center">
+				<div class="row" align="center">
 					<div class="form-group" align="center">
 						<label for="foto">
 							<img width="130px" src="{{ Storage::url($rescatista -> foto) }}"><input type="file" name="foto" value="{{old('foto')}}"  placeholder="foto(s) del Alumno" accept="image/*">
@@ -46,6 +46,13 @@
 					Alias
 						<input type="text" name="alias" value="{{$rescatista -> alias}}" class="form-control" placeholder="Alias del rescatista">
 					{{ $errors -> first('alias') }}
+					</label>
+				</div>
+				<div class="col-sm-6 form-group"> 
+					<label for="historia">
+						Historia
+						<textarea name="historia" class="form-control" placeholder="Cuéntanos un poco de tu labor" cols="80">{{ $rescatista -> historia }}</textarea>
+						{{ $errors -> first('historia') }}
 					</label>
 				</div>
 			</div>
@@ -139,10 +146,19 @@
 					</label>
 				</div>
 				<div class="col-sm-4 form-group">
-					<label for="confrimaemail">
+					<label for="confirmaemail">
 						Confirmación Correo Electrónico	
 						<input type="email" name="confirmaemail" id="confirmaemail" value="{{$rescatista -> email}}" class="form-control" placeholder="mail@algo.com">
 						{{ $errors -> first('confirmaemail') }}
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 form-group">
+					<label for="redes_sociales">
+						Enlace de Facebook	
+						<input type="text" name="redes_sociales" id="redes_sociales" value="{{ $rescatista -> redes_sociales }}" class="form-control" placeholder="Enlace al facebook del rescatista">
+						{{ $errors -> first('redes_sociales') }}
 					</label>
 				</div>
 			</div>
@@ -179,6 +195,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </form>
 <script>
 	$(function(){

@@ -1,9 +1,9 @@
 @extends('menu')
 
 @section('contenido')
-<form method="POST" id="registrar_Evento" enctype="multipart/form-data" action="{{ route('Evento.store') }}" style="margin-top: 150px">
+<form method="POST" id="registrar_Evento" enctype="multipart/form-data" action="{{ route('Evento.store') }}">
 	{!! csrf_field() !!}
-
+	<div class="container" style="margin-top: 150px">
     <h1 align="center">Registro de Evento</h1>
 	<div class="col-lg-12 well">
 			<div class="col-sm-12">
@@ -79,6 +79,45 @@
 						</label>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<label for="donativos_alimento">
+							En el evento se reciben también donaciones de alimento<br>
+							<input type="radio" name="donativos_alimento" value="true" checked="checked">Sí<br>
+							<input type="radio" name="donativos_alimento" value="false">No
+						</label>
+					</div>
+					<div class="col-sm-4 form-group">
+						<label for="donativos_objetos">
+							En el evento se reciben también donaciones de ropa, correas, casas, etc.<br>
+							<input type="radio" name="donativos_objetos" value="true" checked="checked">Sí<br>
+							<input type="radio" name="donativos_objetos" value="false">No
+						</label>
+					</div>
+					<div class="col-sm-4 form-group">
+						<label for="donativos_juguetes">
+							En el evento se reciben también donaciones de juguetes<br>
+							<input type="radio" name="donativos_juguetes" value="true" checked="checked">Sí<br>
+							<input type="radio" name="donativos_juguetes" value="false">No
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<label for="donativos_efectivo">
+							En el evento se reciben también donaciones de dinero en efectivo<br>
+							<input type="radio" name="donativos_efectivo" value="true" checked="checked">Sí<br>
+							<input type="radio" name="donativos_efectivo" value="false">No
+						</label>
+					</div>
+					<div class="col-sm-4 form-group">
+						<label for="donativos_paseos">
+							En el evento se reciben también donaciones de paseos para los rescatados<br>
+							<input type="radio" name="donativos_paseos" value="true" checked="checked">Sí<br>
+							<input type="radio" name="donativos_paseos" value="false">No
+						</label>
+					</div>
+				</div>
 			</div>
 		</div>
 	<div class="col-lg-12 well">
@@ -89,7 +128,7 @@
 			</div>
 		</div>		
 	</div>
-
+</div>
 </form>
 
 <script>
