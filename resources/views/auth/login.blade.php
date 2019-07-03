@@ -1,7 +1,7 @@
 @extends('menu')
 
 @section('contenido')
-<div class="container">
+<div class="container" style="overflow: auto; margin-top: 150px;">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">

@@ -38,7 +38,7 @@
 
   <div class="click-closed"></div>
   <!--/ Form Search Star /-->
-  <div class="box-collapse">
+  <!--div class="box-collapse">
     <div class="title-box-d">
       <h3 class="title-d">Search Property</h3>
     </div>
@@ -127,7 +127,7 @@
         </div>
       </form>
     </div>
-  </div>
+  </div-->
   <!--/ Form Search End /-->
 
   <!--/ Nav Star /-->
@@ -139,46 +139,79 @@
         <span></span>
         <span></span>
       </button>
-      <a class="navbar-brand text-brand" href="index.html">Estate<span class="color-b">Agency</span></a>
-      <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
+      <a class="navbar-brand text-brand" href="{{ route('inicio') }}">AdoptaUn<span class="color-b">Amigo</span></a>
+      <!--button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
         data-target="#navbarTogglerDemo01" aria-expanded="false">
         <span class="fa fa-search" aria-hidden="true"></span>
-      </button>
+      </button-->
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="{{ route('inicio') }}">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#amigos">Amigos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#eventos">Eventos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#donativos">Donativos</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Pages
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="property-single.html">Property Single</a>
-              <a class="dropdown-item" href="blog-single.html">Blog Single</a>
-              <a class="dropdown-item" href="agents-grid.html">Agents Grid</a>
-              <a class="dropdown-item" href="agent-single.html">Agent Single</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-        </ul>
+        @guest
+        @else
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#amigos"><div style="width: 150px"></div></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ route('inicio') }}">Inicio</a>
+            </li>
+            @if( auth() -> user() -> hasRoles(['administrador']) )
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('Solicitud.index') }}">Solicitudes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('Adopcion.index') }}">Adopciones</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('Amigo.index') }}">Amigos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('Evento.index') }}">Eventos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('Rescatista.index') }}">Rescatistas</a>
+              </li>
+            @elseif( auth() -> user() -> hasRoles(['rescatista']) )
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('Solicitud.index') }}">Solicitudes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('Adopcion.index') }}">Adopciones</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('Amigo.index') }}">Amigos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('Evento.index') }}">Eventos</a>
+              </li>
+            @endif
+            <li>
+              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();       document.getElementById('logout-form').submit();">Salir</a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+              </form>
+            </li>
+            <!--li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Pages
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="property-single.html">Property Single</a>
+                <a class="dropdown-item" href="blog-single.html">Blog Single</a>
+                <a class="dropdown-item" href="agents-grid.html">Agents Grid</a>
+                <a class="dropdown-item" href="agent-single.html">Agent Single</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li-->
+          </ul>
+        @endguest
       </div>
-      <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
+      <!--button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
         data-target="#navbarTogglerDemo01" aria-expanded="false">
         <span class="fa fa-search" aria-hidden="true"></span>
-      </button>
+      </button-->
     </div>
   </nav>
   <!--/ Nav End /-->
@@ -189,26 +222,23 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <nav class="nav-footer">
+          <!--nav class="nav-footer">
             <ul class="list-inline">
               <li class="list-inline-item">
-                <a href="#">Home</a>
+                <a href="{{ route('inicio') }}">Inicio</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">About</a>
+                <a href="#amigos">Amigos</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">Property</a>
+                <a href="#eventos">Eventos</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">Blog</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Contact</a>
+                <a href="#beneficios">Beneficios</a>
               </li>
             </ul>
-          </nav>
-          <div class="socials-a">
+          </nav-->
+          <!--div class="socials-a">
             <ul class="list-inline">
               <li class="list-inline-item">
                 <a href="#">
@@ -236,11 +266,11 @@
                 </a>
               </li>
             </ul>
-          </div>
+          </div-->
           <div class="copyright-footer">
             <p class="copyright color-text-a">
               &copy; Copyright
-              <span class="color-a">EstateAgency</span> All Rights Reserved.
+              <span class="color-a">AdoptaUnAmigo.com</span> Todos los derechos reservados.
             </p>
           </div>
           <div class="credits">

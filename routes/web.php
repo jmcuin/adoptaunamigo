@@ -30,13 +30,15 @@ Route::get('/', function () {
     return view('inicio', compact('amigostop', 'amigos', 'eventos'));
 })->name('inicio');
 
+Route::resource('Adopcion', 'AdopcionController');
+
 Route::resource('Amigo', 'AmigoController');
 Route::post('registerSolicitud', ['as' => 'registerSolicitud', 'uses' => 'AmigoController@storeSolicitud']);
-
 Route::get('/gridAmigos', function () {
 	$amigos = App\Amigo::where('solicita_adopcion', '=', true) -> get();
     return view('amigogrid', compact('amigos'));
 })->name('gridAmigos');
+Route::get('setAdoptado/{id_amigo}', ['as' => 'setAdoptado', 'uses' =>'RescatistaController@adopt']);
 
 Route::get('amigo-single/{id_amigo}', ['as' => 'amigo-single', 'uses' =>'AmigoController@getSingle']);
 
@@ -55,6 +57,10 @@ Route::resource('Raza', 'RazaController');
 Route::resource('Rescatista', 'RescatistaController');
 Route::get('commentSolicitud/{id_solicitud}', ['as' => 'commentSolicitud', 'uses' =>'RescatistaController@comment']);
 Route::post('storeComment', ['as' => 'storeComment', 'uses' => 'RescatistaController@storeComment']);
+Route::post('storeAdoption', ['as' => 'storeAdoption', 'uses' => 'RescatistaController@storeAdoption']);
+
+Route::resource('Solicitud', 'SolicitudController');
+Route::get('attendSolicitud/{id_solicitud}', ['as' => 'attendSolicitud', 'uses' =>'SolicitudController@attend']);
 
 /*Route::get('inicio', function () {
     return view('inicio');
@@ -72,15 +78,10 @@ Route::get('municipios', function(){
 	return \App\Municipio::with('estado')->get();
 });
 
-Route::resource('Alumno', 'AlumnoController');
-
 Route::resource('Estado', 'EstadoController');
 
 Route::resource('Informe', 'InformeController');
 Route::post('InformeAttention', ['as' => 'InformeAttention', 'uses' => 'InformeController@attend']);
-
-Route::resource('Solicitud', 'SolicitudController');
-Route::get('editPagina/{id}', ['as' => 'editPagina', 'uses' =>'PaginaController@editarPagina']);
 
 Route::resource('Municipio', 'MunicipioController');
 
@@ -118,46 +119,6 @@ Route::get('/ajax-getMunicipio', function(){
 	return Response::json($municipios);
 });
 
-Route::get('/ajax-getMaxTrabajador', function(){
-	$trabajador = App\Trabajador::max('id_trabajador');
-	return Response::json($trabajador);
-});
-
-
-
-
-Route::get('/ajax-getAlumnosDeTrabajador', function(){
-	$periodo = Request::get('id_periodo');
-	$trabajador = Request::get('id_trabajador');
-	$rol = Request::get('id_rol');
-	$escolaridad = explode('-', Request::get('escolaridad'));
-	if($rol === 'dir_general'){
-		$alumnos = DB::table('cat_grupos')
-	              ->join('materia_x_grupos', 'cat_grupos.id_grupo', '=', 'materia_x_grupos.id_grupo')
-	              ->join('inscripciones', 'inscripciones.id_grupo', '=', 'materia_x_grupos.id_grupo')
-	              ->join('alumnos', 'inscripciones.id_alumno', '=', 'alumnos.id_alumno')
-	              ->where('cat_grupos.id_periodo', $periodo)
-	              ->select('alumnos.id_alumno as id_alumno', 'alumnos.nombre as nombre', 'alumnos.a_paterno as a_paterno', 'alumnos.a_materno as a_materno') -> distinct() -> get();
-	}else if($rol === 'director' && $escolaridad[1] !== null && $escolaridad[0] !== 0){
-		$alumnos = DB::table('cat_grupos')
-	              ->join('materia_x_grupos', 'cat_grupos.id_grupo', '=', 'materia_x_grupos.id_grupo')
-	              ->join('inscripciones', 'inscripciones.id_grupo', '=', 'materia_x_grupos.id_grupo')
-	              ->join('alumnos', 'inscripciones.id_alumno', '=', 'alumnos.id_alumno')
-	              ->where('cat_grupos.id_escolaridad', $escolaridad[0])
-	              ->where('cat_grupos.id_periodo', $periodo)
-	              ->select('alumnos.id_alumno as id_alumno', 'alumnos.nombre as nombre', 'alumnos.a_paterno as a_paterno', 'alumnos.a_materno as a_materno') -> distinct() -> get();
-	}else if($rol === 'profesor'){
-		$alumnos = DB::table('cat_grupos')
-	              ->join('materia_x_grupos', 'cat_grupos.id_grupo', '=', 'materia_x_grupos.id_grupo')
-	              ->join('inscripciones', 'inscripciones.id_grupo', '=', 'materia_x_grupos.id_grupo')
-	              ->join('alumnos', 'inscripciones.id_alumno', '=', 'alumnos.id_alumno')
-	              ->where('materia_x_grupos.id_trabajador', $trabajador)
-	              ->where('cat_grupos.id_periodo', $periodo)
-	              ->select('alumnos.id_alumno as id_alumno', 'alumnos.nombre as nombre', 'alumnos.a_paterno as a_paterno', 'alumnos.a_materno as a_materno') -> distinct() -> get();
-	}
-
-	return Response::json($alumnos);
-});
 
 Route::get('/ajax-getRoles', function(){
 	$rol = App\Rol::all();

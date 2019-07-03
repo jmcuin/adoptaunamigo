@@ -1,4 +1,4 @@
-@extends('menu')
+@extends('layout')
 
 @section('contenido')
 
@@ -6,31 +6,52 @@
   
   <div class="intro intro-carousel" id="inicio">
     <div id="carousel" class="owl-carousel owl-theme">
-      @foreach($amigos as $amigo)
-        <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
-        
-        <div class="carousel-item-a intro-item bg-image" style="background-image: url({{ Storage::url('public/amigos/'.$foto_amigo[1]) }})">
-        <div class="overlay overlay-a"></div>
-        <div class="intro-content display-table">
-          <div class="table-cell">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-8">
-                  <div class="intro-body">
-                    <h1 class="intro-title mb-4">
-                      <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}" class="intro-title mb-4" target="_blank">{{ $amigo -> nombre }}</a>
-                    </h1>
-                    <p class="intro-subtitle intro-price">
-                      <a href="#"><span class="price-a">{{ $amigo -> caracter }}</span></a>
-                    </p>
+      @if(count($amigos) > 0)
+        @foreach($amigos as $amigo)
+          <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
+          <div class="carousel-item-a intro-item bg-image" style="background-image: url({{ Storage::url('public/amigos/'.$foto_amigo[1]) }})">
+          <div class="overlay overlay-a"></div>
+            <div class="intro-content display-table">
+              <div class="table-cell">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <div class="intro-body">
+                        <h1 class="intro-title mb-4">
+                          <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}" class="intro-title mb-4" target="_blank">{{ $amigo -> nombre }}</a>
+                        </h1>
+                        <p class="intro-subtitle intro-price">
+                          <a href="#"><span class="price-a">{{ $amigo -> caracter }}</span></a>
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      @endforeach
+        @endforeach
+      @else
+        <div class="carousel-item-a intro-item " style="background-image: 
+        url({{URL::to('/')}}/images/friendly.jpg); background-size: cover;">
+          <div class="overlay overlay-a"></div>
+            <div class="intro-content display-table">
+              <div class="table-cell">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <div class="intro-body">
+                        <h1 class="intro-title mb-4">
+                          Próximamente...
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      @endif
     </div>
   </div>
   <!--/ Carousel end /-->
@@ -135,64 +156,70 @@
               <h2 class="title-a">Recién Llegados</h2>
             </div>
             <div class="title-link">
-              <a href="{{ route('gridAmigos') }}">Todos nuestros amigos
-                <span class="ion-ios-arrow-forward"></span>
-              </a>
+              @if(count($amigostop) > 0)
+                <a href="{{ route('gridAmigos') }}">Todos nuestros amigos
+                  <span class="ion-ios-arrow-forward"></span>
+                </a>
+              @endif
             </div>
           </div>
         </div>
       </div>
       
       <div id="property-carousel" class="owl-carousel owl-theme">
-        @foreach($amigostop as $amigo)
-        <div class="carousel-item-b" style="height: 260px !important;">
-          <div class="card-box-a card-shadow" style="height: 260px !important;">
-            <div class="img-box-a">
-              <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
-              <img src="{{ Storage::url('public/amigos/'.$foto_amigo[1]) }}" alt="" class="img-a img-fluid">
-            </div>
-            <div class="card-overlay">
-              <div class="card-overlay-a-content">
-                <div class="card-header-a">
-                  <h2 class="card-title-a">
-                    <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}">{{ $amigo -> nombre }}</a>
-                  </h2>
+        @if(count($amigostop) > 0)
+          @foreach($amigostop as $amigo)
+            <div class="carousel-item-b" style="height: 260px !important;">
+              <div class="card-box-a card-shadow" style="height: 260px !important;">
+                <div class="img-box-a">
+                  <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
+                  <img src="{{ Storage::url('public/amigos/'.$foto_amigo[1]) }}" alt="" class="img-a img-fluid">
                 </div>
-                <div class="card-body-a">
-                  <div class="price-box d-flex">
-                    <span class="price-a">Talla: {{ $amigo -> tamanio }}</span>
+                <div class="card-overlay">
+                  <div class="card-overlay-a-content">
+                    <div class="card-header-a">
+                      <h2 class="card-title-a">
+                        <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}">{{ $amigo -> nombre }}</a>
+                      </h2>
+                    </div>
+                    <div class="card-body-a">
+                      <div class="price-box d-flex">
+                        <span class="price-a">Talla: {{ $amigo -> tamanio }}</span>
+                      </div>
+                      <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}" class="link-a">Ver más
+                        <span class="ion-ios-arrow-forward"></span>
+                      </a>
+                    </div>
+                    <div class="card-footer-a">
+                      <ul class="card-info d-flex justify-content-around">
+                        <li>
+                          <h4 class="card-info-title">Edad</h4>
+                          <span>
+                            {{ $amigo -> edad }}
+                          </span>
+                        </li>
+                        <li>
+                          <h4 class="card-info-title">Carácter</h4>
+                          <span>
+                            {{ $amigo -> caracter }}
+                          </span>
+                        </li>
+                        <li>
+                          <h4 class="card-info-title">Convivencia</h4>
+                          <span>
+                            {{ $amigo -> convivencia }}
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}" class="link-a">Ver más
-                    <span class="ion-ios-arrow-forward"></span>
-                  </a>
-                </div>
-                <div class="card-footer-a">
-                  <ul class="card-info d-flex justify-content-around">
-                    <li>
-                      <h4 class="card-info-title">Edad</h4>
-                      <span>
-                        {{ $amigo -> edad }}
-                      </span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Carácter</h4>
-                      <span>
-                        {{ $amigo -> caracter }}
-                      </span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Convivencia</h4>
-                      <span>
-                        {{ $amigo -> convivencia }}
-                      </span>
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        @endforeach
+          @endforeach
+        @else
+          ESPERA NUEVOS AMIGOS EN ADOPCIÓN PRÓXIMAMENTE...
+        @endif
         
       <!--div id="property-carousel" class="owl-carousel owl-theme">
         <div class="carousel-item-b">
@@ -398,80 +425,86 @@
               <h2 class="title-a">Próximos Eventos</h2>
             </div>
             <div class="title-link">
-              <a href="{{ route('gridEventos') }}">Todos los eventos
-                <span class="ion-ios-arrow-forward"></span>
-              </a>
+              @if(count($eventos) > 0)
+                <a href="{{ route('gridEventos') }}">Todos los eventos
+                  <span class="ion-ios-arrow-forward"></span>
+                </a>
+              @endif
             </div>
           </div>
         </div>
       </div>
       <div class="row">
-        @foreach($eventos as $evento)
-        <div class="col-md-4">
-          <div class="card-box-d" style="height: 350px !important;">
-            <div class="card-img-d">
-              <img src="{{ Storage::url('public/eventos/'.$evento -> imagen) }}" alt="" class="img-d img-fluid" style="height: 350px !important;">
+        @if(count($eventos) > 0)
+          @foreach($eventos as $evento)
+            <div class="col-md-4">
+              <div class="card-box-d" style="height: 350px !important;">
+                <div class="card-img-d">
+                  <img src="{{ Storage::url('public/eventos/'.$evento -> imagen) }}" alt="" class="img-d img-fluid" style="height: 350px !important;">
+                </div>
+                <div class="card-overlay card-overlay-hover">
+                  <div class="card-header-d">
+                    <div class="card-title-d align-self-center">
+                      <h3 class="title-d">
+                        <a href="{{ route('gridEventos') }}" class="link-two">{{ $evento -> nombre }}</a>
+                      </h3>
+                    </div>
+                  </div>
+                  <div class="card-body-d">
+                    <p class="content-d color-text-a">
+                      {{ substr($evento -> descripcion, 0, 15) }}...
+                    </p>
+                    <div class="info-agents color-a">
+                      <p>
+                        <strong>Lugar: </strong> {{ $evento -> lugar }}</p>
+                      <p>
+                        <strong>Fecha: </strong> {{ $evento -> fecha }}</p>
+                      <p>
+                        <strong>Hora: </strong> {{ $evento -> hora }}</p>
+                      <p>
+                        <strong>Teléfono: </strong> {{ $evento -> telefono }}</p>
+                      <p>
+                        <strong>Email: </strong> {{ $evento -> email }}</p>
+                    </div>
+                  </div>
+                  <div class="card-footer-d">
+                    <div class="socials-footer d-flex justify-content-center">
+                      <ul class="list-inline">
+                        <li class="list-inline-item">
+                          <a href="{{ $evento -> enlace_facebook }}" class="link-one" target="_blank">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <!--li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-dribbble" aria-hidden="true"></i>
+                          </a>
+                        </li-->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="card-overlay card-overlay-hover">
-              <div class="card-header-d">
-                <div class="card-title-d align-self-center">
-                  <h3 class="title-d">
-                    <a href="{{ route('gridEventos') }}" class="link-two">{{ $evento -> nombre }}</a>
-                  </h3>
-                </div>
-              </div>
-              <div class="card-body-d">
-                <p class="content-d color-text-a">
-                  {{ substr($evento -> descripcion, 0, 15) }}...
-                </p>
-                <div class="info-agents color-a">
-                  <p>
-                    <strong>Lugar: </strong> {{ $evento -> lugar }}</p>
-                  <p>
-                    <strong>Fecha: </strong> {{ $evento -> fecha }}</p>
-                  <p>
-                    <strong>Hora: </strong> {{ $evento -> hora }}</p>
-                  <p>
-                    <strong>Teléfono: </strong> {{ $evento -> telefono }}</p>
-                  <p>
-                    <strong>Email: </strong> {{ $evento -> email }}</p>
-                </div>
-              </div>
-              <div class="card-footer-d">
-                <div class="socials-footer d-flex justify-content-center">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="{{ $evento -> enlace_facebook }}" class="link-one" target="_blank">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <!--li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-dribbble" aria-hidden="true"></i>
-                      </a>
-                    </li-->
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        @endforeach
+          @endforeach
+        @else
+          ESPERA NUEVOS EVENTOS DE ADOPCIÓN PRÓXIMAMENTE...
+        @endif
         <!--div class="col-md-4">
           <div class="card-box-d">
             <div class="card-img-d">
@@ -712,12 +745,12 @@
 
   <!--/ Testimonials Star /-->
   <section class="section-testimonials section-t8 nav-arrow-a">
-    <div class="container">
+    <div class="container" id="beneficios">
       <div class="row">
         <div class="col-md-12">
           <div class="title-wrap d-flex justify-content-between">
             <div class="title-box">
-              <h2 class="title-a">Testimonials</h2>
+              <h2 class="title-a">¿Conoces los beneficios de tener mascotas en casa?</h2>
             </div>
           </div>
         </div>
@@ -728,7 +761,7 @@
             <div class="row">
               <div class="col-sm-12 col-md-6">
                 <div class="testimonial-img">
-                  <img src="img/testimonial-1.jpg" alt="" class="img-fluid">
+                  <a href="https://www.fundacion-affinity.org/perros-gatos-y-personas/busco-una-mascota/los-beneficios-del-vinculo-entre-ninos-y-mascotas" class="link-one" target="_blank"><img src="{{URL::to('/')}}/images/beneficios-mascotas.jpg" alt="" class="img-fluid"></a>
                 </div>
               </div>
               <div class="col-sm-12 col-md-6">
@@ -737,14 +770,15 @@
                 </div>
                 <div class="testimonials-content">
                   <p class="testimonial-text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, cupiditate ea nam praesentium
-                    debitis hic ber quibusdam
-                    voluptatibus officia expedita corpori.
+                    <a href="https://www.fundacion-affinity.org/perros-gatos-y-personas/busco-una-mascota/los-beneficios-del-vinculo-entre-ninos-y-mascotas" target="_blank">
+                      Los beneficios que aporta una mascota a los niños son innumerables. En general, la compañía de un animal mejora la calidad de vida de todo ser humano, aumenta la longevidad, preserva el equilibrio físico y mental, facilita la recreación, reduce el estrés y disminuye el índice de depresión en general.
+                    </a>
                   </p>
                 </div>
                 <div class="testimonial-author-box">
-                  <img src="img/mini-testimonial-1.jpg" alt="" class="testimonial-avatar">
-                  <h5 class="testimonial-author">Albert & Erika</h5>
+                  <!--img src="img/mini-testimonial-1.jpg" alt="" class="testimonial-avatar"-->
+                  <h5 class="testimonial-author" style="font-style: italic;">
+                    <a href="https://www.fundacion-affinity.org/perros-gatos-y-personas/busco-una-mascota/los-beneficios-del-vinculo-entre-ninos-y-mascotas" target="_blank">fundacion-affinity.org</a></h5>
                 </div>
               </div>
             </div>
@@ -755,7 +789,7 @@
             <div class="row">
               <div class="col-sm-12 col-md-6">
                 <div class="testimonial-img">
-                  <img src="img/testimonial-2.jpg" alt="" class="img-fluid">
+                  <a href="https://www.muyinteresante.es/salud/articulo/7-beneficios-de-tener-mascota-para-tu-salud-mental-961460364104" class="link-one" target="_blank"><img src="{{URL::to('/')}}/images/perro_0.jpg" alt="" class="img-fluid"></a>
                 </div>
               </div>
               <div class="col-sm-12 col-md-6">
@@ -764,14 +798,43 @@
                 </div>
                 <div class="testimonials-content">
                   <p class="testimonial-text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, cupiditate ea nam praesentium
-                    debitis hic ber quibusdam
-                    voluptatibus officia expedita corpori.
+                    <a href="https://www.muyinteresante.es/salud/articulo/7-beneficios-de-tener-mascota-para-tu-salud-mental-961460364104" class="link-one" target="_blank">
+                      Numerosos estudios demuestran que las mascotas mejoran nuestra calidad de vida, tanto emocional como físicamente.
+                    </a>
                   </p>
                 </div>
                 <div class="testimonial-author-box">
-                  <img src="img/mini-testimonial-2.jpg" alt="" class="testimonial-avatar">
-                  <h5 class="testimonial-author">Pablo & Emma</h5>
+                  <!--img src="img/mini-testimonial-1.jpg" alt="" class="testimonial-avatar"-->
+                  <h5 class="testimonial-author" style="font-style: italic;">
+                    <a href="https://www.muyinteresante.es/salud/articulo/7-beneficios-de-tener-mascota-para-tu-salud-mental-961460364104" class="link-one" target="_blank">Muy Interesante</a></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item-a">
+          <div class="testimonials-box">
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <div class="testimonial-img">
+                  <a href="https://www.muyinteresante.es/salud/articulo/7-beneficios-de-tener-mascota-para-tu-salud-mental-961460364104" class="link-one" target="_blank"><img src="{{URL::to('/')}}/images/Mascota-salud.jpg" alt="" class="img-fluid"></a>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <div class="testimonial-ico">
+                  <span class="ion-ios-quote"></span>
+                </div>
+                <div class="testimonials-content">
+                  <p class="testimonial-text">
+                    <a href="https://mejorconsalud.com/beneficios-de-tener-mascotas-para-nuestra-salud/" target="_blank">
+                      Tener una mascota en casa vehiculiza los sentimientos, los afectos y diferentes reacciones en cada uno de los miembros del hogar. Pero, además, hay diferentes estudios que han comprobado que las mascotas mejoran nuestra calidad de vida, no sólo emocionalmente, sino que también físicamente.
+                    </a>
+                  </p>
+                </div>
+                <div class="testimonial-author-box">
+                  <!--img src="img/mini-testimonial-1.jpg" alt="" class="testimonial-avatar"-->
+                  <h5 class="testimonial-author" style="font-style: italic;">
+                    <a href="https://mejorconsalud.com/beneficios-de-tener-mascotas-para-nuestra-salud/" target="_blank">mejorconsalud.com</a></h5>
                 </div>
               </div>
             </div>

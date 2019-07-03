@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RescatistaRequest;
+use App\Http\Requests\AdopcionRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Rescatista;
 use App\Municipio;
 use App\Estado;
 use App\Solicitud;
+use App\Adopcion;
+use App\Amigo;
 use App\Rol;
 use App\User;
 use DB;
@@ -48,9 +51,9 @@ class RescatistaController extends Controller
      */
     public function create()
     {
-        $estados = Estado::orderBy('id_estado') -> paginate(50);
-        $municipios = Municipio::orderBy('id_estado_municipio') -> paginate(50);
-        $roles = Rol::orderBy('id_rol') -> paginate(50);
+        $estados = Estado::orderBy('id_estado') -> get();
+        $municipios = Municipio::orderBy('id_estado_municipio') -> get();
+        $roles = Rol::orderBy('id_rol') -> get();
         
         return view('Rescatista.create', compact('municipios', 'estados'));
     }
@@ -117,9 +120,9 @@ class RescatistaController extends Controller
     public function edit($id)
     {
         //
-        $estados = Estado::orderBy('id_estado')->paginate(50);
-        $municipios = Municipio::orderBy('id_estado_municipio')->paginate(50);
-        $roles = Rol::orderBy('id_rol')->paginate(50);
+        $estados = Estado::orderBy('id_estado')->get();
+        $municipios = Municipio::orderBy('id_estado_municipio')->get();
+        $roles = Rol::orderBy('id_rol')->get();
 
         $rescatista = Rescatista::findOrFail($id);
         
@@ -207,8 +210,7 @@ class RescatistaController extends Controller
     }
 
     public function storeComment(Request $request)
-    {
-        
+    {   
         $solicitud = Solicitud::findOrFail($request -> id_solicitud);
         $comentarios = $request -> comentario.'&'.$solicitud -> comentarios_rescatista;
         $solicitud -> comentarios_rescatista = $comentarios;
@@ -217,5 +219,60 @@ class RescatistaController extends Controller
             return redirect()->route('Solicitud.index')->with('info','Comentario registrado con éxito.');
         else
             return redirect()->route('Solicitud.index')->with('error','Imposible guardar Comentario.');       
+    }
+
+    public function adopt($id)
+    {
+        //
+        $ids = explode('-', $id);
+        $amigo = Amigo::findOrFail($ids[0]);
+        if($ids[1] != 0){
+            $solicitud = Solicitud::findOrFail($ids[1]);
+            return view('Rescatista.adopt', compact('amigo', 'solicitud'));
+        }else{
+            return view('Rescatista.adopt_blank', compact('amigo'));
+        }
+        
+        
+    }
+
+    public function storeAdoption(AdopcionRequest $request)
+    {
+        //
+        $adopciones = Adopcion::where('id_amigo', $request -> id_amigo) -> get();
+        foreach ($adopciones as $adopcion) {
+            $adopcion -> vigente = false;
+            $adopcion -> save();
+        }
+
+        $amigo = Amigo::findOrFail($request -> id_amigo);
+        $amigo -> solicita_adopcion = false;
+        $amigo -> save();
+
+        $fotos_evidencia = '';
+        $archivos;
+        $adopcion = new Adopcion;
+        $adopcion -> id_amigo = $request -> id_amigo;
+        if($request -> id_solicitud != 0)
+            $adopcion -> id_solicitud = $request -> id_solicitud;
+        $adopcion -> nombre_adoptante = $request -> nombre_adoptante;
+        $adopcion -> direccion_adoptante = $request -> direccion_adoptante;
+        $adopcion -> email = $request -> email;
+        $adopcion -> telefono = $request -> telefono;
+        $adopcion -> detalles_adopcion = $request -> detalles_adopcion;
+        if(count($request -> evidencias) > 0){
+            array_filter($request -> evidencias);
+            $archivos = $request -> evidencias;
+            for($i = 0; $i < count($request -> evidencias); $i++ ) {
+                $fotos_evidencia = $fotos_evidencia.'&'.$request -> id_amigo.'_'.$i.'.'.$request -> evidencias[$i] -> extension();
+                $request -> evidencias[$i] -> storeAs('public/evidencias', $request -> id_amigo.'_'.$i.'.'.$archivos[$i] -> extension());
+            }
+            $adopcion -> evidencias = $fotos_evidencia;
+        }
+                
+        if($adopcion -> save())
+            return redirect()->route('Solicitud.index')->with('info','Adopción registrada con éxito.');
+        else
+            return redirect()->route('Solicitud.index')->with('error','Imposible guardar Adopción.');
     }
 }

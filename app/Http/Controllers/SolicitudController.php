@@ -66,8 +66,7 @@ class SolicitudController extends Controller
                     ->join('amigos', 'solicitudes.id_amigo', '=', 'amigos.id_amigo')
                     ->join('rescatistas', function ($join) {
                         $join->on('rescatistas.id_rescatista', '=', 'amigos.id_rescatista')
-                         //->where('rescatistas.id_rescatista', '=',auth()->user()->id_user);
-                        ->where('rescatistas.id_rescatista', '=', 15);
+                         ->where('rescatistas.id_rescatista', '=',auth()->user()->id_rescatista);
                     })
                     ->orwhere('amigos.nombre','ilike', '%'.$criterio.'%')
                     ->orwhere('solicitudes.nombre_solicitante','ilike', '%'.$criterio.'%')
@@ -163,5 +162,23 @@ class SolicitudController extends Controller
             return redirect()->route('Inscripcion.index')->with('info','Inscripcion eliminado con éxito.');
         else
             return redirect()->route('Inscripcion.index')->with('error','Imposible borrar Inscripcion.');
+    }
+
+    public function attend($id)
+    {
+        //
+        $atendida = "atendida";
+        $solicitud = Solicitud::findOrFail($id);
+        if($solicitud -> atendida == false){
+            $solicitud -> atendida = true;
+        }else{
+            $solicitud -> atendida = false;
+            $atendida = "reactivada";
+        }
+
+        if($solicitud -> save())
+            return redirect()->route('Solicitud.index')->with('info','Solicitud '.$atendida.' con éxito.');
+        else
+            return redirect()->route('Solicitud.index')->with('error','Imposible modificar Solicitud.');
     }
 }

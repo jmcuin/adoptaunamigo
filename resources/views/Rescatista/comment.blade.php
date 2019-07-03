@@ -5,7 +5,7 @@
 	 {!! csrf_field() !!}
 	 <input type="text" name="id_solicitud" value="{{ $id }}" hidden="hidden">
 	<div class="container" style="margin-top: 150px">
-	    <h1 align="center">Registro de Raza</h1>
+	    <h1 align="center">Registro de Comentario</h1>
 		<div class="col-lg-12 well">
 			<div class="row">
 				<div class="col-sm-12 form-group"> 

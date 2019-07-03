@@ -6,45 +6,45 @@
       <div class="col-lg-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title" >Solicitud: {{ $solicitud -> amigo -> nombre }}</h3>
+              <h3 class="panel-title">Adopción de: {{ $adopcion -> amigo -> nombre }}</h3>
             </div>
             <div class="panel-body">
               <div class="row">
+                <div class="col-lg-3 col-lg-12" align="center"> 
+                  <?php 
+                    $fotos = explode('&',$adopcion -> evidencias); 
+                  ?>
+                  @for($i = 1; $i < count($fotos); $i++)
+                    <img width="200px" src="{{ Storage::url('public/evidencias/'.$fotos[$i]) }}">
+                  @endfor
+                </div>
                 <div class=" col-md-12 col-lg-12 "> 
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td>Nombre:</td>
-                        <td>{{ $solicitud -> nombre_solicitante }}</td>
+                        <td>Nombre del adoptante:</td>
+                        <td>{{ $adopcion -> nombre_adoptante }}</td>
+                      </tr>
+                      <tr>
+                        <td>Dirección del adoptante:</td>
+                        <td>{{ $adopcion -> direccion_adoptante }}</td>
                       </tr>
                       <tr>
                         <td>Correo Electrónico:</td>
-                        <td>{{ $solicitud -> email }}</td> 
+                        <td>{{ $adopcion -> email }}</td> 
                       </tr>
                       <tr>
                         <td>Teléfono:</td>
-                        <td>{{ $solicitud -> telefono }}</td> 
+                        <td>{{ $adopcion -> telefono }}</td> 
                       </tr>
                       <tr>
-                        <td>Edad:</td>
-                        <td>{{ $solicitud -> edad }}</td>
+                        <td>Estatus de la adopción:</td>
+                        <td>@if($adopcion -> vigente == true) Vigente @else No vigente @endif</td>
                       </tr>
                       <tr>
-                        <td>Mensaje:</td>
-                        <td>{{ $solicitud -> mensaje }}</td>
+                        <td>Detalles de la adopción:</td>
+                        <td>{{ $adopcion -> detalles_adopcion }}</td>
                       </tr>
-                        <tr>
-                          <td colspan="2"><h3 class="panel-title" id="mas" align="center">Comentarios Importantes</h3></td>   
-                        </tr>
-                        <?php
-                          $comentarios = explode('&', $solicitud -> comentarios_rescatista);
-                        ?>
-                        @for($i = 0; $i < count($comentarios)-1; $i++)
-                          <tr>
-                            <td>Comentario {{ $i+1 }} emitido por {{ $solicitud -> amigo -> rescatista -> alias }} el día: {{ $solicitud -> updated_at }}</td>
-                            <td>{{ $comentarios[$i] }}</td>
-                          </tr>
-                        @endfor
                     </tbody>
                   </table>
                 </div>
@@ -56,7 +56,7 @@
                 	<tr>
                 		<td>
                 			<span class="pull-right">
-                    			<a href="{{ route('Solicitud.index') }}" class="btn btn-primary">Regresar</a>
+                    			<a href="{{ route('Adopcion.index') }}" class="btn btn-primary">Regresar</a>
                 			</span>
                 		</td>
                 	</tr>

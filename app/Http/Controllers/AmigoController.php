@@ -32,7 +32,8 @@ class AmigoController extends Controller
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
                 
-        $amigos = Amigo::where('nombre', 'ilike', '%'.$criterio.'%')
+        $amigos = Amigo::where('id_rescatista', auth()->user()->id_rescatista)
+        ->where('nombre', 'ilike', '%'.$criterio.'%')
         ->sortable()
         ->orderBy('id_amigo')
         ->orderBy('nombre')

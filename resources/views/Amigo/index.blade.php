@@ -8,7 +8,7 @@
 		</h1>
 		@if (session('info'))
     		<strong>
-    			<div class="alert alert-success alert-dismissable fade in">
+    			<div class="alert alert-success alert-dismissable">
         			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         			{{ session('info') }}
     			</div>
@@ -16,7 +16,7 @@
     	@endif
     	@if (session('error'))
     		<strong>
-    			<div class="alert alert-danger alert-dismissable fade in">
+    			<div class="alert alert-danger alert-dismissable">
         			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         			{{ session('error') }}
     			</div>
@@ -77,6 +77,9 @@
 							</td>
 							<td>
 								<a href="{{ route('Amigo.edit', $amigo -> id_amigo) }}" class="btn btn-primary">Editar</a>
+							</td>
+							<td>
+								<a href="{{ route('setAdoptado', $amigo -> id_amigo.'-0') }}" class="btn btn-primary">Registrar Adopción</a>
 							</td>
 							<td>
 								<form method="POST" action="{{ route('Amigo.destroy', $amigo-> id_amigo)}}">

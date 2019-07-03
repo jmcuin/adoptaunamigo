@@ -41,7 +41,7 @@
                   </td>
                   <td>
                     <span class="pull-right">
-                        <a href="{{ route('Panel.index') }}" class="btn btn-primary">Regresar</a>
+                        <a href="{{ route('Solicitud.index') }}" class="btn btn-primary">Regresar</a>
                     </span>
                   </td>
                   </tr>

@@ -8,7 +8,7 @@
 		</h1>
 		@if (session('info'))
     		<strong>
-    			<div class="alert alert-success alert-dismissable fade in">
+    			<div class="alert alert-success alert-dismissable">
         			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         			{{ session('info') }}
     			</div>
@@ -16,7 +16,7 @@
     	@endif
     	@if (session('error'))
     		<strong>
-    			<div class="alert alert-danger alert-dismissable fade in">
+    			<div class="alert alert-danger alert-dismissable">
         			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         			{{ session('error') }}
     			</div>
