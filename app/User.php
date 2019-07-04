@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -51,4 +52,17 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Rescatista::class,'id_rescatista');
     }
+
+    /*public function solicitudes(){
+        $solicitudes = DB::table('solicitudes')
+                    ->join('amigos', function ($join) {
+                        $join->on('amigos.id_amigo', '=', 'solicitudes.id_amigo')
+                             ->where('amigos.id_rescatista', '=', $this->id_rescatista);
+                    })
+                    ->where('solicitudes.atendida', '=', false)
+                    ->count();
+dd($solicitudes);
+        return $solicitudes;
+    }*/
 }
+

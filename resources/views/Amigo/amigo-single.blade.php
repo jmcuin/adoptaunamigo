@@ -254,7 +254,7 @@
                     <div class="col-md-12 mb-1">
                       <div class="form-group">
                         <input type="text" name="telefono" class="form-control form-control-lg form-control-a" id="inputtelefono1"
-                          placeholder="Tú número de teléfono" required>
+                          placeholder="Tu número de teléfono" required>
                       </div>
                     </div>
                     <div class="col-md-12 mb-1">

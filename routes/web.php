@@ -39,7 +39,7 @@ Route::get('/gridAmigos', function () {
     return view('amigogrid', compact('amigos'));
 })->name('gridAmigos');
 Route::get('setAdoptado/{id_amigo}', ['as' => 'setAdoptado', 'uses' =>'RescatistaController@adopt']);
-
+Route::get('unsetAdoptado/{id_amigo}', ['as' => 'unsetAdoptado', 'uses' =>'RescatistaController@unadopt']);
 Route::get('amigo-single/{id_amigo}', ['as' => 'amigo-single', 'uses' =>'AmigoController@getSingle']);
 
 Route::resource('Especie', 'EspecieController');
@@ -58,6 +58,7 @@ Route::resource('Rescatista', 'RescatistaController');
 Route::get('commentSolicitud/{id_solicitud}', ['as' => 'commentSolicitud', 'uses' =>'RescatistaController@comment']);
 Route::post('storeComment', ['as' => 'storeComment', 'uses' => 'RescatistaController@storeComment']);
 Route::post('storeAdoption', ['as' => 'storeAdoption', 'uses' => 'RescatistaController@storeAdoption']);
+Route::post('cancelAdoption', ['as' => 'cancelAdoption', 'uses' => 'RescatistaController@cancelAdoption']);
 
 Route::resource('Solicitud', 'SolicitudController');
 Route::get('attendSolicitud/{id_solicitud}', ['as' => 'attendSolicitud', 'uses' =>'SolicitudController@attend']);

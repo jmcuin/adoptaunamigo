@@ -275,4 +275,29 @@ class RescatistaController extends Controller
         else
             return redirect()->route('Solicitud.index')->with('error','Imposible guardar Adopción.');
     }
+
+    public function unadopt($id)
+    {
+        //
+        $adopcion = Adopcion::findOrFail($id);
+        return view('Rescatista.unadopt', compact('adopcion'));        
+    }
+
+    public function cancelAdoption(Request $request)
+    {
+        //
+        $adopcion = Adopcion::findOrFail($request -> id_adopcion);
+        $adopcion -> vigente = false;
+        $adopcion -> detalles_anulacion = $request -> detalles_anulacion;
+        $adopcion -> save();
+    
+        $amigo = Amigo::findOrFail($adopcion -> amigo -> id_amigo);
+        $amigo -> solicita_adopcion = true;
+        $amigo -> save();
+
+        if($adopcion -> save())
+            return redirect()->route('Solicitud.index')->with('info','Adopción anulada con éxito.');
+        else
+            return redirect()->route('Solicitud.index')->with('error','Imposible anular Adopción.');
+    }
 }

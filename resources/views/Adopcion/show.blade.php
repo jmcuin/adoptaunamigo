@@ -45,6 +45,12 @@
                         <td>Detalles de la adopción:</td>
                         <td>{{ $adopcion -> detalles_adopcion }}</td>
                       </tr>
+                      @if($adopcion -> detalles_anulacion != null)
+                        <tr>
+                          <td>Anulación de adopción:</td>
+                          <td>{{ $adopcion -> detalles_anulacion }}</td>
+                        </tr>
+                      @endif
                     </tbody>
                   </table>
                 </div>

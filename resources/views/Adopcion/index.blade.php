@@ -93,16 +93,11 @@
 							<a href="{{ route('Adopcion.show', $adopciones[$i] -> id_adopcion) }}" class="btn btn-primary">Ver</a>
 						</td>
 						<td>
-							<a href="{{ route('commentSolicitud', $adopciones[$i] -> id_solicitud) }}" class="btn btn-primary">Comentar</a>
-						</td>
-						<td>
-							<a href="{{ route('attendSolicitud', $adopciones[$i] -> id_solicitud) }}" class="btn btn-primary">
-								@if(true)
-									Terminar
-								@else
-									Reactivar
-								@endif	
-							</a>
+							@if($adopciones[$i] -> vigente == true)
+								<a href="{{ route('unsetAdoptado', $adopciones[$i] -> id_adopcion) }}" class="btn btn-primary">
+									Anular Adopción
+								</a>
+							@endif
 						</td>
 					</tr>
 				@endfor

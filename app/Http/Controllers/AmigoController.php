@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AmigoRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Events\NuevaSolicitud;
 use App\Amigo;
 use App\Especie;
 use App\Raza;
@@ -213,6 +214,16 @@ class AmigoController extends Controller
         $solicitud -> edad = $request -> edad;
         $solicitud -> mensaje = $request -> mensaje;
         $solicitud -> save();
+
+        event(new NuevaSolicitud($amigo, $solicitud));
+
+        /*Mail::send('emails.notificacion', ['solicitud' => $solicitud, 'amigo' => $amigo], function($s) use ($solicitud, $amigo){
+            $s -> to($solicitud -> email, $solicitud -> nombre_solicitante) -> subject('Gracias por adoptar a '.$amigo -> nombre);
+        });
+
+        Mail::send('emails.solicitud', ['solicitud' => $solicitud, 'amigo' => $amigo], function($s) use ($solicitud, $amigo){
+            $s -> to($amigo -> rescatista -> email, $amigo -> rescatista -> nombre) -> subject('Alguien quiere adoptar a '.$amigo -> nombre);
+        }); */
 
         return redirect() -> route('amigo-single', $request -> id_amigo) -> with('info','¡¡Gracias por adoptar!! El rescatista de '.$amigo -> nombre.' se pondrá en contacto contigo a la brevedad posible.');
     }

@@ -21,7 +21,7 @@
                           <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}" class="intro-title mb-4" target="_blank">{{ $amigo -> nombre }}</a>
                         </h1>
                         <p class="intro-subtitle intro-price">
-                          <a href="#"><span class="price-a">{{ $amigo -> caracter }}</span></a>
+                          <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}"><span class="price-a">{{ $amigo -> caracter }}</span></a>
                         </p>
                       </div>
                     </div>
