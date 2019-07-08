@@ -13,7 +13,7 @@ class RescatistaTableSeeder extends Seeder
     public function run()
     {
         //
-    	Rescatista::truncate();
+    	//Rescatista::truncate();
 
         Rescatista::create([
             'nombre' => 'admin',

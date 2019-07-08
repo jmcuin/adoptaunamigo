@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //
-    	User::truncate();
+    	//User::truncate();
 
         $user = User::create([
             'nombre' => 'admin',

@@ -13,7 +13,7 @@ class EspeciesTableSeeder extends Seeder
     public function run()
     {
         //
-        Especie::truncate();
+        //Especie::truncate();
 
         Especie::create([
             'especie' => 'Canina'

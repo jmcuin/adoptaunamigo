@@ -13,7 +13,7 @@ class RazasTableSeeder extends Seeder
     public function run()
     {
         //
-    	Raza::truncate();
+    	//Raza::truncate();
 
         Raza::create([
             'raza' =>'Alano']

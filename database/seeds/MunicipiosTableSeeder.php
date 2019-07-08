@@ -13,7 +13,7 @@ class MunicipiosTableSeeder extends Seeder
     public function run()
     {
         //
-    	Municipio::truncate();
+    	//Municipio::truncate();
 
         Municipio::create(['id_estado' => ' 1', 'id_municipio' => '33','municipio' => 'Aguascalientes']);
 		Municipio::create(['id_estado' => ' 1', 'id_municipio' => '34','municipio' => 'Asientos']);

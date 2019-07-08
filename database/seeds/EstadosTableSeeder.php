@@ -13,7 +13,7 @@ class EstadosTableSeeder extends Seeder
     public function run()
     {
         //
-        Estado::truncate();
+        //Estado::truncate();
 
         Estado::create([
         	'estado' => 'Aguascalientes'
