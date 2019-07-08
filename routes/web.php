@@ -14,8 +14,8 @@
 Route::get('/', function () {
 
     $amigos = App\Amigo::where('solicita_adopcion', '=', true) -> get();
-    dd($amigos);
     $amigostop = App\Amigo::where('solicita_adopcion', '=', true) -> take(6) -> get();
+    dd($amigostop);
     $eventos = App\Evento::whereDate('fecha', '>=', date('Y-m-d')) -> get();
     
     return view('inicio', compact('amigostop', 'amigos', 'eventos'));
