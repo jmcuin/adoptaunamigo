@@ -12,23 +12,12 @@
 */
 
 Route::get('/', function () {
-   /* $pagina = App\Pagina::where('activo', '=', 1) -> first();
-    $banner_principal_texto = explode('&', $pagina -> banner_principal_texto);
-    $pagina_convenios = App\Pagina_convenios::where('id_pagina', $pagina -> id)->get();
-    $pagina_horarios = App\Pagina_horarios::where('id_pagina', $pagina -> id)->get();
-    $pagina_instalaciones = App\Pagina_instalaciones::where('id_pagina', $pagina -> id)->get();
-    $pagina_oferta = App\Pagina_oferta::where('id_pagina', $pagina -> id)->get();
-    $pagina_talleres = App\Pagina_talleres::where('id_pagina', $pagina -> id)->get();
-    $settings = App\Setting::all();
-    $visita = new App\Visita;
-    $visita -> save();
-    $escolaridades = App\Escolaridad::all();
-    return view('inicio', compact('pagina','banner_principal_texto','pagina_convenios','pagina_horarios','pagina_instalaciones','pagina_oferta','pagina_talleres','escolaridades'));*/
+    dd('hola');
     $amigos = App\Amigo::where('solicita_adopcion', '=', true) -> get();
     $amigostop = App\Amigo::where('solicita_adopcion', '=', true) -> take(6) -> get();
     $eventos = App\Evento::whereDate('fecha', '>=', date('Y-m-d')) -> get();
 
-    dd($amigos);
+    
     return view('inicio', compact('amigostop', 'amigos', 'eventos'));
 })->name('inicio');
 
