@@ -21,6 +21,6 @@ class CheckRoles
             return $next($request);
         }
        
-        return redirect('/Panel');
+        return redirect('/Solicitud');
     }
 }

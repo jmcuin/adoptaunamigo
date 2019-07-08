@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     $nuevo = App\Evento::all();
-    dd($nuevo)
+    dd($nuevo);
 
     $amigos = App\Amigo::where('solicita_adopcion', '=', true) -> get();
     $amigostop = App\Amigo::where('solicita_adopcion', '=', true) -> take(6) -> get();
