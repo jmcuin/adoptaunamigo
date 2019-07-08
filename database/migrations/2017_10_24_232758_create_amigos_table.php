@@ -42,7 +42,7 @@ class CreateAmigosTable extends Migration
             $table->integer('id_raza')->unsigned();
             $table->foreign('id_raza')
                   ->references('id_raza')
-                  ->on('cat_raza')
+                  ->on('cat_razas')
                   ->onDelete('set null')
                   ->onUpdate('cascade');
             $table->boolean('solicita_adopcion')->default(false);
