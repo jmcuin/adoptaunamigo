@@ -20,8 +20,7 @@ class UserTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'jmcuin@gmail.com',
             'password' => bcrypt('123123'),
-            'id_rescatista' => 1,
-            'historia' => 'na'
+            'id_rescatista' => 1
         ]);
 
         $user -> roles() -> attach(1);
