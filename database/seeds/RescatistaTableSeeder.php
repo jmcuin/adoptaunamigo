@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Rescatista;
+use App\Rescatista;
 
 class RescatistaTableSeeder extends Seeder
 {
