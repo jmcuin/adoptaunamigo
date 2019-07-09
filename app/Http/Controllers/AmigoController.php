@@ -95,7 +95,7 @@ class AmigoController extends Controller
             $request -> fotos[$i] -> storeAs('public/amigos', '15_'.strtoupper($request -> nombre).'_'.$i.'.'.$archivos[$i] -> extension());
         }
         $amigo -> fotos = $fotos_amigo;
-            
+            dd($amigo);
         $guardado = $amigo -> save();
 
         if($guardado)
