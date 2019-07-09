@@ -55,7 +55,7 @@ class RescatistaController extends Controller
         $municipios = Municipio::orderBy('id_estado_municipio') -> get();
         $roles = Rol::orderBy('id_rol') -> get();
         
-        return view('Rescatista.create', compact('municipios', 'estados'));
+        return view('Rescatista.create', compact('municipios', 'estados', 'roles'));
     }
 
     /**
@@ -66,6 +66,8 @@ class RescatistaController extends Controller
      */
     public function store(RescatistaRequest $request)
     {
+
+        dd($request);
         $rescatista = new Rescatista;
         $rescatista -> nombre = $request -> nombre;
         $rescatista -> a_paterno = $request -> a_paterno;
@@ -199,8 +201,7 @@ class RescatistaController extends Controller
         $user -> password = bcrypt('123123');
         $user -> photo = $rescatista -> foto;
         $user -> save();
-        $user -> roles() -> attach(2);
-        //$user -> roles() -> attach($request -> id_rol);
+        $user -> roles() -> attach($request -> id_rol);
     }
 
     public function comment($id)

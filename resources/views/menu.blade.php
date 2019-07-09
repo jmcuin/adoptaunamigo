@@ -292,6 +292,8 @@
   <div id="preloader"></div>
 
   <!-- JavaScript Libraries -->
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
   <script src="{{URL::to('/')}}/lib/jquery/jquery.min.js"></script>
   <script src="{{URL::to('/')}}/lib/jquery/jquery-migrate.min.js"></script>
   <script src="{{URL::to('/')}}/lib/popper/popper.min.js"></script>
@@ -299,8 +301,6 @@
   <script src="{{URL::to('/')}}/lib/easing/easing.min.js"></script>
   <script src="{{URL::to('/')}}/lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="{{URL::to('/')}}/lib/scrollreveal/scrollreveal.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
   <script src="{{URL::to('/')}}/js/main.js"></script>

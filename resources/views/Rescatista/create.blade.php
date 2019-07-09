@@ -171,6 +171,19 @@
 							<input type="radio" name="es_asociacion" value="false" checked="checked"> No
 						</label>
 					</div>
+					<div class="col-sm-4 form-group">
+						<label for="id_rol">
+							Rol<br>
+							<select name="id_rol">
+								<option value="0">Seleccione un Rol</option>
+								@foreach($roles as $rol)
+									<option value="{{ $rol -> id_rol }}" @if(old('id_rol') == $rol -> id_rol ) selected @endif>{{ $rol -> rol }}
+									</option>	
+								@endforeach
+							</select>
+							{{ $errors -> first('id_rol') }}
+						</label>
+					</div>
 				</div>
 			</div>
 		</div>

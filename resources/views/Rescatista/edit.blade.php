@@ -168,7 +168,7 @@
 						Rol<br>
 						<select name="id_rol">
 							<option value="0">Seleccione un Rol</option>
-							<@foreach($roles as $rol)
+							@foreach($roles as $rol)
 								<option value="{{ $rol -> id_rol }}" @if($rescatista -> user -> roles[0] -> id_rol == $rol -> id_rol ) selected @endif>{{ $rol -> rol }}
 								</option>	
 							@endforeach
