@@ -70,7 +70,7 @@ class AmigoController extends Controller
         $fotos_amigo = '';
         $archivos;
         $amigo = new Amigo;
-        $amigo -> id_rescatista = 15;
+        $amigo -> id_rescatista = auth()->user()->id_rescatista;
         $amigo -> nombre = $request -> nombre;
         $amigo -> edad = $request -> edad;
         $amigo -> id_raza = $request -> id_raza;
@@ -91,11 +91,10 @@ class AmigoController extends Controller
         array_filter($request -> fotos);
         $archivos = $request -> fotos;
         for($i = 0; $i < count($request -> fotos); $i++ ) {
-            $fotos_amigo = $fotos_amigo.'&'.'15_'.strtoupper($request -> nombre).'_'.$i.'.'.$request -> fotos[$i] -> extension();
-            $request -> fotos[$i] -> storeAs('public/amigos', '15_'.strtoupper($request -> nombre).'_'.$i.'.'.$archivos[$i] -> extension());
+            $fotos_amigo = $fotos_amigo.'&'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$request -> fotos[$i] -> extension();
+            $request -> fotos[$i] -> storeAs('public/amigos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$archivos[$i] -> extension());
         }
         $amigo -> fotos = $fotos_amigo;
-            dd($amigo);
         $guardado = $amigo -> save();
 
         if($guardado)

@@ -26,8 +26,8 @@ class EventoController extends Controller
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
                 
-        //$eventos = Evento::where('id_rescatista', '=', auth()->user()->id_rescatista)
-        $eventos = Evento::where('nombre', 'ilike', '%'.$criterio.'%')
+        $eventos = Evento::where('id_rescatista', '=', auth()->user()->id_rescatista)
+        ->where('nombre', 'ilike', '%'.$criterio.'%')
         ->sortable()
         ->orderBy('id_evento')
         ->orderBy('nombre')
