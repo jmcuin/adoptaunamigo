@@ -67,10 +67,10 @@ class EventoController extends Controller
         $evento -> enlace_facebook = $request -> enlace_facebook;
         $evento -> email = $request -> email;
         $evento -> telefono = $request -> telefono;
-        if($request -> hasFile('imagen')){
+        /*if($request -> hasFile('imagen')){
             $evento -> imagen = strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension();
             $request -> file('imagen') -> storeAs('public/eventos', strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
-        }
+        }*/
         $evento -> donativos_alimento = $request -> donativos_alimento;
         $evento -> donativos_objetos = $request -> donativos_objetos;
         $evento -> donativos_juguetes = $request -> donativos_juguetes;

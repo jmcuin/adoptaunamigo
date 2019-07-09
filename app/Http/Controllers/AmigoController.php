@@ -90,11 +90,11 @@ class AmigoController extends Controller
         $amigo -> solicita_ayuda_alimenticia = $request -> solicita_ayuda_alimenticia;
         array_filter($request -> fotos);
         $archivos = $request -> fotos;
-        for($i = 0; $i < count($request -> fotos); $i++ ) {
+        /*for($i = 0; $i < count($request -> fotos); $i++ ) {
             $fotos_amigo = $fotos_amigo.'&'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$request -> fotos[$i] -> extension();
             $request -> fotos[$i] -> storeAs('public/amigos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$archivos[$i] -> extension());
         }
-        $amigo -> fotos = $fotos_amigo;
+        $amigo -> fotos = $fotos_amigo;*/
         $guardado = $amigo -> save();
 
         if($guardado)
