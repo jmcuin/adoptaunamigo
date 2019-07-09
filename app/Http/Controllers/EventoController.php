@@ -58,7 +58,7 @@ class EventoController extends Controller
         //
         //dd($request);
         $evento = new Evento;
-        $evento -> id_rescatista = 15;
+        $evento -> id_rescatista = auth()->user()->id_rescatista;
         $evento -> nombre = $request -> nombre;
         $evento -> descripcion = $request -> descripcion;
         $evento -> lugar = $request -> lugar;

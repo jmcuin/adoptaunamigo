@@ -13,6 +13,7 @@ use App\Raza;
 use App\Rescatista;
 use App\Solicitud;
 use App\User;
+Use Exception;
 use DB;
 
 class AmigoController extends Controller
@@ -90,12 +91,18 @@ class AmigoController extends Controller
         $amigo -> solicita_ayuda_alimenticia = $request -> solicita_ayuda_alimenticia;
         array_filter($request -> fotos);
         $archivos = $request -> fotos;
-        /*for($i = 0; $i < count($request -> fotos); $i++ ) {
+        for($i = 0; $i < count($request -> fotos); $i++ ) {
             $fotos_amigo = $fotos_amigo.'&'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$request -> fotos[$i] -> extension();
             $request -> fotos[$i] -> storeAs('public/amigos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$archivos[$i] -> extension());
         }
-        $amigo -> fotos = $fotos_amigo;*/
-        $guardado = $amigo -> save();
+        $amigo -> fotos = $fotos_amigo;
+        try{
+            $guardado = $amigo -> save();
+        }catch(Exception $e)
+        {
+           dd($e->getMessage());
+        }
+        
 
         if($guardado)
             return redirect()->route('Amigo.index')->with('info','Amigo creado con éxito.');
