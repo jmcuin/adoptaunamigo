@@ -191,6 +191,7 @@ class RescatistaController extends Controller
 
     public function addUser(Request $request){
         $rescatista = Rescatista::find(DB::table('rescatistas')->max('id_rescatista'));
+        dd($rescatista);
         $user = new User;
         $user -> id_rescatista = $rescatista -> id_rescatista;
         $user -> name = $rescatista -> nombre.' '.$rescatista -> a_paterno.' '.$rescatista -> a_materno;
