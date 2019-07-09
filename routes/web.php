@@ -17,8 +17,8 @@ Route::get('/', function () {
     $amigostop = App\Amigo::where('solicita_adopcion', '=', true) -> take(6) -> get();
     //dd($amigostop);
     //$eventos = App\Evento::whereDate('fecha', '>=', date('Y-m-d')) -> get();
-    $eventos = null;
-    return view('inicio', compact('amigostop', 'amigos', 'eventos'));
+    //$eventos = null;
+    return view('inicio', compact('amigostop', 'amigos'));
 })->name('inicio');
 
 Route::resource('Adopcion', 'AdopcionController');
