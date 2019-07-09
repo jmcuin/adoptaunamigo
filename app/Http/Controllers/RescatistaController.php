@@ -198,8 +198,8 @@ class RescatistaController extends Controller
         //$user -> password = bcrypt(substr($rescatista -> curp, 0, 6));
         $user -> password = bcrypt('123123');
         $user -> photo = $rescatista -> foto;
-        dd($user);
         $user -> save();
+        dd($request -> id_rol);
         $user -> roles() -> attach($request -> id_rol);
     }
 
