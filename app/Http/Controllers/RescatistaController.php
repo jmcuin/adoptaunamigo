@@ -32,10 +32,7 @@ class RescatistaController extends Controller
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
         
-        $rescatistas = Rescatista::all();
-        dd($rescatistas);
-
-        /*$rescatistas = Rescatista::where('nombre', 'ilike', '%'.$criterio.'%')
+        $rescatistas = Rescatista::where('nombre', 'ilike', '%'.$criterio.'%')
         ->orwhere('a_paterno','ilike','%'.$criterio.'%')
         ->orwhere('a_materno','ilike','%'.$criterio.'%')
         ->orwhere('alias','ilike','%'.$criterio.'%')
@@ -44,7 +41,7 @@ class RescatistaController extends Controller
         ->orderBy('nombre')
         ->paginate(10);
 
-        return view('Rescatista.index', compact('rescatistas'));*/
+        return view('Rescatista.index', compact('rescatistas'));
     }
 
     /**
@@ -69,7 +66,6 @@ class RescatistaController extends Controller
      */
     public function store(RescatistaRequest $request)
     {
-        //dd($request);
         $rescatista = new Rescatista;
         $rescatista -> nombre = $request -> nombre;
         $rescatista -> a_paterno = $request -> a_paterno;
@@ -194,8 +190,8 @@ class RescatistaController extends Controller
     }
 
     public function addUser(Request $request){
-        $user = new User;
         $rescatista = Rescatista::find(DB::table('rescatistas')->max('id_rescatista'));
+        $user = new User;
         $user -> id_rescatista = $rescatista -> id_rescatista;
         $user -> name = $rescatista -> nombre.' '.$rescatista -> a_paterno.' '.$rescatista -> a_materno;
         $user -> email = $rescatista -> email;
