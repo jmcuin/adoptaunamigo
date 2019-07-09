@@ -13,7 +13,7 @@ class CreateEventoTable extends Migration
      */
     public function up()
     {
-        Schema::create('evento', function (Blueprint $table) {
+        Schema::create('eventos', function (Blueprint $table) {
             $table->increments('id_evento');
             $table->integer('id_rescatista')->unsigned();
             $table->foreign('id_rescatista')
