@@ -23,7 +23,12 @@ class CreateAmigosTable extends Migration
                   ->onUpdate('cascade');
             $table->string('nombre');
             $table->string('edad');
-            $table->string('raza');
+            $table->integer('id_raza')->unsigned();
+            $table->foreign('id_raza')
+                  ->references('id_raza')
+                  ->on('cat_razas')
+                  ->onDelete('set null')
+                  ->onUpdate('cascade');
             $table->string('tamanio');
             $table->string('caracter');
             $table->string('convivencia');
