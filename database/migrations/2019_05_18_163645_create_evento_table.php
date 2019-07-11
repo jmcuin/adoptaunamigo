@@ -21,7 +21,7 @@ class CreateEventoTable extends Migration
                   ->on('rescatistas')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
-            $table->string('imagen')->default('default.jpg');
+            $table->string('imagen')->default('public/images/default.jpg');
             $table->string('nombre');
             $table->string('descripcion');
             $table->string('lugar');

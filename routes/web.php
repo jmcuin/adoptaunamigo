@@ -39,7 +39,7 @@ Route::get('/gridEventos', function () {
     return view('eventogrid', compact('eventos'));
 })->name('gridEventos');
 
-Route::get('evento-single/{id_evento}', ['as' => 'evento-single', 'uses' =>'eventoController@getSingle']);
+Route::get('evento-single/{id_evento}', ['as' => 'evento-single', 'uses' =>'EventoController@getSingle']);
 
 Route::resource('Raza', 'RazaController');
 

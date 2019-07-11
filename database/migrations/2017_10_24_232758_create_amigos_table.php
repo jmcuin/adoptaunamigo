@@ -32,7 +32,7 @@ class CreateAmigosTable extends Migration
             $table->string('tamanio');
             $table->string('caracter');
             $table->string('convivencia');
-            $table->string('fotos')->default('default.jpg');
+            $table->string('fotos')->default('public/images/default.jpg');
             $table->string('recomendaciones');
             $table->string('requisitos');
             $table->string('lugar_adopcion')->nullable();
