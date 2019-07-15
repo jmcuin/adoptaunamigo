@@ -33,7 +33,7 @@ class CreateRescatistasTable extends Migration
             $table->string('colonia')->nullable();
             $table->mediumInteger('cp')->nullable();
             $table->string('telefono')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email')->nullable()->unique();
             $table->string('fotos')->default('default.jpg');
             $table->boolean('es_asociacion')->default(false);
             $table->text('historia')->default(false);
