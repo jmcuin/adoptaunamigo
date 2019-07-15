@@ -37,12 +37,12 @@ class RescatistaRequest extends FormRequest
                     'a_paterno' => 'required|min:2',
                     'id_estado' => 'required|not_in:0',
                     'id_estado_municipio' => 'required|not_in:0',
-                    'alias' => 'required|min:2|unique:rescatista',
+                    'alias' => 'required|min:2|unique:rescatistas',
                     'calle' => 'required|min:2',
                     'colonia' => 'required|min:2',
                     'cp' => 'required|integer|min:5',
                     'telefono' => 'required|min:5',
-                    'email' => 'required|email|unique:rescatista',
+                    'email' => 'required|email|unique:rescatistas',
                     'confirmaemail' => 'required|same:email',
                     'foto' => 'image'
                 ];
@@ -55,12 +55,12 @@ class RescatistaRequest extends FormRequest
                     'a_paterno' => 'required|min:2',
                     'id_estado' => 'required|not_in:0',
                     'id_estado_municipio' => 'required|not_in:0',
-                    'alias' => 'required|min:2|unique:rescatista,alias,'.$this->route('Rescatistum').',id_rescatista',
+                    'alias' => 'required|min:2|unique:rescatistas,alias,'.$this->route('Rescatistum').',id_rescatista',
                     'calle' => 'required|min:2',
                     'colonia' => 'required|min:2',
                     'cp' => 'required|integer|min:5',
                     'telefono' => 'required|min:5',
-                    'email' => 'required|email|unique:rescatista,email,'.$this->route('Rescatistum').',id_rescatista',
+                    'email' => 'required|email|unique:rescatistas,email,'.$this->route('Rescatistum').',id_rescatista',
                     'confirmaemail' => 'required|same:email',
                     'foto' => 'image'
                 ];
