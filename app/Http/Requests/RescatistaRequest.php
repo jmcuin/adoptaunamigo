@@ -55,7 +55,7 @@ class RescatistaRequest extends FormRequest
                     'a_paterno' => 'required|min:2',
                     'id_estado' => 'required|not_in:0',
                     'id_estado_municipio' => 'required|not_in:0',
-                    'alias' => 'required|min:2||unique:rescatista,alias,'.$this->route('Rescatistum').',id_rescatista',
+                    'alias' => 'required|min:2|unique:rescatista,alias,'.$this->route('Rescatistum').',id_rescatista',
                     'calle' => 'required|min:2',
                     'colonia' => 'required|min:2',
                     'cp' => 'required|integer|min:5',

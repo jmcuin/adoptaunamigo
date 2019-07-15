@@ -21,14 +21,14 @@
 				<div class="col-sm-4 form-group">
 					<label for="nombre">
 					Nombre(s)
-						<input type="text" name="nombre" value="{{$rescatista -> nombre}}" class="form-control" placeholder="Nombre(s) del trabajador">
+						<input type="text" name="nombre" value="{{$rescatista -> nombre}}" class="form-control" placeholder="Nombre(s) del trabajador" required="required">
 					{{ $errors -> first('nombre') }}
 					</label>
 				</div>
 				<div class="col-sm-4 form-group">
 					<label for="a_paterno">
 						Apellido Paterno
-						<input type="text" name="a_paterno" value="{{$rescatista -> a_paterno}}" class="form-control" placeholder="Apellido del trabajador">
+						<input type="text" name="a_paterno" value="{{$rescatista -> a_paterno}}" class="form-control" placeholder="Apellido del trabajador" required="required">
 						{{ $errors -> first('a_paterno') }}
 					</label>
 				</div>
@@ -44,7 +44,7 @@
 				<div class="col-sm-4 form-group">
 					<label for="alias">
 					Alias
-						<input type="text" name="alias" value="{{$rescatista -> alias}}" class="form-control" placeholder="Alias del rescatista">
+						<input type="text" name="alias" value="{{$rescatista -> alias}}" class="form-control" placeholder="Alias del rescatista" required="required">
 					{{ $errors -> first('alias') }}
 					</label>
 				</div>
@@ -134,21 +134,21 @@
 				<div class="col-sm-4 form-group">
 					<label for="telefono">
 						Número(s) de Teléfono	
-						<input type="text" name="telefono" value="{{$rescatista -> telefono}}" class="form-control" placeholder="Domicilio del trabajador">
+						<input type="text" name="telefono" value="{{$rescatista -> telefono}}" class="form-control" placeholder="Domicilio del trabajador" required="required">
 						{{ $errors -> first('telefono') }}
 					</label>
 				</div>
 				<div class="col-sm-4 form-group">
 					<label for="email">
 						Correo Electrónico	
-						<input type="email" name="email" id="email" value="{{$rescatista -> email}}" class="form-control" placeholder="mail@algo.com">
+						<input type="email" name="email" id="email" value="{{$rescatista -> email}}" class="form-control" placeholder="mail@algo.com" required="required">
 						{{ $errors -> first('email') }}
 					</label>
 				</div>
 				<div class="col-sm-4 form-group">
 					<label for="confirmaemail">
 						Confirmación Correo Electrónico	
-						<input type="email" name="confirmaemail" id="confirmaemail" value="{{$rescatista -> email}}" class="form-control" placeholder="mail@algo.com">
+						<input type="email" name="confirmaemail" id="confirmaemail" value="{{$rescatista -> email}}" class="form-control" placeholder="mail@algo.com" required="required">
 						{{ $errors -> first('confirmaemail') }}
 					</label>
 				</div>

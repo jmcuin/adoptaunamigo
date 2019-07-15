@@ -22,14 +22,14 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="nombre">
 							Nombre(s)
-							<input type="text" name="nombre" value="{{old('nombre')}}" class="form-control" placeholder="Nombre(s) del rescatista">
+							<input type="text" name="nombre" value="{{old('nombre')}}" class="form-control" placeholder="Nombre(s) del rescatista" required="required">
 							{{ $errors -> first('nombre') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group"> 
 						<label for="a_paterno">
 							Apellido Paterno
-							<input type="text" name="a_paterno" value="{{old('a_paterno')}}" class="form-control" placeholder="Apellido del rescatista">
+							<input type="text" name="a_paterno" value="{{old('a_paterno')}}" class="form-control" placeholder="Apellido del rescatista" required="required">
 							{{ $errors -> first('a_paterno') }}
 						</label>
 					</div>
@@ -45,7 +45,7 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="alias">
 							Alias
-							<input type="text" name="alias" id="alias" value="{{old('alias')}}" class="form-control" placeholder="Alias del rescatista">
+							<input type="text" name="alias" id="alias" value="{{old('alias')}}" class="form-control" placeholder="Alias del rescatista" required="required">
 							{{ $errors -> first('alias') }}
 						</label>
 					</div>
@@ -135,21 +135,21 @@
 					<div class="col-sm-4 form-group">
 						<label for="telefono">
 							Número(s) de Teléfono	
-							<input type="text" name="telefono" value="{{old('telefono')}}" class="form-control" placeholder="Domicilio del rescatista">
+							<input type="text" name="telefono" value="{{old('telefono')}}" class="form-control" placeholder="Domicilio del rescatista" required="required">
 							{{ $errors -> first('telefono') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">
 						<label for="email">
 							Correo Electrónico	
-							<input type="email" name="email" id="email" value="{{old('email')}}" class="form-control" placeholder="mail@algo.com">
+							<input type="email" name="email" id="email" value="{{old('email')}}" class="form-control" placeholder="mail@algo.com" required="required">
 							{{ $errors -> first('email') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">
 						<label for="confirmaemail">
 							Confirmación Correo Electrónico	
-							<input type="email" name="confirmaemail" id="confirmaemail" value="{{old('confirmaemail')}}" class="form-control" placeholder="mail@algo.com">
+							<input type="email" name="confirmaemail" id="confirmaemail" value="{{old('confirmaemail')}}" class="form-control" placeholder="mail@algo.com" required="required">
 							{{ $errors -> first('confirmaemail') }}
 						</label>
 					</div>
