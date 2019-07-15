@@ -20,18 +20,6 @@
   <section class="property-grid grid">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-          <div class="grid-option">
-            <form>
-              <select class="custom-select">
-                <option selected>All</option>
-                <option value="1">New to Old</option>
-                <option value="2">For Rent</option>
-                <option value="3">For Sale</option>
-              </select>
-            </form>
-          </div>
-        </div>
         @foreach($eventos as $evento)
         <div class="col-md-4" style="height: 260px !important; margin-bottom: 20px;">
           <div class="card-box-a card-shadow" style="height: 260px !important;">
