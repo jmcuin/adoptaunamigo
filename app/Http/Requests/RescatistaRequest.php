@@ -44,7 +44,8 @@ class RescatistaRequest extends FormRequest
                     'telefono' => 'required|min:5',
                     'email' => 'required|email|unique:rescatistas',
                     'confirmaemail' => 'required|same:email',
-                    'foto' => 'image'
+                    'foto' => 'image',
+                    'id_rol' => 'required|not_in:0'
                 ];
             }
             case 'PUT':
