@@ -91,7 +91,8 @@ class RescatistaController extends Controller
         dd($rescatista);
 
         try{
-           $guardado = $rescatista -> save();
+           $rescatista -> save();
+           $guardado = true;
         }catch(Exception $e)
         {
            dd($e->getMessage());
