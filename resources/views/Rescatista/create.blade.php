@@ -11,7 +11,7 @@
 					<div class="col-sm-12 form-group" align="center"> 
 						 <label for="foto" class="label-foto">
 							Foto del Rescatista
-							<input type="file" name="foto" id="foto" value="{{old('foto')}}" placeholder="Foto del rescatista" accept="image/*" required="required">
+							<input type="file" name="foto" id="foto" value="{{old('foto')}}" placeholder="Foto del rescatista" accept="image/*">
 							{{ $errors -> first('foto') }}
 						</label>
 						<div class="preview">
