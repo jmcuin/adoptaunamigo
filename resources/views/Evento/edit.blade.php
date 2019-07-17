@@ -22,7 +22,7 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="nombre">
 							Nombre
-							<input type="text" name="nombre" value="{{ $evento -> nombre }}" class="form-control" placeholder="Nombre(s) del Evento">
+							<input type="text" name="nombre" value="{{ $evento -> nombre }}" class="form-control" placeholder="Nombre(s) del Evento" required="required">
 							{{ $errors -> first('nombre') }}
 						</label>
 					</div>
@@ -38,21 +38,21 @@
 					<div class="col-sm-4 form-group">
 						<label for="lugar">
 							Lugar	
-							<input type="text" name="lugar" value="{{ $evento -> lugar }}" class="form-control" placeholder="Lugar del evento">
+							<input type="text" name="lugar" value="{{ $evento -> lugar }}" class="form-control" placeholder="Lugar del evento" required="required">
 							{{ $errors -> first('lugar') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">
 						<label for="fecha">
 							Fecha
-							<input type="date" name="fecha" value="{{ $evento -> fecha }}" class="form-control" min="{{ date('Y-m-d') }}">
+							<input type="date" name="fecha" value="{{ $evento -> fecha }}" class="form-control" min="{{ date('Y-m-d') }}" required="required">
 							{{ $errors -> first('fecha') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">
 						<label for="hora">
 							Hora
-							<input type="text" name="hora" value="{{ $evento -> hora }}" class="form-control" placeholder="Hora del evento">
+							<input type="text" name="hora" value="{{ $evento -> hora }}" class="form-control" placeholder="Hora del evento" required="required">
 							{{ $errors -> first('hora') }}
 						</label>
 					</div>

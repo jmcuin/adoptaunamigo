@@ -19,7 +19,7 @@ class CreateRescatistasTable extends Migration
             $table->string('a_paterno');
             $table->string('a_materno')->nullable();
             $table->string('alias')->unique();
-            $table->string('redes_sociales')->unique();
+            $table->string('redes_sociales');
             $table->integer('id_estado_municipio')->unsigned();      
             $table->foreign('id_estado_municipio')
                   ->references('id_estado_municipio')
@@ -34,7 +34,7 @@ class CreateRescatistasTable extends Migration
             $table->mediumInteger('cp')->nullable();
             $table->string('telefono')->nullable();
             $table->string('email')->nullable()->unique();
-            $table->string('foto')->default('default.jpg');
+            $table->string('foto')->default('public/images/default.jpg');
             $table->boolean('es_asociacion')->default(false);
             $table->text('historia')->default(false);
             $table->timestamps();

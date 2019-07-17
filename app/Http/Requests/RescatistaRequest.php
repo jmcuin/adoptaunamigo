@@ -44,6 +44,7 @@ class RescatistaRequest extends FormRequest
                     'telefono' => 'required|min:5',
                     'email' => 'required|email|unique:rescatistas',
                     'confirmaemail' => 'required|same:email',
+                    'redes_sociales' => 'required|min:2',
                     'foto' => 'image',
                     'id_rol' => 'required|not_in:0'
                 ];
@@ -63,6 +64,7 @@ class RescatistaRequest extends FormRequest
                     'telefono' => 'required|min:5',
                     'email' => 'required|email|unique:rescatistas,email,'.$this->route('Rescatistum').',id_rescatista',
                     'confirmaemail' => 'required|same:email',
+                    'redes_sociales' => 'required|min:2',
                     'foto' => 'image'
                 ];
             }

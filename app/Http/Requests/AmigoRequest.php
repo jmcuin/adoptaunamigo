@@ -34,13 +34,15 @@ class AmigoRequest extends FormRequest
             {
                 return [
                     'nombre' => 'required|min:2',
+                    'edad' => 'required|min:1',
                     'id_especie' => 'required|not_in:0',
                     'id_raza' => 'required|not_in:0',
                     'tamanio' => 'required|not_in:0',
                     'caracter' => 'required|min:2',
                     'convivencia' => 'required|min:2',
                     'recomendaciones' => 'required|min:2',
-                    'requisitos' => 'required|min:2'
+                    'requisitos' => 'required|min:2',
+                    'lugar_adopcion' => 'required|min:2'
                 ];
             }
             case 'PUT':
@@ -48,13 +50,15 @@ class AmigoRequest extends FormRequest
             {
                 return [
                     'nombre' => 'required|min:2',
+                    'edad' => 'required|min:1',
                     'id_especie' => 'required|not_in:0',
                     'id_raza' => 'required|not_in:0',
                     'tamanio' => 'required|not_in:0',
                     'caracter' => 'required|min:2',
                     'convivencia' => 'required|min:2',
                     'recomendaciones' => 'required|min:2',
-                    'requisitos' => 'required|min:2'
+                    'requisitos' => 'required|min:2',
+                    'lugar_adopcion' => 'required|min:2'
                 ];
             }
             default:break;

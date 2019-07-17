@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-sm-12 form-group" align="center"> 
 						 <label for="foto" class="label-foto">
-							Foto(s) del Evento
+							Foto(s) del Evento 
 							<input type="file" name="imagen" id="imagen" placeholder="Imagen del Evento" accept="image/*" required="required">
 						</label>
 						<div class="preview">
@@ -21,7 +21,7 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="nombre">
 							Nombre
-							<input type="text" name="nombre" value="{{ old('nombre') }}" class="form-control" placeholder="Nombre(s) del Evento">
+							<input type="text" name="nombre" value="{{ old('nombre') }}" class="form-control" placeholder="Nombre(s) del Evento" required="required">
 							{{ $errors -> first('nombre') }}
 						</label>
 					</div>
@@ -37,21 +37,21 @@
 					<div class="col-sm-4 form-group">
 						<label for="lugar">
 							Lugar	
-							<input type="text" name="lugar" value="{{ old('lugar') }}" class="form-control" placeholder="Lugar del evento">
+							<input type="text" name="lugar" value="{{ old('lugar') }}" class="form-control" placeholder="Lugar del evento" required="required">
 							{{ $errors -> first('lugar') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">
 						<label for="fecha">
 							Fecha
-							<input type="date" name="fecha" value="{{ old('fecha') }}" class="form-control" min="{{ date('Y-m-d') }}">
+							<input type="date" name="fecha" value="{{ old('fecha') }}" class="form-control" min="{{ date('Y-m-d') }}" required="required">
 							{{ $errors -> first('fecha') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">
 						<label for="hora">
 							Hora
-							<input type="text" name="hora" value="{{ old('hora') }}" class="form-control" placeholder="Hora del evento">
+							<input type="text" name="hora" value="{{ old('hora') }}" class="form-control" placeholder="Hora del evento" required="required">
 							{{ $errors -> first('hora') }}
 						</label>
 					</div>

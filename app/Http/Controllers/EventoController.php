@@ -56,7 +56,6 @@ class EventoController extends Controller
     public function store(EventoRequest $request)
     {
         //
-        //dd($request);
         $evento = new Evento;
         $evento -> id_rescatista = auth()->user()->id_rescatista;
         $evento -> nombre = $request -> nombre;
@@ -68,8 +67,8 @@ class EventoController extends Controller
         $evento -> email = $request -> email;
         $evento -> telefono = $request -> telefono;
         if($request -> hasFile('imagen')){
-            $evento -> imagen = strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension();
-            $request -> file('imagen') -> storeAs('public/eventos', strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
+            $evento -> imagen = auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension();
+            $request -> file('imagen') -> storeAs('public/eventos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
         }
         $evento -> donativos_alimento = $request -> donativos_alimento;
         $evento -> donativos_objetos = $request -> donativos_objetos;

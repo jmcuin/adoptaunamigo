@@ -11,7 +11,7 @@
 					<div class="col-sm-12 form-group" align="center"> 
 						 <label for="foto" class="label-foto">
 							Foto del Rescatista
-							<input type="file" name="foto" id="foto" value="{{old('foto')}}" placeholder="Foto del rescatista" accept="image/*">
+							<input type="file" name="foto" id="foto" value="{{old('foto')}}" placeholder="Foto del rescatista" accept="image/*" required="required">
 							{{ $errors -> first('foto') }}
 						</label>
 						<div class="preview">
@@ -74,7 +74,7 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="id_estado_municipio">
 							Municipio<br>
-							<select name="id_estado_municipio" id="id_estado_municipio">
+							<select name="id_estado_municipio" id="id_estado_municipio" required="required">
 								<option value="0">Seleccione un Municipio</option>
 								<@foreach($municipios as $municipio)
 									<option value="{{ $municipio-> id_estado_municipio }}" @if(old('id_estado_municipio') == $municipio -> id_estado_municipio ) selected @endif>{{ $municipio -> municipio}}	
@@ -96,7 +96,7 @@
 					<div class="col-sm-4 form-group">
 						<label for="calle">
 							Calle	
-							<input type="text" name="calle" value="{{old('calle')}}" class="form-control" placeholder="Domicilio del rescatista">
+							<input type="text" name="calle" value="{{old('calle')}}" class="form-control" placeholder="Domicilio del rescatista" required="required">
 							{{ $errors -> first('calle') }}
 						</label>
 					</div>
@@ -119,14 +119,14 @@
 					<div class="col-sm-4 form-group">
 						<label for="colonia">
 							Colonia	
-							<input type="text" name="colonia" value="{{old('colonia')}}" class="form-control" placeholder="Domicilio del rescatista">
+							<input type="text" name="colonia" value="{{old('colonia')}}" class="form-control" placeholder="Domicilio del rescatista" required="required">
 							{{ $errors -> first('colonia') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">
 						<label for="cp">
 							Código Postal
-							<input type="text" name="cp" value="{{old('cp')}}" class="form-control" placeholder="Código postal del rescatista">
+							<input type="number" name="cp" value="{{old('cp')}}" class="form-control" placeholder="Código postal del rescatista" required="required">
 							{{ $errors -> first('cp') }}
 						</label>
 					</div>
@@ -158,7 +158,7 @@
 					<div class="col-sm-6 form-group">
 						<label for="redes_sociales">
 							Enlace de Facebook	
-							<input type="text" name="redes_sociales" id="redes_sociales" value="{{old('redes_sociales')}}" class="form-control" placeholder="Enlace al facebook del rescatista">
+							<input type="text" name="redes_sociales" id="redes_sociales" value="{{old('redes_sociales')}}" class="form-control" placeholder="Enlace al facebook del rescatista" required="required">
 							{{ $errors -> first('redes_sociales') }}
 						</label>
 					</div>
@@ -174,7 +174,7 @@
 					<div class="col-sm-4 form-group">
 						<label for="id_rol">
 							Rol<br>
-							<select name="id_rol">
+							<select name="id_rol" required="required">
 								<option value="0">Seleccione un Rol</option>
 								@foreach($roles as $rol)
 									<option value="{{ $rol -> id_rol }}" @if(old('id_rol') == $rol -> id_rol ) selected @endif>{{ $rol -> rol }}

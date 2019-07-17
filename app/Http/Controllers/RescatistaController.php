@@ -88,8 +88,6 @@ class RescatistaController extends Controller
             $rescatista -> foto = $request -> file('foto') -> storeAs('public/rescatistas', strtoupper($request -> alias).'.'.$request -> file('foto') -> extension());
         }
 
-        //dd($rescatista);
-
         try{
            $rescatista -> save();
            $guardado = true;

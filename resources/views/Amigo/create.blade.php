@@ -4,7 +4,7 @@
 <form method="POST" id="registrar_amigo" enctype="multipart/form-data" action="{{ route('Amigo.store') }}">
 	{!! csrf_field() !!}
 	<div class="container" style="margin-top: 150px">
-    <h1 align="center">Registro de Amigo</h1>
+    <h1 align="center">Registro de Amigo</h1> 
 	<div class="col-lg-12 well">
 			<div class="col-sm-12">
 				<div class="row">
@@ -21,14 +21,14 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="nombre">
 							Nombre
-							<input type="text" name="nombre" value="{{old('nombre')}}" class="form-control" placeholder="Nombre(s) del amigo">
+							<input type="text" name="nombre" value="{{old('nombre')}}" class="form-control" placeholder="Nombre(s) del amigo" required="required">
 							{{ $errors -> first('nombre') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group"> 
 						<label for="edad">
 							Edad
-							<input type="text" name="edad" value="{{old('edad')}}" class="form-control" placeholder="Edad del amigo">
+							<input type="text" name="edad" value="{{old('edad')}}" class="form-control" placeholder="Edad del amigo" required="required">
 							{{ $errors -> first('edad') }}
 						</label>
 					</div>
@@ -37,7 +37,7 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="id_especie">
 							Especie<br>
-							<select name="id_especie" id="id_especie">
+							<select name="id_especie" id="id_especie" required="required">
 								<option value="0">Seleccione una Especie</option>
 								<@foreach($especies as $especie)
 									<option value="{{ $especie -> id_especie }}" @if(old('id_especie') == $especie -> id_especie ) selected @endif>{{ $especie -> especie}}	
@@ -50,7 +50,7 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="id_raza">
 							Raza<br>
-							<select name="id_raza" id="id_raza">
+							<select name="id_raza" id="id_raza" required="required">
 								<option value="0">Seleccione una Raza</option>
 								@foreach($razas as $raza)
 									<option value="{{ $raza -> id_raza }}" @if(old('id_raza') == $raza -> id_raza ) selected @endif>{{ $raza -> raza}}	
@@ -64,7 +64,6 @@
 						<label for="tamanio">
 							Tamaño<br>
 							<select name="tamanio" id="tamanio">
-								<option value="0">Seleccione un Tamaño</option>
 								<option value="Miniatura">Miniatura</option>
 								<option value="Chico">Chico</option>
 								<option value="Mediano">Mediano</option>
@@ -77,21 +76,21 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="caracter">
 							Carácter
-							<input type="text" name="caracter" id="caracter" value="{{old('caracter')}}" class="form-control" placeholder="Carácter del amigo">
+							<input type="text" name="caracter" id="caracter" value="{{old('caracter')}}" class="form-control" placeholder="Carácter del amigo" required="required">
 							{{ $errors -> first('caracter') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">
 						<label for="convivencia">
 							Convivencia	
-							<input type="text" name="convivencia" value="{{old('convivencia')}}" class="form-control" placeholder="Convive con perros, gatos, etc...">
+							<input type="text" name="convivencia" value="{{old('convivencia')}}" class="form-control" placeholder="Convive con perros, gatos, etc..." required="required">
 							{{ $errors -> first('convivencia') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">
 						<label for="recomendaciones">
 							Recomendaciones
-							<input type="text" name="recomendaciones" value="{{old('recomendaciones')}}" class="form-control" placeholder="Recomendaciones del amigo">
+							<input type="text" name="recomendaciones" value="{{old('recomendaciones')}}" class="form-control" placeholder="Recomendaciones del amigo" required="required">
 							{{ $errors -> first('recomendaciones') }}
 						</label>
 					</div>
@@ -100,14 +99,14 @@
 					<div class="col-sm-6 form-group">
 						<label for="requisitos">
 							Requisitos de Adopción
-							<textarea name="requisitos" class="form-control" placeholder="Requisitos de adopción" cols="80">{{old('requisitos')}}</textarea>
+							<textarea name="requisitos" class="form-control" placeholder="Requisitos de adopción" cols="80" required="required">{{old('requisitos')}}</textarea>
 							{{ $errors -> first('requisitos') }}
 						</label>
 					</div>
 					<div class="col-sm-6 form-group">
 						<label for="lugar_adopcion">
 							Lugares de Adopción
-							<textarea name="lugar_adopcion" class="form-control" placeholder="Lugares donde podrá ser dado en adopción" cols="80">{{old('lugar_adopcion')}}</textarea>
+							<textarea name="lugar_adopcion" class="form-control" placeholder="Lugares donde podrá ser dado en adopción" cols="80" required="required">{{old('lugar_adopcion')}}</textarea>
 							{{ $errors -> first('lugar_adopcion') }}
 						</label>
 					</div>
