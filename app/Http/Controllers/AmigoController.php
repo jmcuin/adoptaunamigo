@@ -25,7 +25,8 @@ class AmigoController extends Controller
      */
 
     function __construct(){
-        $this -> middleware(['auth', 'roles:administrador,rescatista']);
+        $this -> middleware('auth', ['except' => ['getSingle']]);
+        //$this -> middleware('roles:administrador, rescatista', ['except' => ['checkScores']]);
     }
 
     //function __construct(){
