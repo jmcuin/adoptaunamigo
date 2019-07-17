@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RescatistaRequest;
 use App\Http\Requests\AdopcionRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Rescatista;
 use App\Municipio;
@@ -24,7 +25,7 @@ class RescatistaController extends Controller
      * @return \Illuminate\Http\Response
      */
     function __construct(){
-        //$this -> middleware(['auth', 'roles:dir_general,director']);
+        $this -> middleware(['auth', 'roles:administrador,rescatista']);
     }
     
     public function index()
@@ -32,14 +33,26 @@ class RescatistaController extends Controller
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
         
-        $rescatistas = Rescatista::where('nombre', 'ilike', '%'.$criterio.'%')
-        ->orwhere('a_paterno','ilike','%'.$criterio.'%')
-        ->orwhere('a_materno','ilike','%'.$criterio.'%')
-        ->orwhere('alias','ilike','%'.$criterio.'%')
-        ->sortable()
-        ->orderBy('id_rescatista')
-        ->orderBy('nombre')
-        ->paginate(10);
+        if(Auth::user() -> roles[0] -> rol_key == 'administrador'){
+            $rescatistas = Rescatista::where('nombre', 'ilike', '%'.$criterio.'%')
+                ->orwhere('a_paterno','ilike','%'.$criterio.'%')
+                ->orwhere('a_materno','ilike','%'.$criterio.'%')
+                ->orwhere('alias','ilike','%'.$criterio.'%')
+                ->sortable()
+                ->orderBy('id_rescatista')
+                ->orderBy('nombre')
+                ->paginate(10);
+        }else{
+            $rescatistas = Rescatista::where('id_rescatista', auth()->user()->id_rescatista)
+                ->where('nombre', 'ilike', '%'.$criterio.'%')
+                ->orwhere('a_paterno','ilike','%'.$criterio.'%')
+                ->orwhere('a_materno','ilike','%'.$criterio.'%')
+                ->orwhere('alias','ilike','%'.$criterio.'%')
+                ->sortable()
+                ->orderBy('id_rescatista')
+                ->orderBy('nombre')
+                ->paginate(10);
+        }
 
         return view('Rescatista.index', compact('rescatistas'));
     }
@@ -169,6 +182,9 @@ class RescatistaController extends Controller
             Storage::delete($rescatista -> foto);
             $rescatista -> foto = $request -> file('foto') -> storeAs('public/rescatistas', strtoupper($request -> alias).'.'.$request -> file('foto') -> extension());
         }
+
+        $this -> updateUserRole($id, $request -> id_rol);
+
         $guardado = $rescatista -> save();
 
         if($guardado)
@@ -209,6 +225,12 @@ class RescatistaController extends Controller
             $user -> photo = $rescatista -> foto;
         $user -> save();
         $user -> roles() -> attach($request -> id_rol);
+    }
+
+    public function updateUserRole($id, $id_rol)
+    {
+        $user = User::where('id_rescatista', '=', $id) -> first();
+        $user -> roles() -> sync($id_rol);
     }
 
     public function comment($id)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Adopcion;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdopcionRequest;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class AdopcionController extends Controller
@@ -14,12 +15,34 @@ class AdopcionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    function __construct(){
+        $this -> middleware(['auth', 'roles:administrador,rescatista']);
+    }
+
     public function index()
     {
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
-                
-        $adopciones = DB::table('adopciones')
+
+        if(Auth::user() -> roles[0] -> rol_key == 'administrador'){
+            $adopciones = DB::table('adopciones')
+                    ->join('amigos', function ($join) {
+                        $join->on('amigos.id_amigo', '=', 'adopciones.id_amigo');
+                    })
+                    ->where('adopciones.nombre_adoptante', 'ilike', '%'.$criterio.'%')
+                    ->orwhere('adopciones.email', 'ilike', '%'.$criterio.'%')
+                    ->orwhere('adopciones.telefono', 'ilike', '%'.$criterio.'%')
+                    ->orwhere('adopciones.id_amigo', '=', $criterio)
+                    ->orwhere('adopciones.id_solicitud', '=', $criterio)
+                    ->orderBy('adopciones.vigente', 'DESC')
+                    ->orderBy('adopciones.nombre_adoptante')
+                    ->select('adopciones.*', 'amigos.*')
+                    ->groupBy('adopciones.id_adopcion')
+                    ->groupBy('amigos.id_amigo')
+                    ->paginate(10);
+        }else{
+            $adopciones = DB::table('adopciones')
                     ->join('amigos', function ($join) {
                         $join->on('amigos.id_amigo', '=', 'adopciones.id_amigo')
                              ->where('amigos.id_rescatista', '=', auth()->user()->id_rescatista);
@@ -35,6 +58,7 @@ class AdopcionController extends Controller
                     ->groupBy('adopciones.id_adopcion')
                     ->groupBy('amigos.id_amigo')
                     ->paginate(10);
+        }
         
         return view('Adopcion.index', compact('adopciones'));
     }

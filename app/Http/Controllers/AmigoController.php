@@ -25,21 +25,34 @@ class AmigoController extends Controller
      */
 
     function __construct(){
+        $this -> middleware(['auth', 'roles:administrador,rescatista']);
+    }
+
+    //function __construct(){
         /*$this -> middleware('auth', ['except' => ['checkScores']]);
         $this -> middleware('roles:dir_general,director,profesor', ['except' => ['checkScores']]);*/
-    }
+    //}
 
     public function index()
     {
         //
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI
                 
-        $amigos = Amigo::where('id_rescatista', auth()->user()->id_rescatista)
-        ->where('nombre', 'ilike', '%'.$criterio.'%')
-        ->sortable()
-        ->orderBy('id_amigo')
-        ->orderBy('nombre')
-        ->paginate(10);
+        if(Auth::user() -> roles[0] -> rol_key == 'administrador'){
+            $amigos = Amigo::where('nombre', 'ilike', '%'.$criterio.'%')
+                ->sortable()
+                ->orderBy('id_amigo')
+                ->orderBy('nombre')
+                ->paginate(10);
+        }else{
+            $amigos = Amigo::where('id_rescatista', auth()->user()->id_rescatista)
+                ->where('nombre', 'ilike', '%'.$criterio.'%')
+                ->sortable()
+                ->orderBy('id_amigo')
+                ->orderBy('nombre')
+                ->paginate(10);
+        }
+        
         
         return view('Amigo.index', compact('amigos'));
     } 

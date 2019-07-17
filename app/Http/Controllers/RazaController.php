@@ -13,6 +13,11 @@ class RazaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct(){
+        $this -> middleware(['auth', 'roles:administrador']);
+    }
+
     public function index()
     {
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI

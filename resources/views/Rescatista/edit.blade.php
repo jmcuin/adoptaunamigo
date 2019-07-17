@@ -163,26 +163,24 @@
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-sm-4 form-group"> 
+					<label for="es_asociacion">
+						¿Es Usted parte de una asociación civil?<br>
+						<input type="radio" name="es_asociacion" value="true" @if($rescatista -> es_asociacion == true ) checked="checked" @endif> Sí<br>
+						<input type="radio" name="es_asociacion" value="false" @if($rescatista -> es_asociacion == false ) checked="checked" @endif> No
+					</label>
+				</div>
 				<div class="col-sm-4 form-group">
 					<label for="id_rol">
 						Rol<br>
 						<select name="id_rol" required="required">
 							<option value="0">Seleccione un Rol</option>
 							@foreach($roles as $rol)
-								<option value="{{ $rol -> id_rol }}" @if($rescatista -> user -> roles[0] -> id_rol == $rol -> id_rol ) selected @endif>{{ $rol -> rol }}
+								<option value="{{ $rol -> id_rol }}" @if( $rescatista -> user -> roles[0] -> id_rol == $rol -> id_rol ) selected @endif>{{ $rol -> rol }}
 								</option>	
 							@endforeach
 						</select>
 						{{ $errors -> first('id_rol') }}
-					</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 form-group"> 
-					<label for="es_asociacion">
-						¿Es Usted parte de una asociación civil?<br>
-						<input type="radio" name="es_asociacion" value="true" @if($rescatista -> es_asociacion == true ) checked="checked" @endif> Sí<br>
-						<input type="radio" name="es_asociacion" value="false" @if($rescatista -> es_asociacion == false ) checked="checked" @endif> No
 					</label>
 				</div>
 			</div>

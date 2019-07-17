@@ -18,51 +18,28 @@ class SolicitudController extends Controller
      * @return \Illuminate\Http\Response
      */
     function __construct(){
-        //$this -> middleware(['auth', 'roles:dir_general,director,profesor']);
+        $this -> middleware(['auth', 'roles:administrador,rescatista']);
     }
     
     public function index()
     {
         $criterio = \Request::get('search'); //<-- we use global request to get the param of URI  
 
-        /*if(substr(auth()->user()->roles[0]->rol_key,0,3) === "dir"){
-            $grupos = DB::table('cat_grupos')
-                    ->join('settings', 'cat_grupos.id_periodo', '=', 'settings.id_periodo')
-                    ->where('id_grupo', $criterio)
-                    ->orwhere('grupo','like', '%'.$criterio.'%')
-                    ->select('cat_grupos.*')
+        if(Auth::user() -> roles[0] -> rol_key == 'administrador'){
+            $solicitudes = DB::table('solicitudes')
+                    ->join('amigos', 'solicitudes.id_amigo', '=', 'amigos.id_amigo')
+                    ->join('rescatistas', function ($join) {
+                        $join->on('rescatistas.id_rescatista', '=', 'amigos.id_rescatista');
+                    })
+                    ->orwhere('amigos.nombre','ilike', '%'.$criterio.'%')
+                    ->orwhere('solicitudes.nombre_solicitante','ilike', '%'.$criterio.'%')
+                    ->orwhere('solicitudes.email','ilike', '%'.$criterio.'%')
+                    ->select('solicitudes.*', 'amigos.*')
+                    ->groupBy('solicitudes.id_solicitud')
+                    ->groupBy('amigos.id_amigo')
                     ->paginate(10);
         }else{
-            $grupos = DB::table('cat_grupos')
-                    ->join('settings', 'cat_grupos.id_periodo', '=', 'settings.id_periodo')
-                    ->join('materia_x_grupos', function ($join) {
-                        $join->on('materia_x_grupos.id_grupo', '=', 'cat_grupos.id_grupo')
-                         ->where('materia_x_grupos.id_trabajador', '=',auth()->user()->id_user);
-                    })
-                    ->where('cat_grupos.id_grupo', $criterio)
-                    ->orwhere('grupo','like', '%'.$criterio.'%')
-                    ->select('cat_grupos.*')
-                    ->groupBy('cat_grupos.id_grupo')
-                    ->groupBy('cat_grupos.grupo')
-                    ->groupBy('cat_grupos.capacidad')
-                    ->groupBy('cat_grupos.created_at')
-                    ->groupBy('cat_grupos.updated_at')
-                    ->groupBy('cat_grupos.id_periodo')
-                    ->groupBy('cat_grupos.id_escolaridad')
-                    ->paginate(10);
-        }
-
-        $inscritos_por_grupo = DB::table('inscripciones')
-                     ->select(DB::raw('count( DISTINCT id_alumno) as inscritos, id_grupo'))
-                     ->groupBy('id_grupo')
-                     ->get();     
-          
-        $inscripciones = Inscripcion::where('id_grupo', 'like', '%'.$criterio.'%')
-                        ->sortable()
-                        ->orderBy('id_grupo')
-                        ->paginate(10);*/
-
-        $solicitudes = DB::table('solicitudes')
+            $solicitudes = DB::table('solicitudes')
                     ->join('amigos', 'solicitudes.id_amigo', '=', 'amigos.id_amigo')
                     ->join('rescatistas', function ($join) {
                         $join->on('rescatistas.id_rescatista', '=', 'amigos.id_rescatista')
@@ -75,6 +52,7 @@ class SolicitudController extends Controller
                     ->groupBy('solicitudes.id_solicitud')
                     ->groupBy('amigos.id_amigo')
                     ->paginate(10);
+        }
         
         return view('Solicitud.index',compact('solicitudes'));
     }

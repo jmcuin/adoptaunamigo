@@ -13,10 +13,15 @@ class EspecieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     function __construct(){
-        /*$this -> middleware('auth', ['except' => ['checkScores']]);
-        $this -> middleware('roles:dir_general,director,profesor', ['except' => ['checkScores']]);*/
+        $this -> middleware(['auth', 'roles:administrador']);
     }
+
+    /*function __construct(){
+        $this -> middleware('auth', ['except' => ['checkScores']]);
+        $this -> middleware('roles:dir_general,director,profesor', ['except' => ['checkScores']]);
+    }*/
 
     public function index()
     {

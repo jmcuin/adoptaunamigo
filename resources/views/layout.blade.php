@@ -147,7 +147,7 @@
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#amigos"><div style="width: 380px"></div></a>
+            <a href=""><div style="width: 380px"></div></a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="{{ route('inicio') }}">Inicio</a>

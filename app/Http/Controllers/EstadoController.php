@@ -16,7 +16,7 @@ class EstadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     function __construct(){
-        //$this -> middleware(['auth', 'roles:dir_general']);
+        $this -> middleware(['auth', 'roles:administrador']);
     }
     
     public function index()

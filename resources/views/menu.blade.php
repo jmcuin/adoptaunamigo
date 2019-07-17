@@ -149,7 +149,7 @@
         @else
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#amigos"><div style="width: 150px"></div></a>
+              <a class="nav-link" href="#amigos"><div  @if( auth() -> user() -> hasRoles(['administrador']) ) style="width: 50px" @else style="width: 190px" @endif></div></a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="{{ route('inicio') }}">Inicio</a>
@@ -184,11 +184,17 @@
                 <a class="nav-link" href="{{ route('Evento.index') }}">Eventos</a>
               </li>
             @endif
-            <li>
-              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();       document.getElementById('logout-form').submit();">Salir</a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-              </form>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img width="20px" height="20px" @if(Auth::user() -> rescatista -> foto == 'public/images/default.jpg') src="{{ URL::asset('images/default.jpg') }}" @else src="{{ Storage::url(Auth::user() -> rescatista -> foto ) }}" @endif > 
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="property-single.html">Config.</a>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();       document.getElementById('logout-form').submit();">Salir</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+              </div>
             </li>
             <!--li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
