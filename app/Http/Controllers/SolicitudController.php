@@ -29,10 +29,8 @@ class SolicitudController extends Controller
         if(Auth::user() -> roles[0] -> rol_key == 'administrador'){
             $solicitudes = DB::table('solicitudes')
                     ->join('amigos', 'solicitudes.id_amigo', '=', 'amigos.id_amigo')
-                    ->join('rescatistas', function ($join) {
-                        $join->on('rescatistas.id_rescatista', '=', 'amigos.id_rescatista');
-                    })
-                    ->orwhere('amigos.nombre','ilike', '%'.$criterio.'%')
+                    ->join('rescatistas.id_rescatista', '=', 'amigos.id_rescatista')
+                    ->where('amigos.nombre','ilike', '%'.$criterio.'%')
                     ->orwhere('solicitudes.nombre_solicitante','ilike', '%'.$criterio.'%')
                     ->orwhere('solicitudes.email','ilike', '%'.$criterio.'%')
                     ->select('solicitudes.*', 'amigos.*')
