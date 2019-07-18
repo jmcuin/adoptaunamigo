@@ -236,7 +236,7 @@ class AmigoController extends Controller
         $solicitud -> mensaje = $request -> mensaje;
         $solicitud -> save();
 
-        event(new NuevaSolicitud($amigo, $solicitud));
+        event(new NuevaSolicitud($amigo, $solicitud, route('inicio')));
 
         /*Mail::send('emails.notificacion', ['solicitud' => $solicitud, 'amigo' => $amigo], function($s) use ($solicitud, $amigo){
             $s -> to($solicitud -> email, $solicitud -> nombre_solicitante) -> subject('Gracias por adoptar a '.$amigo -> nombre);

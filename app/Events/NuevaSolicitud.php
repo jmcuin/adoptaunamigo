@@ -16,17 +16,19 @@ class NuevaSolicitud
 
     public $amigo;
     public $solicitud;
+    public $ruta;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($amigo, $solicitud)
+    public function __construct($amigo, $solicitud, $ruta)
     {
         //
         $this -> amigo = $amigo;
         $this -> solicitud = $solicitud;
+        $this -> ruta = $ruta;
     }
 
     /**
