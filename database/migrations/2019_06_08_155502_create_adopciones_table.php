@@ -34,6 +34,7 @@ class CreateAdopcionesTable extends Migration
             $table->text('detalles_adopcion');
             $table->string('evidencias')->nullable();
             $table->boolean('vigente')->default(true);
+            $table->text('detalles_anulacion')->nullable();
             $table->timestamps();
         });
     }
