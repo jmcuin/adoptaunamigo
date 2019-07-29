@@ -14,7 +14,7 @@
 					<?php 
                 		$fotos = explode('&',$amigo -> fotos); 
                 	?>
-               		<img width="130px" src="{{ Storage::url($fotos[1]) }}"><input type="file" name="fotos[]" accept="image/*" multiple="multiple">
+               		<img width="130px" src="{{ Storage::url('public/amigos/'.$fotos[1]) }}"><input type="file" name="foto" accept="image/*">
 						{{ $errors -> first('foto') }}
 					</label>
 				</div>

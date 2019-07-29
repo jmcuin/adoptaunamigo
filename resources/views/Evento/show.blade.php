@@ -1,7 +1,7 @@
 @extends('menu')
 
 @section('contenido')
-	<div class="container" style="overflow: auto; margin-top: 150px;>
+	<div class="container" style="overflow: auto; margin-top: 150px;">
       <div class="row">
       <div class="col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
           <div class="panel panel-info">
@@ -11,7 +11,7 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-3 col-lg-3 " align="center"> 
-                	<img width="130px" src="{{ Storage::url('public/eventos/'.$evento -> imagen) }}">
+                	<img width="130px" src="{{ Storage::url($evento -> imagen) }}">
                 </div>
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">

@@ -147,19 +147,25 @@
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href=""><div style="width: 380px"></div></a>
+            <a href=""><div style="width: 80px"></div></a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="{{ route('inicio') }}">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#amigos">Amigos</a>
+            <a class="nav-link" href="{{ route('inicio') }}/#amigos">Amigos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#eventos">Eventos</a>
+            <a class="nav-link" href="{{ route('inicio') }}/#eventos">Eventos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#beneficios">Beneficios</a>
+            <a class="nav-link" href="{{ route('inicio') }}/#servicios">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('inicio') }}/#extraviados">¿Los has visto?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('inicio') }}/#beneficios">Beneficios</a>
           </li>
           <li>
             <a class="nav-link" href={{ route('login') }}>Ingresar</a>
@@ -201,13 +207,19 @@
                 <a href="{{ route('inicio') }}">Inicio</a>
               </li>
               <li class="list-inline-item">
-                <a href="#amigos">Amigos</a>
+                <a href="{{ route('inicio') }}/#amigos">Amigos</a>
               </li>
               <li class="list-inline-item">
-                <a href="#eventos">Eventos</a>
+                <a href="{{ route('inicio') }}/#eventos">Eventos</a>
               </li>
               <li class="list-inline-item">
-                <a href="#beneficios">Beneficios</a>
+                <a href="{{ route('inicio') }}/#servicios">Servicios</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{{ route('inicio') }}/#extraviados">¿Los has visto?</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{{ route('inicio') }}/#beneficios">Beneficios</a>
               </li>
             </ul>
           </nav>

@@ -12,11 +12,14 @@
 */
 
 Route::get('/', function () {
-
+	$visita = new App\Visita;
+    $visita -> save();
     $amigos = App\Amigo::where('solicita_adopcion', '=', true) -> get();
     $amigostop = App\Amigo::where('solicita_adopcion', '=', true) -> take(6) -> get();
-    $eventos = App\Evento::whereDate('fecha', '>=', date('Y-m-d')) -> get();    
-    return view('inicio', compact('amigostop', 'amigos', 'eventos'));
+    $eventos = App\Evento::whereDate('fecha', '>=', date('Y-m-d')) -> get();
+    $servicios = App\Servicio::all();
+    $extravios = App\Extravio::where('activo', '=', true) -> get();    
+    return view('inicio', compact('amigostop', 'amigos', 'eventos', 'servicios', 'extravios'));
 })->name('inicio');
 
 Route::resource('Adopcion', 'AdopcionController');
@@ -38,8 +41,19 @@ Route::get('/gridEventos', function () {
 	$eventos = App\Evento::whereDate('fecha', '>=', date('Y-m-d')) -> get();
     return view('eventogrid', compact('eventos'));
 })->name('gridEventos');
-
 Route::get('evento-single/{id_evento}', ['as' => 'evento-single', 'uses' =>'EventoController@getSingle']);
+
+Route::resource('Extravio', 'ExtravioController');
+Route::get('/gridExtravios', function () {
+	$extravios = App\Extravio::all();
+    return view('extraviogrid', compact('extravios'));
+})->name('gridExtravios');
+Route::get('extravio-single/{id_extravio}', ['as' => 'extravio-single', 'uses' =>'ExtravioController@getSingle']);
+Route::get('/desactiva_extravio', function () {    
+    return view('Extravio.desactiva_busqueda');
+})->name('desactiva_extravio');
+
+Route::resource('Notificacion', 'NotificacionController');
 
 Route::resource('Raza', 'RazaController');
 
@@ -48,6 +62,14 @@ Route::get('commentSolicitud/{id_solicitud}', ['as' => 'commentSolicitud', 'uses
 Route::post('storeComment', ['as' => 'storeComment', 'uses' => 'RescatistaController@storeComment']);
 Route::post('storeAdoption', ['as' => 'storeAdoption', 'uses' => 'RescatistaController@storeAdoption']);
 Route::post('cancelAdoption', ['as' => 'cancelAdoption', 'uses' => 'RescatistaController@cancelAdoption']);
+Route::post('deactivateSearch', ['as' => 'deactivateSearch', 'uses' => 'ExtravioController@deactivateSearch']);
+
+Route::resource('Servicio', 'ServicioController');
+Route::get('/gridServicios', function () {
+	$servicios = App\Servicio::all();
+    return view('serviciogrid', compact('servicios'));
+})->name('gridServicios');
+Route::get('servicio-single/{id_servicio}', ['as' => 'servicio-single', 'uses' =>'ServicioController@getSingle']);
 
 Route::resource('Solicitud', 'SolicitudController');
 Route::get('attendSolicitud/{id_solicitud}', ['as' => 'attendSolicitud', 'uses' =>'SolicitudController@attend']);
@@ -58,19 +80,9 @@ Route::get('municipios', function(){
 
 Route::resource('Estado', 'EstadoController');
 
-Route::resource('Informe', 'InformeController');
-Route::post('InformeAttention', ['as' => 'InformeAttention', 'uses' => 'InformeController@attend']);
-
 Route::resource('Municipio', 'MunicipioController');
 
-Route::resource('Notificacion', 'NotificacionController');
-Route::post('NotificacionPublish', ['as' => 'NotificacionPublish', 'uses' => 'NotificacionController@publish']);
-
-Route::resource('Panel', 'PanelController');
-
 Route::resource('Rol', 'RolController');
-
-Route::resource('Setting', 'SettingController');
 
 Route::get('/ajax-getMunicipio', function(){
 	$estado = Request::get('id_estado');

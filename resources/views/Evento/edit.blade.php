@@ -29,7 +29,7 @@
 					<div class="col-sm-6 form-group"> 
 						<label for="descripcion">
 							Descripción
-							<textarea name="descripcion" class="form-control" placeholder="Descripción del evento" cols="80">{{ $evento -> descripcion }}</textarea>
+							<textarea name="descripcion" class="form-control" placeholder="Descripción del evento" cols="80" required="required">{{ $evento -> descripcion }}</textarea>
 							{{ $errors -> first('descripcion') }}
 						</label>
 					</div>
@@ -61,8 +61,8 @@
 					<div class="col-sm-4 form-group">
 						<label for="enlace">
 							Enlace de Facebook
-							<input type="text" name="enlace_facebook" value="{{ $evento -> enlace }}" class="form-control" placeholder="enlace del evento">
-							{{ $errors -> first('enlace') }}
+							<input type="text" name="enlace_facebook" value="{{ $evento -> enlace_facebook }}" class="form-control" placeholder="Enlace del evento" required="required">
+							{{ $errors -> first('enlace_facebook') }}
 						</label>
 					</div>
 					<div class="col-sm-4 form-group">

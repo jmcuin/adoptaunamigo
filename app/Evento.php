@@ -26,7 +26,7 @@ class Evento extends Model
             'telefono'
     ];
 
-    public function amigos()
+    public function rescatista()
     {
         return $this->belongsTo(Rescatista::class,'id_rescatista');
     }

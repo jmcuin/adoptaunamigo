@@ -8,8 +8,8 @@
       <div class="row">
         <div class="col-md-12 col-lg-8">
           <div class="title-single-box">
-            <h1 class="title-single">Todos nuestros amigos</h1>
-            <span class="color-text-a">Seguro encuentras a un(a) amigo(a) para toda la vida...</span>
+            <h1 class="title-single">Todos nuestros amigos extraviados</h1>
+            <span class="color-text-a">¿Has visto a alguno de ellos?</span>
           </div>
         </div>
       </div>
@@ -20,46 +20,37 @@
   <section class="property-grid grid">
     <div class="container">
       <div class="row">
-        @foreach($amigos as $amigo)
+        @foreach($extravios as $extravio)
         <div class="col-md-4" style="height: 260px !important; margin-bottom: 20px;">
           <div class="card-box-a card-shadow" style="height: 260px !important;">
             <div class="img-box-a">
-              <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
+              <?php $foto_amigo = explode('&', $extravio -> fotos); ?>
               <img src="{{ Storage::url($foto_amigo[1]) }}" alt="" class="img-a img-fluid">
             </div>
             <div class="card-overlay">
               <div class="card-overlay-a-content">
                 <div class="card-header-a">
                   <h2 class="card-title-a">
-                    <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}">{{ $amigo -> nombre }}
+                    <a href="{{ route('extravio-single', $extravio -> id_extravio ) }}">{{ $extravio -> nombre }}
                   </h2>
                 </div>
                 <div class="card-body-a">
-                  <div class="price-box d-flex">
-                    <span class="price-a">Talla: {{ $amigo -> tamanio }}</span>
-                  </div>
-                  <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}" class="link-a">Más información
+                  <a href="{{ route('extravio-single', $extravio -> id_extravio ) }}" class="link-a">Más información
                     <span class="ion-ios-arrow-forward"></span>
                   </a>
                 </div>
                 <div class="card-footer-a">
                   <ul class="card-info d-flex justify-content-around">
                     <li>
-                      <h4 class="card-info-title">Edad</h4>
+                      <h4 class="card-info-title">Se perdió en:</h4>
                       <span>
-                        {{ $amigo -> edad }}
+                        {{ $extravio -> ultimo_avistamiento_lugar }}
                       </span>
                     </li>
                     <li>
-                      <h4 class="card-info-title">Carácter</h4>
+                      <h4 class="card-info-title">Se perdió el:</h4>
                       <span>
-                        {{ $amigo -> caracter }}
-                      </span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Convivencia</h4>
-                      <span>
-                        {{ $amigo -> convivencia }}
+                        {{ $extravio -> ultimo_avistamiento_fecha }}
                       </span>
                     </li>
                   </ul>

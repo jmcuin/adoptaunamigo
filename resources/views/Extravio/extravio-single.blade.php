@@ -14,7 +14,8 @@
                     {{ session('info') }}
                 </div>
             @endif
-            <h1 class="title-single">{{ $evento -> nombre }}</h1>
+            <h1 class="title-single">{{ $extravio -> nombre }}</h1>
+            <span class="color-text-a">{{ $extravio -> caracter }}</span>
           </div>
         </div>
         <div class="col-md-12 col-lg-4">
@@ -24,10 +25,10 @@
                 <a href="{{ route('inicio') }}">Inicio</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="{{ route('gridEventos') }}">Todos</a>
+                <a href="{{ route('gridExtravios') }}">Todos</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
-                {{ $evento -> nombre }}
+                {{ $extravio -> nombre }}
               </li>
             </ol>
           </nav>
@@ -43,9 +44,12 @@
       <div class="row">
         <div class="col-sm-12">
           <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
-            <div class="carousel-item-b">
-              <img src="{{ Storage::url($evento -> imagen) }}" alt="" style="width: 1110px;">
-            </div>
+            <?php $foto_extravio = explode('&', $extravio -> fotos); ?>
+            @for($i = 1; $i < count($foto_extravio); $i++)
+              <div class="carousel-item-b">
+                <img src="{{ Storage::url($foto_extravio[$i]) }}" alt="" style="background-size: contain;">
+              </div>
+            @endfor
           </div>
           <div class="row justify-content-between">
             <div class="col-md-5 col-lg-4">
@@ -55,7 +59,7 @@
                     <span class="ion-money">*</span>
                   </div>
                   <div class="card-title-c align-self-center">
-                    <h5 class="title-c">{{ $evento -> nombre }}</h5>
+                    <h5 class="title-c">{{ $extravio -> nombre }}</h5>
                   </div>
                 </div>
               </div>
@@ -70,29 +74,19 @@
                 <div class="summary-list">
                   <ul class="list">
                     <li class="d-flex justify-content-between">
-                      <strong>Lugar:</strong>
-                      <span>{{ $evento -> lugar }}</span>
+                      <strong>Sí lo ves contacta a:</strong>
+                      <span>{{ $extravio -> contacto_persona }}</span>
                     </li>
                     <li class="d-flex justify-content-between">
-                      <strong>Fecha:</strong>
-                      <span>{{ $evento -> fecha }}</span>
+                      <strong>Al número:</strong>
+                      <span>{{ $extravio -> telefono }}</span>
                     </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Hora:</strong>
-                      <span>{{ $evento -> hora }}</span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Correo Electrónico:</strong>
-                      <span>{{ $evento -> email }}</span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Teléfono:</strong>
-                      <span>{{ $evento -> telefono }}</span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Facebook:</strong>
-                      <span><a href="{{ $evento -> enlace_facebook }}" target="_blank">{{ $evento -> enlace_facebook }}</a></span>
-                    </li>
+                    @if( $extravio -> recompenza == true)
+                      <li class="d-flex justify-content-between">
+                        <strong>Recompenza:</strong>
+                        <span>{{ $extravio -> recompenza_monto }}</span>
+                      </li>
+                    @endif
                   </ul>
                 </div>
               </div>
@@ -107,24 +101,17 @@
               </div>
               <div class="property-description">
                 <p class="description color-text-a">
-                  {{ $evento -> descripcion }}
+                  Descripción de {{$extravio -> nombre }}: {{ $extravio -> descripcion_amigo }}
                 </p>
-              </div>
-              <div class="row section-t3">
-                <div class="col-sm-12">
-                  <div class="title-box-d">
-                    <h3 class="title-d">También puedes participar:</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="amenities-list color-text-a">
-                <ul class="" >
-                  @if($evento -> donativos_alimento == true) <li>Trayendo tu donativo de alimento</li> @endif
-                  @if($evento -> donativos_objetos == true) <li>Donando ropa, correas, casas, etc.</li> @endif
-                  @if($evento -> donativos_juguetes == true) <li>Donando juguetes para los rescatados</li> @endif
-                  @if($evento -> donativos_efectivo == true) <li>Donando en efectivo para la causa animalista</li> @endif
-                  @if($evento -> donativos_paseos == true) <li>Regalando pasesos a los rescatados</li> @endif
-                </ul>
+                <p class="description color-text-a">
+                  Señas particulares de {{$extravio -> nombre }}: {{ $extravio -> senias_particulares }}
+                </p>
+                <p class="description color-text-a no-margin">
+                  Lo que sucedió: {{ $extravio -> descripcion_evento }}
+                </p><br>
+                <p class="description color-text-a no-margin">
+                  Visto por última vez el {{ $extravio -> ultimo_avistamiento_fecha }} en {{ $extravio -> ultimo_avistamiento_lugar }} 
+                </p>
               </div>
             </div>
           </div>

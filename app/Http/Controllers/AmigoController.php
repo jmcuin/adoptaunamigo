@@ -7,6 +7,7 @@ use App\Http\Requests\AmigoRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Events\NuevaSolicitud;
+use App\Events\NuevoAmigo;
 use App\Amigo;
 use App\Especie;
 use App\Raza;
@@ -81,9 +82,8 @@ class AmigoController extends Controller
     public function store(AmigoRequest $request)
     {
         //
-        //dd($request);
         $fotos_amigo = '';
-        $archivos;
+        $fotos;
         $amigo = new Amigo;
         $amigo -> id_rescatista = auth()->user()->id_rescatista;
         $amigo -> nombre = $request -> nombre;
@@ -104,10 +104,10 @@ class AmigoController extends Controller
         $amigo -> solicita_ayuda_medica = $request -> solicita_ayuda_medica;
         $amigo -> solicita_ayuda_alimenticia = $request -> solicita_ayuda_alimenticia;
         array_filter($request -> fotos);
-        $archivos = $request -> fotos;
-        for($i = 0; $i < count($request -> fotos); $i++ ) {
-            $fotos_amigo = $fotos_amigo.'&'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$request -> fotos[$i] -> extension();
-            $request -> fotos[$i] -> storeAs('public/amigos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$archivos[$i] -> extension());
+        $fotos = $request -> fotos;
+        for($i = 0; $i < count($fotos); $i++ ) {
+            $fotos_amigo = $fotos_amigo.'&'.'public/amigos/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension();
+            $request -> fotos[$i] -> storeAs('public/amigos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension());
         }
         $amigo -> fotos = $fotos_amigo;
         
@@ -115,9 +115,10 @@ class AmigoController extends Controller
             $guardado = $amigo -> save();
         }catch(Exception $e)
         {
-           dd($e->getMessage());
+            dd($e->getMessage());
         }
         
+        event(new NuevoAmigo($amigo, route('inicio')));
 
         if($guardado)
             return redirect()->route('Amigo.index')->with('info','Amigo creado con éxito.');
@@ -163,6 +164,8 @@ class AmigoController extends Controller
      */
     public function update(AmigoRequest $request, $id)
     {
+        $fotos_amigo = '';
+        $fotos;
         $amigo = Amigo::findOrFail($id);
         $amigo -> nombre = $request -> nombre;
         $amigo -> edad = $request -> edad;
@@ -181,11 +184,17 @@ class AmigoController extends Controller
         $amigo -> solicita_hogar_temporal = $request -> solicita_hogar_temporal;
         $amigo -> solicita_ayuda_medica = $request -> solicita_ayuda_medica;
         $amigo -> solicita_ayuda_alimenticia = $request -> solicita_ayuda_alimenticia;
-        if($request -> hasFile('fotos')){
-            Storage::delete($amigo -> fotos);
-            $amigo -> fotos = strtoupper($request -> nombre).'.'.$request -> file('fotos') -> extension();
-            $request -> file('fotos') -> storeAs('public/amigos', strtoupper($request -> nombre).'.'.$request -> file('fotos') -> extension());
+        $fotos = explode('&', $amigo -> fotos);
+        array_filter($fotos);
+        for($i = 0; $i < count($fotos); $i++ ) {
+            Storage::delete($fotos[$i]);
         }
+        $fotos = $request -> fotos;
+        for($i = 0; $i < count($fotos); $i++ ) {
+            $fotos_amigo = $fotos_amigo.'&'.'public/amigos/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension();
+            $request -> fotos[$i] -> storeAs('public/amigos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension());
+        }
+        $amigo -> fotos = $fotos_amigo;
         $guardado = $amigo -> save();
 
         if($guardado)
@@ -207,8 +216,12 @@ class AmigoController extends Controller
         $destruido = null;
 
         $amigo = Amigo::findOrFail($id);
-        Storage::delete($amigo -> foto);
-        
+        $fotos = explode('&', $amigo -> fotos);
+        array_filter($fotos);
+        for($i = 0; $i < count($fotos); $i++ ) {
+            Storage::delete($fotos[$i]);
+        }
+                
         $destruido = Amigo::destroy($id);
 
         if($destruido)
@@ -237,14 +250,6 @@ class AmigoController extends Controller
         $solicitud -> save();
 
         event(new NuevaSolicitud($amigo, $solicitud, route('inicio')));
-
-        /*Mail::send('emails.notificacion', ['solicitud' => $solicitud, 'amigo' => $amigo], function($s) use ($solicitud, $amigo){
-            $s -> to($solicitud -> email, $solicitud -> nombre_solicitante) -> subject('Gracias por adoptar a '.$amigo -> nombre);
-        });
-
-        Mail::send('emails.solicitud', ['solicitud' => $solicitud, 'amigo' => $amigo], function($s) use ($solicitud, $amigo){
-            $s -> to($amigo -> rescatista -> email, $amigo -> rescatista -> nombre) -> subject('Alguien quiere adoptar a '.$amigo -> nombre);
-        }); */
 
         return redirect() -> route('amigo-single', $request -> id_amigo) -> with('info','¡¡Gracias por adoptar!! El rescatista de '.$amigo -> nombre.' se pondrá en contacto contigo a la brevedad posible.');
     }

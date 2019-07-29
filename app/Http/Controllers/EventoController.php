@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EventoRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Events\NuevoEvento;
 use App\Amigo;
 use App\Evento;
 
@@ -18,7 +19,8 @@ class EventoController extends Controller
      */
 
     function __construct(){
-        $this -> middleware(['auth', 'roles:administrador,rescatista']);
+        //$this -> middleware(['auth', 'roles:administrador,rescatista']);
+        $this -> middleware('auth', ['except' => ['getSingle']]);
     }
     //function __construct(){
         /*$this -> middleware('auth', ['except' => ['checkScores']]);
@@ -82,6 +84,8 @@ class EventoController extends Controller
             
         $guardado = $evento -> save();
 
+        event(new NuevoEvento($evento, route('inicio')));
+
         if($guardado)
             return redirect()->route('Evento.index')->with('info','Evento creado con éxito.');
         else
@@ -124,7 +128,7 @@ class EventoController extends Controller
     public function update(EventoRequest $request, $id)
     {
         $evento = Evento::findOrFail($id);
-        $evento -> id_rescatista = 15;
+        $evento -> id_rescatista = auth()->user()->id_rescatista;
         $evento -> nombre = $request -> nombre;
         $evento -> descripcion = $request -> descripcion;
         $evento -> lugar = $request -> lugar;
@@ -135,8 +139,8 @@ class EventoController extends Controller
         $evento -> telefono = $request -> telefono;
         if($request -> hasFile('imagen')){
             Storage::delete($evento -> imagen);
-            $evento -> imagen = strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension();
-            $request -> file('imagen') -> storeAs('public/eventos', strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
+            $evento -> imagen = 'public/eventos/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension();
+            $request -> file('imagen') -> storeAs('public/eventos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
         }
         $evento -> donativos_alimento = $request -> donativos_alimento;
         $evento -> donativos_objetos = $request -> donativos_objetos;

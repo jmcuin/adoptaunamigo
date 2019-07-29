@@ -33,11 +33,11 @@ class NuevaSolicitudListener
         $ruta = $event -> ruta;
 
         Mail::send('emails.notificacion', ['solicitud' => $solicitud, 'amigo' => $amigo, 'ruta' => $ruta], function($s) use ($solicitud, $amigo){
-            $s -> to($solicitud -> email, $solicitud -> nombre_solicitante) -> subject('Gracias por adoptar a '.$amigo -> nombre);
+            $s -> to($solicitud -> email, $solicitud -> nombre_solicitante) -> subject('Gracias por interesarte en '.$amigo -> nombre);
         });
 
         Mail::send('emails.solicitud', ['solicitud' => $solicitud, 'amigo' => $amigo], function($s) use ($solicitud, $amigo){
-            $s -> to($amigo -> rescatista -> email, $amigo -> rescatista -> nombre) -> subject('Alguien quiere adoptar a '.$amigo -> nombre);
+            $s -> to($amigo -> rescatista -> email, $amigo -> rescatista -> nombre) -> subject('Alguien ha mostrado interés en '.$amigo -> nombre);
         });
     }
 }

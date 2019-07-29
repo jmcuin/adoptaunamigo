@@ -16,6 +16,18 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\NuevaSolicitud' => [
             'App\Listeners\NuevaSolicitudListener',
         ],
+        'App\Events\NuevaNotificacion' => [
+            'App\Listeners\NuevaNotificacionListener',
+        ],
+        'App\Events\NuevoAmigo' => [
+            'App\Listeners\NuevoAmigoListener',
+        ],
+        'App\Events\NuevoEvento' => [
+            'App\Listeners\NuevoEventoListener',
+        ],
+        'App\Events\NuevoExtravio' => [
+            'App\Listeners\NuevoExtravioListener',
+        ],
     ];
 
     /**

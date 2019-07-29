@@ -9,7 +9,7 @@
       @if(count($amigos) > 0)
         @foreach($amigos as $amigo)
           <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
-          <div class="carousel-item-a intro-item bg-image" style="background-image: url({{ Storage::url('public/amigos/'.$foto_amigo[1]) }})">
+          <div class="carousel-item-a intro-item bg-image" style="background-image: url({{ Storage::url($foto_amigo[1]) }}); margin-top: 100px;">
           <div class="overlay overlay-a"></div>
             <div class="intro-content display-table">
               <div class="table-cell">
@@ -152,12 +152,12 @@
       <div class="row">
         <div class="col-md-12">
           <div class="title-wrap d-flex justify-content-between">
-            <div class="title-box">
+            <div class="title-box"><br><br>
               <h2 class="title-a">Recién Llegados</h2>
             </div>
             <div class="title-link">
               @if(count($amigostop) > 0)
-                <a href="{{ route('gridAmigos') }}">Todos nuestros amigos
+                <br><br><a href="{{ route('gridAmigos') }}">Todos nuestros amigos
                   <span class="ion-ios-arrow-forward"></span>
                 </a>
               @endif
@@ -173,7 +173,7 @@
               <div class="card-box-a card-shadow" style="height: 260px !important;">
                 <div class="img-box-a">
                   <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
-                  <img src="{{ Storage::url('public/amigos/'.$foto_amigo[1]) }}" alt="" class="img-a img-fluid">
+                  <img src="{{ Storage::url($foto_amigo[1]) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
                 </div>
                 <div class="card-overlay">
                   <div class="card-overlay-a-content">
@@ -440,7 +440,7 @@
             <div class="col-md-4">
               <div class="card-box-d" style="height: 350px !important;">
                 <div class="card-img-d">
-                  <img src="{{ Storage::url('public/eventos/'.$evento -> imagen) }}" alt="" class="img-d img-fluid" style="height: 350px !important;">
+                  <img src="{{ Storage::url($evento -> imagen) }}" alt="" class="img-d img-fluid" style="height: 350px !important;">
                 </div>
                 <div class="card-overlay card-overlay-hover">
                   <div class="card-header-d">
@@ -743,6 +743,444 @@
   </section-->
   <!--/ News End /-->
 
+  <!--/ Property Star /-->
+  <section class="section-agents section-t8" id="servicios">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title-wrap d-flex justify-content-between">
+            <div class="title-box">
+              <h2 class="title-a">Conciente a tu amigo</h2>
+            </div>
+            <div class="title-link">
+              @if(count($servicios) > 0)
+                <a href="{{ route('gridServicios') }}">Todos los servicios
+                  <span class="ion-ios-arrow-forward"></span>
+                </a>
+              @endif
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        @if(count($servicios) > 0)
+          @foreach($servicios as $servicio)
+            <div class="col-md-4">
+              <div class="card-box-d" style="height: 350px !important;">
+                <div class="card-img-d">
+                  <img src="{{ Storage::url($servicio -> foto) }}" alt="" class="img-d img-fluid" style="height: 350px !important;">
+                </div>
+                <div class="card-overlay card-overlay-hover">
+                  <div class="card-header-d">
+                    <div class="card-title-d align-self-center">
+                      <h3 class="title-d">
+                        <a href="{{ route('gridServicios') }}" class="link-two">{{ $servicio -> servicio }}</a>
+                      </h3>
+                    </div>
+                  </div>
+                  <div class="card-body-d">
+                    <p class="content-d color-text-a">
+                      {{ substr($servicio -> descripcion, 0, 15) }}...
+                    </p>
+                    <div class="info-agents color-a">
+                      <p>
+                        <strong>Lugar: </strong> {{ $servicio -> precio }}</p>
+                      <p>
+                        <strong>Fecha: </strong> {{ $servicio -> precio }}</p>
+                      <p>
+                        <strong>Hora: </strong> {{ $servicio -> precio }}</p>
+                      <p>
+                        <strong>Teléfono: </strong> {{ $servicio -> telefono }}</p>
+                      <p>
+                        <strong>Email: </strong> {{ $servicio -> email }}</p>
+                    </div>
+                  </div>
+                  <div class="card-footer-d">
+                    <div class="socials-footer d-flex justify-content-center">
+                      <ul class="list-inline">
+                        <li class="list-inline-item">
+                          <a href="{{ $servicio -> enlace_facebook }}" class="link-one" target="_blank">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <!--li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-dribbble" aria-hidden="true"></i>
+                          </a>
+                        </li-->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          @endforeach
+        @else
+          ESPERA NUEVOS EVENTOS DE ADOPCIÓN PRÓXIMAMENTE...
+        @endif
+        <!--div class="col-md-4">
+          <div class="card-box-d">
+            <div class="card-img-d">
+              <img src="img/agent-1.jpg" alt="" class="img-d img-fluid">
+            </div>
+            <div class="card-overlay card-overlay-hover">
+              <div class="card-header-d">
+                <div class="card-title-d align-self-center">
+                  <h3 class="title-d">
+                    <a href="agent-single.html" class="link-two">Stiven Spilver
+                      <br> Darw</a>
+                  </h3>
+                </div>
+              </div>
+              <div class="card-body-d">
+                <p class="content-d color-text-a">
+                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
+                </p>
+                <div class="info-agents color-a">
+                  <p>
+                    <strong>Phone: </strong> +54 356 945234</p>
+                  <p>
+                    <strong>Email: </strong> agents@example.com</p>
+                </div>
+              </div>
+              <div class="card-footer-d">
+                <div class="socials-footer d-flex justify-content-center">
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-dribbble" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-box-d">
+            <div class="card-img-d">
+              <img src="img/agent-5.jpg" alt="" class="img-d img-fluid">
+            </div>
+            <div class="card-overlay card-overlay-hover">
+              <div class="card-header-d">
+                <div class="card-title-d align-self-center">
+                  <h3 class="title-d">
+                    <a href="agent-single.html" class="link-two">Emma Toledo
+                      <br> Cascada</a>
+                  </h3>
+                </div>
+              </div>
+              <div class="card-body-d">
+                <p class="content-d color-text-a">
+                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
+                </p>
+                <div class="info-agents color-a">
+                  <p>
+                    <strong>Phone: </strong> +54 356 945234</p>
+                  <p>
+                    <strong>Email: </strong> agents@example.com</p>
+                </div>
+              </div>
+              <div class="card-footer-d">
+                <div class="socials-footer d-flex justify-content-center">
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-dribbble" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div-->
+      </div>
+    </div>
+  </section>
+  <!--/ Property End /-->
+
+  <!--/ Property Star /-->
+  <section class="section-agents section-t8" id="extraviados">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title-wrap d-flex justify-content-between">
+            <div class="title-box">
+              <h2 class="title-a">¿Los has visto?</h2>
+            </div>
+            <div class="title-link">
+              @if(count($extravios) > 0)
+                <a href="{{ route('gridExtravios') }}">Todos los extraviados
+                  <span class="ion-ios-arrow-forward"></span>
+                </a>
+              @endif
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        @if(count($extravios) > 0)
+          @foreach($extravios as $extravio)
+            <div class="col-md-4">
+              <div class="card-box-d" style="height: 350px !important;">
+                <div class="card-img-d">
+                  <?php $foto_extravio = explode('&', $extravio -> fotos); ?>
+                  <img src="{{ Storage::url($foto_extravio[1]) }}" alt="" class="img-d img-fluid" style="height: 350px !important;">
+                </div>
+                <div class="card-overlay card-overlay-hover">
+                  <div class="card-header-d">
+                    <div class="card-title-d align-self-center">
+                      <h3 class="title-d">
+                        <a href="{{ route('gridExtravios') }}" class="link-two">{{ $extravio -> nombre }}</a>
+                      </h3>
+                    </div>
+                  </div>
+                  <div class="card-body-d">
+                    <p class="content-d color-text-a">
+                      {{ substr($extravio -> descripcion_amigo, 0, 15) }}...
+                    </p>
+                    <div class="info-agents color-a">
+                      <p>
+                        <strong>Se perdió en: </strong> {{ $extravio -> ultimo_avistamiento_lugar }}</p>
+                      <p>
+                        <strong>Se perdió el: </strong> {{ $extravio -> ultimo_avistamiento_fecha }}</p>
+                      <p>
+                        <strong>Avisar a: </strong> {{ $extravio -> contacto_persona}}</p>
+                      <p>
+                        <strong>Teléfono: </strong> {{ $extravio -> telefono }}</p>
+                      @if( $extravio -> recompenza == true)
+                      <p>
+                        <strong>Recompenza: </strong> {{ $extravio -> recompenza_monto }}</p>
+                      @endif
+                    </div>
+                  </div>
+                  <div class="card-footer-d">
+                    <div class="socials-footer d-flex justify-content-center">
+                      <ul class="list-inline">
+                        <!--li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="#" class="link-one">
+                            <i class="fa fa-dribbble" aria-hidden="true"></i>
+                          </a>
+                        </li-->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          @endforeach
+        @else
+          ¡NINGÚN AMIGO ESTÁ EXTRAVIADO, AFORTUNADAMENTE!
+        @endif
+        <!--div class="col-md-4">
+          <div class="card-box-d">
+            <div class="card-img-d">
+              <img src="img/agent-1.jpg" alt="" class="img-d img-fluid">
+            </div>
+            <div class="card-overlay card-overlay-hover">
+              <div class="card-header-d">
+                <div class="card-title-d align-self-center">
+                  <h3 class="title-d">
+                    <a href="agent-single.html" class="link-two">Stiven Spilver
+                      <br> Darw</a>
+                  </h3>
+                </div>
+              </div>
+              <div class="card-body-d">
+                <p class="content-d color-text-a">
+                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
+                </p>
+                <div class="info-agents color-a">
+                  <p>
+                    <strong>Phone: </strong> +54 356 945234</p>
+                  <p>
+                    <strong>Email: </strong> agents@example.com</p>
+                </div>
+              </div>
+              <div class="card-footer-d">
+                <div class="socials-footer d-flex justify-content-center">
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-dribbble" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-box-d">
+            <div class="card-img-d">
+              <img src="img/agent-5.jpg" alt="" class="img-d img-fluid">
+            </div>
+            <div class="card-overlay card-overlay-hover">
+              <div class="card-header-d">
+                <div class="card-title-d align-self-center">
+                  <h3 class="title-d">
+                    <a href="agent-single.html" class="link-two">Emma Toledo
+                      <br> Cascada</a>
+                  </h3>
+                </div>
+              </div>
+              <div class="card-body-d">
+                <p class="content-d color-text-a">
+                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
+                </p>
+                <div class="info-agents color-a">
+                  <p>
+                    <strong>Phone: </strong> +54 356 945234</p>
+                  <p>
+                    <strong>Email: </strong> agents@example.com</p>
+                </div>
+              </div>
+              <div class="card-footer-d">
+                <div class="socials-footer d-flex justify-content-center">
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-dribbble" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div-->
+      </div>
+      <div class="row" align="center">
+        <div class="col-md-12">
+          <table align="center">
+            <tr>
+              <td rowspan="2"><img width="50px" src="{{URL::to('/')}}/images/warning.jpg"></td><td align="center"><h4>¿Se extravió tu amigo?</h4></td><td rowspan="2"><img width="50px" src="{{URL::to('/')}}/images/warning.jpg"></td>
+            </tr>
+            <tr>
+              <td align="center">
+                <h4><a href="{{ route('Extravio.create') }}" target="_blank">Repórtalo aquí</a></h4>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Property End /-->
+
   <!--/ Testimonials Star /-->
   <section class="section-testimonials section-t8 nav-arrow-a">
     <div class="container" id="beneficios">
@@ -844,4 +1282,44 @@
     </div>
   </section>
   <!--/ Testimonials End /-->
+  <section>
+    <div class="container" align="center">
+      <div class="row" align="center">
+        <div class="col-sm-12" align="center">
+          <form method="POST" id="registrar_solicitud" enctype="multipart/form-data" action="{{ route('Notificacion.store') }}">
+            {!! csrf_field() !!}
+            <div class="row">
+              <div class="col-md-12 mb-1">
+                @if (session('info'))
+                  <div class="alert alert-success alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      {{ session('info') }}
+                  </div>
+                @endif
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mb-1">
+              </div>
+              <div class="col-md-4 mb-1">
+                <div class="form-group">
+                  <h5>¿Quieres mantenerte actualizado?<br>
+                    Déjanos tu correo electrónico</h5>
+                  <input type="email" name="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Tu correo electrónico" required>
+                </div>
+              </div>
+              <div class="col-md-4 mb-1">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12"> 
+                <button type="submit" class="btn btn-a">Enviar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 @stop
+

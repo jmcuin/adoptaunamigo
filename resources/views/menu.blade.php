@@ -168,6 +168,9 @@
                 <a class="nav-link" href="{{ route('Evento.index') }}">Eventos</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{{ route('Servicio.index') }}">Servicios</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{{ route('Rescatista.index') }}">Rescatistas</a>
               </li>
             @elseif( auth() -> user() -> hasRoles(['rescatista']) )
@@ -182,6 +185,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('Evento.index') }}">Eventos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('Servicio.index') }}">Servicios</a>
               </li>
             @endif
             <li class="nav-item dropdown">

@@ -15,7 +15,7 @@
                 		$fotos = explode('&',$amigo -> fotos); 
                 	?>
                 	@for($i = 1; $i < count($fotos); $i++)
-                		<img width="130px" src="{{ Storage::url($fotos[$i]) }}">
+                		<img width="130px" src="{{ Storage::url('public/amigos/'.$fotos[$i]) }}">
                 	@endfor
                 </div>
                 <div class=" col-md-9 col-lg-9 "> 
