@@ -95,6 +95,7 @@ class ExtravioController extends Controller
         $extravio -> recompenza = $request -> recompenza;
         $extravio -> recompenza_monto = $request -> recompenza_monto;
         $extravio -> codigo_desactivacion = mt_rand(1000,9000);
+        $extravio -> activo = true;
         array_filter($request -> fotos);
         $fotos = $request -> fotos;
         for($i = 0; $i < count($fotos); $i++ ) {
@@ -113,9 +114,9 @@ class ExtravioController extends Controller
         event(new NuevoExtravio($extravio, route('inicio')));
 
         if($guardado)
-            return redirect()->route('Extravio.index')->with('info','Extravio creado con éxito.');
+            return redirect()->route('inicio')->with('info','Extravio creado con éxito.');
         else
-            return redirect()->route('Extravio.index')->with('error','Imposible guardar Extravio.');
+            return redirect()->route('inicio')->with('error','Imposible guardar Extravio.');
     }
 
     /**
@@ -214,6 +215,11 @@ class ExtravioController extends Controller
         if($extravio){
             $extravio -> activo = false;
             $extravio -> conclusion = $request -> conclusion;
+            $fotos = explode('&', $extravio -> fotos);
+            array_filter($fotos);
+            for($i = 0; $i < count($fotos); $i++ ) {
+                Storage::delete($fotos[$i]);
+            }
             $desactivado = $extravio -> save();
             return redirect() -> back() -> with('info','Gracias por desactivar la búsqueda. Esperamos que todo haya salido bien.');
         }else

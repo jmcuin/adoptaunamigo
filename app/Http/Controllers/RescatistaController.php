@@ -7,6 +7,7 @@ use App\Http\Requests\RescatistaRequest;
 use App\Http\Requests\AdopcionRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Events\NuevoRescatista;
 use App\Rescatista;
 use App\Municipio;
 use App\Estado;
@@ -219,10 +220,10 @@ class RescatistaController extends Controller
         $user -> id_rescatista = $rescatista -> id_rescatista;
         $user -> name = $rescatista -> nombre.' '.$rescatista -> a_paterno.' '.$rescatista -> a_materno;
         $user -> email = $rescatista -> email;
-        //$user -> password = bcrypt(substr($rescatista -> curp, 0, 6));
-        $user -> password = bcrypt('123123');
+        $user -> password = bcrypt($rescatista -> email);
         $user -> save();
         $user -> roles() -> attach($request -> id_rol);
+        event(new NuevoRescatista($rescatista, route('inicio')));
     }
 
     public function updateUserRole($id, $id_rol)

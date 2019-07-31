@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
 use App\Notificacion;
 
-class NuevoEventoListener
+class NuevoEventoListener implements ShouldQueue
 {
     /**
      * Create the event listener.

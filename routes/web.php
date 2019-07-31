@@ -17,6 +17,7 @@ Route::get('/', function () {
     $amigos = App\Amigo::where('solicita_adopcion', '=', true) -> get();
     $amigostop = App\Amigo::where('solicita_adopcion', '=', true) -> take(6) -> get();
     $eventos = App\Evento::whereDate('fecha', '>=', date('Y-m-d')) -> get();
+    //dd($eventos);
     $servicios = App\Servicio::all();
     $extravios = App\Extravio::where('activo', '=', true) -> get();    
     return view('inicio', compact('amigostop', 'amigos', 'eventos', 'servicios', 'extravios'));
@@ -45,7 +46,7 @@ Route::get('evento-single/{id_evento}', ['as' => 'evento-single', 'uses' =>'Even
 
 Route::resource('Extravio', 'ExtravioController');
 Route::get('/gridExtravios', function () {
-	$extravios = App\Extravio::all();
+	$extravios = App\Extravio::where('activo', '=', true) -> get();
     return view('extraviogrid', compact('extravios'));
 })->name('gridExtravios');
 Route::get('extravio-single/{id_extravio}', ['as' => 'extravio-single', 'uses' =>'ExtravioController@getSingle']);

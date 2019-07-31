@@ -7,7 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
 
-class NuevaSolicitudListener
+class NuevaSolicitudListener implements ShouldQueue
 {
     /**
      * Create the event listener.

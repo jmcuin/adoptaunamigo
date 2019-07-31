@@ -130,6 +130,54 @@
 		}
 	});
 
+	$('#new-carousel2').owlCarousel({
+		loop: true,
+		margin: 30,
+		responsive: {
+			0: {  
+				items: 1,
+			},
+			769: {
+				items: 2,
+			},
+			992: {
+				items: 3,
+			}
+		}
+	});
+
+	$('#new-carousel3').owlCarousel({
+		loop: true,
+		margin: 30,
+		responsive: {
+			0: {  
+				items: 1,
+			},
+			769: {
+				items: 2,
+			},
+			992: {
+				items: 3,
+			}
+		}
+	});
+
+	$('#new-carousel4').owlCarousel({
+		loop: true,
+		margin: 30,
+		responsive: {
+			0: {  
+				items: 1,
+			},
+			769: {
+				items: 2,
+			},
+			992: {
+				items: 3,
+			}
+		}
+	});
+
 	/*--/ Testimonials owl /--*/
 	$('#testimonial-carousel').owlCarousel({
 		margin: 0,

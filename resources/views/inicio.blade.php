@@ -415,18 +415,18 @@
   </section>
   <!--/ Property End /-->
 
-  <!--/ Agents Star /-->
-  <section class="section-agents section-t8" id="eventos">
+  <!--/ Property Star /-->
+  <section class="section-property section-t8" id="eventos">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="title-wrap d-flex justify-content-between">
-            <div class="title-box">
+            <div class="title-box"><br><br>
               <h2 class="title-a">Próximos Eventos</h2>
             </div>
             <div class="title-link">
               @if(count($eventos) > 0)
-                <a href="{{ route('gridEventos') }}">Todos los eventos
+                <br><br><a href="{{ route('gridEventos') }}">Todos nuestros eventos
                   <span class="ion-ios-arrow-forward"></span>
                 </a>
               @endif
@@ -434,67 +434,47 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      
+      <div id="new-carousel" class="owl-carousel owl-theme">
         @if(count($eventos) > 0)
           @foreach($eventos as $evento)
-            <div class="col-md-4">
-              <div class="card-box-d" style="height: 350px !important;">
-                <div class="card-img-d">
-                  <img src="{{ Storage::url($evento -> imagen) }}" alt="" class="img-d img-fluid" style="height: 350px !important;">
+            <div class="carousel-item-b" style="height: 260px !important;">
+              <div class="card-box-a card-shadow" style="height: 260px !important;">
+                <div class="img-box-a">
+                  <img src="{{ Storage::url($evento -> imagen) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
                 </div>
-                <div class="card-overlay card-overlay-hover">
-                  <div class="card-header-d">
-                    <div class="card-title-d align-self-center">
-                      <h3 class="title-d">
-                        <a href="{{ route('gridEventos') }}" class="link-two">{{ $evento -> nombre }}</a>
-                      </h3>
+                <div class="card-overlay">
+                  <div class="card-overlay-a-content">
+                    <div class="card-header-a">
+                      <h2 class="card-title-a">
+                        <a href="{{ route('evento-single', $evento -> id_evento) }}">{{ $evento -> nombre }}</a>
+                      </h2>
                     </div>
-                  </div>
-                  <div class="card-body-d">
-                    <p class="content-d color-text-a">
-                      {{ substr($evento -> descripcion, 0, 15) }}...
-                    </p>
-                    <div class="info-agents color-a">
-                      <p>
-                        <strong>Lugar: </strong> {{ $evento -> lugar }}</p>
-                      <p>
-                        <strong>Fecha: </strong> {{ $evento -> fecha }}</p>
-                      <p>
-                        <strong>Hora: </strong> {{ $evento -> hora }}</p>
-                      <p>
-                        <strong>Teléfono: </strong> {{ $evento -> telefono }}</p>
-                      <p>
-                        <strong>Email: </strong> {{ $evento -> email }}</p>
+                    <div class="card-body-a">
+                      <a href="{{ route('evento-single', $evento -> id_evento ) }}" class="link-a">Ver más
+                        <span class="ion-ios-arrow-forward"></span>
+                      </a>
                     </div>
-                  </div>
-                  <div class="card-footer-d">
-                    <div class="socials-footer d-flex justify-content-center">
-                      <ul class="list-inline">
-                        <li class="list-inline-item">
-                          <a href="{{ $evento -> enlace_facebook }}" class="link-one" target="_blank">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                          </a>
+                    <div class="card-footer-a">
+                      <ul class="card-info d-flex justify-content-around">
+                        <li>
+                          <h4 class="card-info-title">Lugar</h4>
+                          <span>
+                            {{ $evento -> lugar }}
+                          </span>
                         </li>
-                        <!--li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                          </a>
+                        <li>
+                          <h4 class="card-info-title">Fecha</h4>
+                          <span>
+                            {{ $evento -> fecha }}
+                          </span>
                         </li>
-                        <li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-instagram" aria-hidden="true"></i>
-                          </a>
+                        <li>
+                          <h4 class="card-info-title">Hora</h4>
+                          <span>
+                            {{ $evento -> hora }}
+                          </span>
                         </li>
-                        <li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-dribbble" aria-hidden="true"></i>
-                          </a>
-                        </li-->
                       </ul>
                     </div>
                   </div>
@@ -503,60 +483,97 @@
             </div>
           @endforeach
         @else
-          ESPERA NUEVOS EVENTOS DE ADOPCIÓN PRÓXIMAMENTE...
+          ESPERA NUEVOS EVENTOS PRÓXIMAMENTE...
         @endif
-        <!--div class="col-md-4">
-          <div class="card-box-d">
-            <div class="card-img-d">
-              <img src="img/agent-1.jpg" alt="" class="img-d img-fluid">
+        
+      <!--div id="property-carousel" class="owl-carousel owl-theme">
+        <div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-6.jpg" alt="" class="img-a img-fluid">
             </div>
-            <div class="card-overlay card-overlay-hover">
-              <div class="card-header-d">
-                <div class="card-title-d align-self-center">
-                  <h3 class="title-d">
-                    <a href="agent-single.html" class="link-two">Stiven Spilver
-                      <br> Darw</a>
-                  </h3>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">206 Mount
+                      <br /> Olive Road Two</a>
+                  </h2>
+                </div>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="#" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
-              <div class="card-body-d">
-                <p class="content-d color-text-a">
-                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                </p>
-                <div class="info-agents color-a">
-                  <p>
-                    <strong>Phone: </strong> +54 356 945234</p>
-                  <p>
-                    <strong>Email: </strong> agents@example.com</p>
+            </div>
+          </div>
+        </div-->
+        <!--div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-3.jpg" alt="" class="img-a img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">157 West
+                      <br /> Central Park</a>
+                  </h2>
                 </div>
-              </div>
-              <div class="card-footer-d">
-                <div class="socials-footer d-flex justify-content-center">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                      </a>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="property-single.html" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-dribbble" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
                     </li>
                   </ul>
                 </div>
@@ -564,58 +581,93 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card-box-d">
-            <div class="card-img-d">
-              <img src="img/agent-5.jpg" alt="" class="img-d img-fluid">
+        <div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-7.jpg" alt="" class="img-a img-fluid">
             </div>
-            <div class="card-overlay card-overlay-hover">
-              <div class="card-header-d">
-                <div class="card-title-d align-self-center">
-                  <h3 class="title-d">
-                    <a href="agent-single.html" class="link-two">Emma Toledo
-                      <br> Cascada</a>
-                  </h3>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">245 Azabu
+                      <br /> Nishi Park let</a>
+                  </h2>
+                </div>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="property-single.html" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
-              <div class="card-body-d">
-                <p class="content-d color-text-a">
-                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                </p>
-                <div class="info-agents color-a">
-                  <p>
-                    <strong>Phone: </strong> +54 356 945234</p>
-                  <p>
-                    <strong>Email: </strong> agents@example.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-10.jpg" alt="" class="img-a img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">204 Montal
+                      <br /> South Bela Two</a>
+                  </h2>
                 </div>
-              </div>
-              <div class="card-footer-d">
-                <div class="socials-footer d-flex justify-content-center">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                      </a>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="property-single.html" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-dribbble" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
                     </li>
                   </ul>
                 </div>
@@ -626,7 +678,7 @@
       </div>
     </div>
   </section>
-  <!--/ Agents End /-->
+  <!--/ Property End /-->
 
   <!--/ News Star /-->
   <!--section class="section-news section-t8">
@@ -743,18 +795,19 @@
   </section-->
   <!--/ News End /-->
 
+
   <!--/ Property Star /-->
-  <section class="section-agents section-t8" id="servicios">
+  <section class="section-property section-t8" id="servicios">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="title-wrap d-flex justify-content-between">
-            <div class="title-box">
+            <div class="title-box"><br><br>
               <h2 class="title-a">Conciente a tu amigo</h2>
             </div>
             <div class="title-link">
               @if(count($servicios) > 0)
-                <a href="{{ route('gridServicios') }}">Todos los servicios
+                <br><br><a href="{{ route('gridServicios') }}">Todos los servicios
                   <span class="ion-ios-arrow-forward"></span>
                 </a>
               @endif
@@ -762,67 +815,41 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      
+      <div id="new-carousel2" class="owl-carousel owl-theme">
         @if(count($servicios) > 0)
           @foreach($servicios as $servicio)
-            <div class="col-md-4">
-              <div class="card-box-d" style="height: 350px !important;">
-                <div class="card-img-d">
-                  <img src="{{ Storage::url($servicio -> foto) }}" alt="" class="img-d img-fluid" style="height: 350px !important;">
+            <div class="carousel-item-b" style="height: 260px !important;">
+              <div class="card-box-a card-shadow" style="height: 260px !important;">
+                <div class="img-box-a">
+                  <img src="{{ Storage::url($servicio -> foto) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
                 </div>
-                <div class="card-overlay card-overlay-hover">
-                  <div class="card-header-d">
-                    <div class="card-title-d align-self-center">
-                      <h3 class="title-d">
-                        <a href="{{ route('gridServicios') }}" class="link-two">{{ $servicio -> servicio }}</a>
-                      </h3>
+                <div class="card-overlay">
+                  <div class="card-overlay-a-content">
+                    <div class="card-header-a">
+                      <h2 class="card-title-a">
+                        <a href="{{ route('servicio-single', $servicio -> id_servicio) }}">{{ $servicio -> servicio }}</a>
+                      </h2>
                     </div>
-                  </div>
-                  <div class="card-body-d">
-                    <p class="content-d color-text-a">
-                      {{ substr($servicio -> descripcion, 0, 15) }}...
-                    </p>
-                    <div class="info-agents color-a">
-                      <p>
-                        <strong>Lugar: </strong> {{ $servicio -> precio }}</p>
-                      <p>
-                        <strong>Fecha: </strong> {{ $servicio -> precio }}</p>
-                      <p>
-                        <strong>Hora: </strong> {{ $servicio -> precio }}</p>
-                      <p>
-                        <strong>Teléfono: </strong> {{ $servicio -> telefono }}</p>
-                      <p>
-                        <strong>Email: </strong> {{ $servicio -> email }}</p>
+                    <div class="card-body-a">
+                      <a href="{{ route('servicio-single', $servicio -> id_servicio ) }}" class="link-a">Ver más
+                        <span class="ion-ios-arrow-forward"></span>
+                      </a>
                     </div>
-                  </div>
-                  <div class="card-footer-d">
-                    <div class="socials-footer d-flex justify-content-center">
-                      <ul class="list-inline">
-                        <li class="list-inline-item">
-                          <a href="{{ $servicio -> enlace_facebook }}" class="link-one" target="_blank">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                          </a>
+                    <div class="card-footer-a">
+                      <ul class="card-info d-flex justify-content-around">
+                        <li>
+                          <h4 class="card-info-title">Servicio</h4>
+                          <span>
+                            {{ $servicio -> servicio }}
+                          </span>
                         </li>
-                        <!--li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                          </a>
+                        <li>
+                          <h4 class="card-info-title">Precio</h4>
+                          <span>
+                            {{ $servicio -> precio }}
+                          </span>
                         </li>
-                        <li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-instagram" aria-hidden="true"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-dribbble" aria-hidden="true"></i>
-                          </a>
-                        </li-->
                       </ul>
                     </div>
                   </div>
@@ -831,60 +858,97 @@
             </div>
           @endforeach
         @else
-          ESPERA NUEVOS EVENTOS DE ADOPCIÓN PRÓXIMAMENTE...
+          ESPERA NUEVOS SERVICIOS PRÓXIMAMENTE...
         @endif
-        <!--div class="col-md-4">
-          <div class="card-box-d">
-            <div class="card-img-d">
-              <img src="img/agent-1.jpg" alt="" class="img-d img-fluid">
+        
+      <!--div id="property-carousel" class="owl-carousel owl-theme">
+        <div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-6.jpg" alt="" class="img-a img-fluid">
             </div>
-            <div class="card-overlay card-overlay-hover">
-              <div class="card-header-d">
-                <div class="card-title-d align-self-center">
-                  <h3 class="title-d">
-                    <a href="agent-single.html" class="link-two">Stiven Spilver
-                      <br> Darw</a>
-                  </h3>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">206 Mount
+                      <br /> Olive Road Two</a>
+                  </h2>
+                </div>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="#" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
-              <div class="card-body-d">
-                <p class="content-d color-text-a">
-                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                </p>
-                <div class="info-agents color-a">
-                  <p>
-                    <strong>Phone: </strong> +54 356 945234</p>
-                  <p>
-                    <strong>Email: </strong> agents@example.com</p>
+            </div>
+          </div>
+        </div-->
+        <!--div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-3.jpg" alt="" class="img-a img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">157 West
+                      <br /> Central Park</a>
+                  </h2>
                 </div>
-              </div>
-              <div class="card-footer-d">
-                <div class="socials-footer d-flex justify-content-center">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                      </a>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="property-single.html" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-dribbble" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
                     </li>
                   </ul>
                 </div>
@@ -892,58 +956,93 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card-box-d">
-            <div class="card-img-d">
-              <img src="img/agent-5.jpg" alt="" class="img-d img-fluid">
+        <div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-7.jpg" alt="" class="img-a img-fluid">
             </div>
-            <div class="card-overlay card-overlay-hover">
-              <div class="card-header-d">
-                <div class="card-title-d align-self-center">
-                  <h3 class="title-d">
-                    <a href="agent-single.html" class="link-two">Emma Toledo
-                      <br> Cascada</a>
-                  </h3>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">245 Azabu
+                      <br /> Nishi Park let</a>
+                  </h2>
+                </div>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="property-single.html" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
-              <div class="card-body-d">
-                <p class="content-d color-text-a">
-                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                </p>
-                <div class="info-agents color-a">
-                  <p>
-                    <strong>Phone: </strong> +54 356 945234</p>
-                  <p>
-                    <strong>Email: </strong> agents@example.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-10.jpg" alt="" class="img-a img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">204 Montal
+                      <br /> South Bela Two</a>
+                  </h2>
                 </div>
-              </div>
-              <div class="card-footer-d">
-                <div class="socials-footer d-flex justify-content-center">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                      </a>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="property-single.html" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-dribbble" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
                     </li>
                   </ul>
                 </div>
@@ -957,17 +1056,17 @@
   <!--/ Property End /-->
 
   <!--/ Property Star /-->
-  <section class="section-agents section-t8" id="extraviados">
+  <section class="section-property section-t8" id="extraviados">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="title-wrap d-flex justify-content-between">
-            <div class="title-box">
+            <div class="title-box"><br><br>
               <h2 class="title-a">¿Los has visto?</h2>
             </div>
             <div class="title-link">
               @if(count($extravios) > 0)
-                <a href="{{ route('gridExtravios') }}">Todos los extraviados
+                <br><br><a href="{{ route('gridExtravios') }}">Todos los extraviados
                   <span class="ion-ios-arrow-forward"></span>
                 </a>
               @endif
@@ -975,65 +1074,42 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      
+      <div id="new-carousel4" class="owl-carousel owl-theme">
         @if(count($extravios) > 0)
           @foreach($extravios as $extravio)
-            <div class="col-md-4">
-              <div class="card-box-d" style="height: 350px !important;">
-                <div class="card-img-d">
+            <div class="carousel-item-b" style="height: 260px !important;">
+              <div class="card-box-a card-shadow" style="height: 260px !important;">
+                <div class="img-box-a">
                   <?php $foto_extravio = explode('&', $extravio -> fotos); ?>
-                  <img src="{{ Storage::url($foto_extravio[1]) }}" alt="" class="img-d img-fluid" style="height: 350px !important;">
+                  <img src="{{ Storage::url($foto_extravio[1]) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
                 </div>
-                <div class="card-overlay card-overlay-hover">
-                  <div class="card-header-d">
-                    <div class="card-title-d align-self-center">
-                      <h3 class="title-d">
-                        <a href="{{ route('gridExtravios') }}" class="link-two">{{ $extravio -> nombre }}</a>
-                      </h3>
+                <div class="card-overlay">
+                  <div class="card-overlay-a-content">
+                    <div class="card-header-a">
+                      <h2 class="card-title-a">
+                        <a href="{{ route('extravio-single', $extravio -> id_extravio) }}">{{ $extravio -> nombre }}</a>
+                      </h2>
                     </div>
-                  </div>
-                  <div class="card-body-d">
-                    <p class="content-d color-text-a">
-                      {{ substr($extravio -> descripcion_amigo, 0, 15) }}...
-                    </p>
-                    <div class="info-agents color-a">
-                      <p>
-                        <strong>Se perdió en: </strong> {{ $extravio -> ultimo_avistamiento_lugar }}</p>
-                      <p>
-                        <strong>Se perdió el: </strong> {{ $extravio -> ultimo_avistamiento_fecha }}</p>
-                      <p>
-                        <strong>Avisar a: </strong> {{ $extravio -> contacto_persona}}</p>
-                      <p>
-                        <strong>Teléfono: </strong> {{ $extravio -> telefono }}</p>
-                      @if( $extravio -> recompenza == true)
-                      <p>
-                        <strong>Recompenza: </strong> {{ $extravio -> recompenza_monto }}</p>
-                      @endif
+                    <div class="card-body-a">
+                      <a href="{{ route('extravio-single', $extravio -> id_extravio ) }}" class="link-a">Ver más
+                        <span class="ion-ios-arrow-forward"></span>
+                      </a>
                     </div>
-                  </div>
-                  <div class="card-footer-d">
-                    <div class="socials-footer d-flex justify-content-center">
-                      <ul class="list-inline">
-                        <!--li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                          </a>
+                    <div class="card-footer-a">
+                      <ul class="card-info d-flex justify-content-around">
+                        <li>
+                          <h4 class="card-info-title">Visto en:</h4>
+                          <span>
+                            {{ $extravio -> ultimo_avistamiento_lugar }}
+                          </span>
                         </li>
-                        <li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-instagram" aria-hidden="true"></i>
-                          </a>
+                        <li>
+                          <h4 class="card-info-title">Visto el:</h4>
+                          <span>
+                            {{ $extravio -> ultimo_avistamiento_fecha }}
+                          </span>
                         </li>
-                        <li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#" class="link-one">
-                            <i class="fa fa-dribbble" aria-hidden="true"></i>
-                          </a>
-                        </li-->
                       </ul>
                     </div>
                   </div>
@@ -1042,60 +1118,97 @@
             </div>
           @endforeach
         @else
-          ¡NINGÚN AMIGO ESTÁ EXTRAVIADO, AFORTUNADAMENTE!
+          AFORTUNADAMENTE NINGÚN EXTRAVIADO.
         @endif
-        <!--div class="col-md-4">
-          <div class="card-box-d">
-            <div class="card-img-d">
-              <img src="img/agent-1.jpg" alt="" class="img-d img-fluid">
+        
+      <!--div id="property-carousel" class="owl-carousel owl-theme">
+        <div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-6.jpg" alt="" class="img-a img-fluid">
             </div>
-            <div class="card-overlay card-overlay-hover">
-              <div class="card-header-d">
-                <div class="card-title-d align-self-center">
-                  <h3 class="title-d">
-                    <a href="agent-single.html" class="link-two">Stiven Spilver
-                      <br> Darw</a>
-                  </h3>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">206 Mount
+                      <br /> Olive Road Two</a>
+                  </h2>
+                </div>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="#" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
-              <div class="card-body-d">
-                <p class="content-d color-text-a">
-                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                </p>
-                <div class="info-agents color-a">
-                  <p>
-                    <strong>Phone: </strong> +54 356 945234</p>
-                  <p>
-                    <strong>Email: </strong> agents@example.com</p>
+            </div>
+          </div>
+        </div-->
+        <!--div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-3.jpg" alt="" class="img-a img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">157 West
+                      <br /> Central Park</a>
+                  </h2>
                 </div>
-              </div>
-              <div class="card-footer-d">
-                <div class="socials-footer d-flex justify-content-center">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                      </a>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="property-single.html" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-dribbble" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
                     </li>
                   </ul>
                 </div>
@@ -1103,58 +1216,93 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card-box-d">
-            <div class="card-img-d">
-              <img src="img/agent-5.jpg" alt="" class="img-d img-fluid">
+        <div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-7.jpg" alt="" class="img-a img-fluid">
             </div>
-            <div class="card-overlay card-overlay-hover">
-              <div class="card-header-d">
-                <div class="card-title-d align-self-center">
-                  <h3 class="title-d">
-                    <a href="agent-single.html" class="link-two">Emma Toledo
-                      <br> Cascada</a>
-                  </h3>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">245 Azabu
+                      <br /> Nishi Park let</a>
+                  </h2>
+                </div>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="property-single.html" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
-              <div class="card-body-d">
-                <p class="content-d color-text-a">
-                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                </p>
-                <div class="info-agents color-a">
-                  <p>
-                    <strong>Phone: </strong> +54 356 945234</p>
-                  <p>
-                    <strong>Email: </strong> agents@example.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item-b">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="img/property-10.jpg" alt="" class="img-a img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="property-single.html">204 Montal
+                      <br /> South Bela Two</a>
+                  </h2>
                 </div>
-              </div>
-              <div class="card-footer-d">
-                <div class="socials-footer d-flex justify-content-center">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                      </a>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">rent | $ 12.000</span>
+                  </div>
+                  <a href="property-single.html" class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span>340m
+                        <sup>2</sup>
+                      </span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span>2</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span>4</span>
                     </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-dribbble" aria-hidden="true"></i>
-                      </a>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span>1</span>
                     </li>
                   </ul>
                 </div>
@@ -1164,22 +1312,138 @@
         </div-->
       </div>
       <div class="row" align="center">
-        <div class="col-md-12">
-          <table align="center">
-            <tr>
-              <td rowspan="2"><img width="50px" src="{{URL::to('/')}}/images/warning.jpg"></td><td align="center"><h4>¿Se extravió tu amigo?</h4></td><td rowspan="2"><img width="50px" src="{{URL::to('/')}}/images/warning.jpg"></td>
-            </tr>
-            <tr>
-              <td align="center">
-                <h4><a href="{{ route('Extravio.create') }}" target="_blank">Repórtalo aquí</a></h4>
-              </td>
-            </tr>
-          </table>
+        <div class="col-md-12" align="center">
+          <div class="title-wrap d-flex justify-content-between">
+            <table align="center">
+              <tr>
+                <td rowspan="2"><img width="100px" src="{{URL::to('/')}}/images/warning.jpg"></td>
+                <td align="center"><h4>¿Se extravió tu amigo?</h4>
+                  <h4><a href="{{ route('Extravio.create') }}" target="_blank">Repórtalo aquí</a></h4>
+                </td>
+                <td rowspan="2"><img width="100px" src="{{URL::to('/')}}/images/warning.jpg"></td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </section>
   <!--/ Property End /-->
+
+  <!--/ News Star /-->
+  <!--section class="section-news section-t8">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title-wrap d-flex justify-content-between">
+            <div class="title-box">
+              <h2 class="title-a">Próximos Eventos</h2>
+            </div>
+            <div class="title-link">
+              <a href="blog-grid.html">Todos los eventos
+                <span class="ion-ios-arrow-forward"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="new-carousel" class="owl-carousel owl-theme">
+        <div class="carousel-item-c">
+          <div class="card-box-b card-shadow news-box">
+            <div class="img-box-b">
+              <img src="img/post-2.jpg" alt="" class="img-b img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-header-b">
+                <div class="card-category-b">
+                  <a href="#" class="category-b">House</a>
+                </div>
+                <div class="card-title-b">
+                  <h2 class="title-2">
+                    <a href="blog-single.html">House is comming
+                      <br> new</a>
+                  </h2>
+                </div>
+                <div class="card-date">
+                  <span class="date-b">18 Sep. 2017</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item-c">
+          <div class="card-box-b card-shadow news-box">
+            <div class="img-box-b">
+              <img src="img/post-5.jpg" alt="" class="img-b img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-header-b">
+                <div class="card-category-b">
+                  <a href="#" class="category-b">Travel</a>
+                </div>
+                <div class="card-title-b">
+                  <h2 class="title-2">
+                    <a href="blog-single.html">Travel is comming
+                      <br> new</a>
+                  </h2>
+                </div>
+                <div class="card-date">
+                  <span class="date-b">18 Sep. 2017</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item-c">
+          <div class="card-box-b card-shadow news-box">
+            <div class="img-box-b">
+              <img src="img/post-7.jpg" alt="" class="img-b img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-header-b">
+                <div class="card-category-b">
+                  <a href="#" class="category-b">Park</a>
+                </div>
+                <div class="card-title-b">
+                  <h2 class="title-2">
+                    <a href="blog-single.html">Park is comming
+                      <br> new</a>
+                  </h2>
+                </div>
+                <div class="card-date">
+                  <span class="date-b">18 Sep. 2017</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item-c">
+          <div class="card-box-b card-shadow news-box">
+            <div class="img-box-b">
+              <img src="img/post-3.jpg" alt="" class="img-b img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-header-b">
+                <div class="card-category-b">
+                  <a href="#" class="category-b">Travel</a>
+                </div>
+                <div class="card-title-b">
+                  <h2 class="title-2">
+                    <a href="#">Travel is comming
+                      <br> new</a>
+                  </h2>
+                </div>
+                <div class="card-date">
+                  <span class="date-b">18 Sep. 2017</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section-->
+  <!--/ News End /-->
 
   <!--/ Testimonials Star /-->
   <section class="section-testimonials section-t8 nav-arrow-a">

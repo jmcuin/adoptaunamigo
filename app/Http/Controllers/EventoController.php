@@ -73,7 +73,7 @@ class EventoController extends Controller
         $evento -> email = $request -> email;
         $evento -> telefono = $request -> telefono;
         if($request -> hasFile('imagen')){
-            $evento -> imagen = auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension();
+            $evento -> imagen = 'public/eventos/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension();
             $request -> file('imagen') -> storeAs('public/eventos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
         }
         $evento -> donativos_alimento = $request -> donativos_alimento;
