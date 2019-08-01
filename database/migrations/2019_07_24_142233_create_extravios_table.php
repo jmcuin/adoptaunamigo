@@ -29,7 +29,7 @@ class CreateExtraviosTable extends Migration
             $table->string('fotos')->default('public/images/default.jpg');
             $table->string('codigo_desactivacion');
             $table->boolean('activo')->default(true);
-            $table->string('conclusion');
+            $table->string('conclusion')->nullable();
             $table->timestamps();
         });
     }
