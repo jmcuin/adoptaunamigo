@@ -52,6 +52,8 @@ class SolicitudController extends Controller
                     ->groupBy('amigos.id_amigo')
                     ->paginate(10);
         }
+
+        dd($solicitudes);
         
         return view('Solicitud.index',compact('solicitudes'));
     }

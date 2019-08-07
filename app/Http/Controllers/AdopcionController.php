@@ -59,6 +59,8 @@ class AdopcionController extends Controller
                     ->groupBy('amigos.id_amigo')
                     ->paginate(10);
         }
+
+        dd($adopciones);
         
         return view('Adopcion.index', compact('adopciones'));
     }
