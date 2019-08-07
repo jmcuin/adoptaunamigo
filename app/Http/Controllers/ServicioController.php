@@ -20,8 +20,8 @@ class ServicioController extends Controller
     function __construct(){
         //$this -> middleware(['auth', 'roles:administrador,rescatista']);
         //$this -> middleware('auth', ['except' => ['getSingle']]);
-        $this -> middleware('auth');
-        $this -> middleware('roles:administrador, rescatista');
+        /*$this -> middleware('auth');
+        $this -> middleware('roles:administrador, rescatista');*/
     }
     //function __construct(){
         /*$this -> middleware('auth', ['except' => ['checkScores']]);
