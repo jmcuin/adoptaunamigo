@@ -17,7 +17,10 @@ class AdopcionController extends Controller
      */
     
     function __construct(){
-        $this -> middleware(['auth', 'roles:administrador,rescatista']);
+        //$this -> middleware('auth');
+        //$this -> middleware('roles:administrador, rescatista', ['except' => ['checkScores']]);
+        $this -> middleware('auth');
+        $this -> middleware('roles:administrador, rescatista');
     }
 
     public function index()
@@ -60,7 +63,7 @@ class AdopcionController extends Controller
                     ->paginate(10);
         }
 
-        dd($adopciones);
+        //dd($adopciones);
         
         return view('Adopcion.index', compact('adopciones'));
     }

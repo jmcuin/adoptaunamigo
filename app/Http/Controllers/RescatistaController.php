@@ -26,7 +26,9 @@ class RescatistaController extends Controller
      * @return \Illuminate\Http\Response
      */
     function __construct(){
-        $this -> middleware(['auth', 'roles:administrador,rescatista']);
+        //$this -> middleware(['auth', 'roles:administrador,rescatista']);
+        $this -> middleware('auth');
+        $this -> middleware('roles:administrador, rescatista');
     }
     
     public function index()

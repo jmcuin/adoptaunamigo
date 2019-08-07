@@ -15,7 +15,9 @@ class RazaController extends Controller
      */
 
     function __construct(){
-        $this -> middleware(['auth', 'roles:administrador']);
+        //$this -> middleware(['auth', 'roles:administrador']);
+        $this -> middleware('auth');
+        $this -> middleware('roles:administrador, rescatista');
     }
 
     public function index()

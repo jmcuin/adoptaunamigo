@@ -16,6 +16,7 @@ class EspecieController extends Controller
     
     function __construct(){
         $this -> middleware(['auth', 'roles:administrador']);
+        $this -> middleware('roles:administrador, rescatista');
     }
 
     /*function __construct(){

@@ -19,7 +19,10 @@ class SolicitudController extends Controller
      * @return \Illuminate\Http\Response
      */
     function __construct(){
-        $this -> middleware(['auth', 'roles:administrador,rescatista']);
+        //$this -> middleware(['auth', 'roles:administrador,rescatista']);
+       // $this -> middleware('auth', ['except' => ['getSingle']]);
+        $this -> middleware('auth');
+        $this -> middleware('roles:administrador, rescatista');
     }
     
     public function index()
@@ -53,7 +56,7 @@ class SolicitudController extends Controller
                     ->paginate(10);
         }
 
-        dd($solicitudes);
+        //dd($solicitudes);
         
         return view('Solicitud.index',compact('solicitudes'));
     }
@@ -103,8 +106,7 @@ class SolicitudController extends Controller
     public function edit($id)
     {
         //
-        $inscripcion = Inscripcion::findOrFail($id);
-        return view('Inscripcion.edit', compact('Inscripcion'));
+        
     }
 
     /**
@@ -114,17 +116,9 @@ class SolicitudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(InscripcionRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
-        $inscripcion = Inscripcion::findOrFail($id);
-        $inscripcion -> Inscripcion = $request -> Inscripcion;
-        $inscripcion -> capacidad = $request -> capacidad;
-        $guardado = $inscripcion -> save();
-        if($guardado)
-            return redirect()->route('Inscripcion.index')->with('info','Inscripcion actualizado con éxito.');
-        else
-            return redirect()->route('Inscripcion.index')->with('error','Imposible actualizar Inscripcion.');
     }
 
     /**
@@ -136,11 +130,6 @@ class SolicitudController extends Controller
     public function destroy($id)
     {
         //
-        $destruido = Inscripcion::destroy($id);
-        if($destruido)
-            return redirect()->route('Inscripcion.index')->with('info','Inscripcion eliminado con éxito.');
-        else
-            return redirect()->route('Inscripcion.index')->with('error','Imposible borrar Inscripcion.');
     }
 
     public function attend($id)
