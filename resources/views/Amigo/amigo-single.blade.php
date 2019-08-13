@@ -47,7 +47,7 @@
             <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
             @for($i = 1; $i < count($foto_amigo); $i++)
               <div class="carousel-item-b">
-                <img @if(Auth::user() -> rescatista -> foto == 'public/images/default.jpg') src="{{ URL::asset('images/default.jpg') }}" @else src="{{ Storage::url($foto_amigo[$i]) }}" @elsefif alt="" style="background-size: contain;">
+                <img src="{{ Storage::url($foto_amigo[$i]) }}" alt="" style="background-size: contain;">
               </div>
             @endfor
           </div>
@@ -180,7 +180,7 @@
           </div>
           <div class="row">
             <div class="col-md-6 col-lg-4">
-              <img src="{{ Storage::url($amigo -> rescatista -> foto) }}" alt="" class="img-fluid">
+              <img @if($amigo -> rescatista -> foto == 'public/images/default.jpg') src="{{ URL::asset('images/default.jpg') }}" @else src="{{ Storage::url($amigo -> rescatista -> foto) }}" @endif alt="" class="img-fluid">
             </div>
             <div class="col-md-6 col-lg-4">
               <div class="property-agent">
