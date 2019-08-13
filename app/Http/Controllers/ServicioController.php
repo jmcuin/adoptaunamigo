@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ServicioRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Events\NuevoServicio;
 use App\Servicio;
 use App\Rescatista;
 
@@ -82,6 +83,8 @@ class ServicioController extends Controller
         }
             
         $guardado = $servicio -> save();
+
+        event(new NuevoServicio($servicio, route('inicio')));
 
         if($guardado)
             return redirect()->route('Servicio.index')->with('info','Servicio creado con éxito.');

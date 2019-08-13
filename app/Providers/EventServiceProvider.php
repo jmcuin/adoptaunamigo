@@ -31,6 +31,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\NuevoExtravio' => [
             'App\Listeners\NuevoExtravioListener',
         ],
+        'App\Events\NuevoServicio' => [
+            'App\Listeners\NuevoServicioListener',
+        ],
     ];
 
     /**

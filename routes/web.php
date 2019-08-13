@@ -96,6 +96,12 @@ Route::get('/ajax-getRoles', function(){
 	return Response::json($rol);
 });
 
+Route::get('/ajax-getRaza', function(){
+    $especie = Request::get('id_especie');
+    $razas = App\Raza::where('id_especie', '=', $especie) -> get();
+    return Response::json($razas);
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

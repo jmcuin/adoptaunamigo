@@ -15,6 +15,12 @@ class CreateCatRazaTable extends Migration
     {
         Schema::create('cat_razas', function (Blueprint $table) {
             $table->increments('id_raza');
+            $table->integer('id_especie')->unsigned();
+            $table->foreign('id_especie')
+                  ->references('id_especie')
+                  ->on('cat_especies')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
             $table->string('raza');
             $table->timestamps();
         });

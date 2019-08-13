@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-sm-12 form-group" align="center"> 
 						 <label for="foto" class="label-foto">
-							Foto(s) del Amigo
+							Foto(s) del Amigo (Preferentemente de tamaño 1920 x 960 pixeles)
 							<input type="file" name="fotos[]" id="foto" placeholder="Fotos del amigo" accept="image/*" multiple="multiple" required="required">
 						</label>
 						<div class="preview">
@@ -37,7 +37,7 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="id_especie">
 							Especie<br>
-							<select name="id_especie" id="id_especie" required="required">
+							<select name="id_especie" id="id_especie" required="required" onchange="getRazas(this.value)">
 								<option value="0">Seleccione una Especie</option>
 								<@foreach($especies as $especie)
 									<option value="{{ $especie -> id_especie }}" @if(old('id_especie') == $especie -> id_especie ) selected @endif>{{ $especie -> especie}}	
@@ -49,7 +49,7 @@
 					</div>
 					<div class="col-sm-4 form-group"> 
 						<label for="id_raza">
-							Raza<br>
+							Raza (Con fines estadísticos, esta información no se publica)<br>
 							<select name="id_raza" id="id_raza" required="required">
 								<option value="0">Seleccione una Raza</option>
 								@foreach($razas as $raza)
@@ -185,13 +185,22 @@
 <script>
 	$(function(){
     	////////logica onload
-
     	///////////logica en cambios
     	$("#boton_registrar_amigo").click(function(){
     		$("#registrar_amigo").submit();
     	});
 	});
 
+	function getRazas(e){
+		var especie = e;
+		$.get('/ajax-getRaza?id_especie='+especie, function(data){
+			$('#id_raza').empty();
+			$('#id_raza').append('<option value="0">Seleccione una Raza</option>');
+			$.each(data, function(create, raza){
+				$('#id_raza').append('<option value="'+raza.id_raza+'">'+raza.raza+'</option>');
+			});
+		});
+	}
 
 	var input = document.querySelector('#foto');
 	var preview = document.querySelector('.preview');

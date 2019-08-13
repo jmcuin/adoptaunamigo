@@ -60,7 +60,7 @@
 				<div class="col-sm-4 form-group">
 					<label for="id_estado">
 						Estado<br>
-						<select name="id_estado" id="id_estado">
+						<select name="id_estado" id="id_estado" onchange="getMunicipios(this.value)">
 							<option value="0">Seleccione un Estado</option>
 							@foreach($estados as $estado)
 								<option value="{{ $estado -> id_estado }}" @if(($rescatista -> id_estado_municipio == $estado -> municipios[0] -> id_estado_municipio)) selected @endif>{{ $estado -> estado}}	
@@ -212,6 +212,17 @@
 			});
 		});
 	});
+
+	function getMunicipios(e){
+		var estado = e;
+		$.get('/ajax-getMunicipio?id_estado='+estado, function(data){
+			$('#id_estado_municipio').empty();
+			$('#id_estado_municipio').append('<option value="0">Seleccione un Municipio</option>');
+			$.each(data, function(create, municipio){
+				$('#id_estado_municipio').append('<option value="'+municipio.id_estado_municipio+'">'+municipio.municipio+'</option>');
+			});
+		});
+	}
 </script>
 <style type="text/css">
 	.btn-primary{

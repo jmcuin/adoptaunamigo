@@ -61,7 +61,7 @@
 					<div class="col-sm-4 form-group"> 
 						<label for="id_estado">
 							Estado<br>
-							<select name="id_estado" id="id_estado">
+							<select name="id_estado" id="id_estado" onchange="getMunicipios(this.value)">
 								<option value="0">Seleccione un Estado</option>
 								<@foreach($estados as $estado)
 									<option value="{{ $estado -> id_estado }}" @if(old('id_estado') == $estado -> id_estado ) selected @endif>{{ $estado -> estado}}	
@@ -206,19 +206,18 @@
     	$("#boton_registrar_rescatista").click(function(){
     		$("#registrar_rescatista").submit();
     	});
-
-		$('#id_estado').on('change', function(e){
-			var estado = e.target.value;
-			$.get('/ajax-getMunicipio?id_estado='+estado, function(data){
-				$('#id_estado_municipio').empty();
-				$('#id_estado_municipio').append('<option value="0">Seleccione un Municipio</option>');
-				$.each(data, function(create, municipio){
-					$('#id_estado_municipio').append('<option value="'+municipio.id_estado_municipio+'">'+municipio.municipio+'</option>');
-				});
-			});
-		});
 	});
 
+	function getMunicipios(e){
+		var estado = e;
+		$.get('/ajax-getMunicipio?id_estado='+estado, function(data){
+			$('#id_estado_municipio').empty();
+			$('#id_estado_municipio').append('<option value="0">Seleccione un Municipio</option>');
+			$.each(data, function(create, municipio){
+				$('#id_estado_municipio').append('<option value="'+municipio.id_estado_municipio+'">'+municipio.municipio+'</option>');
+			});
+		});
+	}
 
 	var input = document.querySelector('#foto');
 	var preview = document.querySelector('.preview');

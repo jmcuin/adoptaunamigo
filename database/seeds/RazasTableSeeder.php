@@ -16,187 +16,274 @@ class RazasTableSeeder extends Seeder
     	//Raza::truncate();
 
         Raza::create([
-            'raza' =>'Alano']
-        );
+        			'id_especie' => '1', 'raza' =>'Alano']);
 		Raza::create([
-		            'raza' =>'Alaskan Malamute ']);
+		            'id_especie' => '1', 'raza' =>'Alaskan Malamute']);
 		Raza::create([
-		            'raza' =>'American Staffordshire Terrier ']);
+		            'id_especie' => '1', 'raza' =>'American Staffordshire Terrier']);
 		Raza::create([
-		            'raza' =>'American Water Spaniel ']);
+		            'id_especie' => '1', 'raza' =>'American Water Spaniel']);
 		Raza::create([
-		            'raza' =>'Antiguo Pastor Inglés']);
+		            'id_especie' => '1', 'raza' =>'Antiguo Pastor Inglés']);
 		Raza::create([
-		            'raza' =>'Basset Azul de Gaseogne ']);
+		            'id_especie' => '1', 'raza' =>'Basset Azul de Gaseogne']);
 		Raza::create([
-		            'raza' =>'Basset Hound ']);
+		            'id_especie' => '1', 'raza' =>'Basset Hound']);
 		Raza::create([
-		            'raza' =>'Basset leonado de Bretaña']);
+		            'id_especie' => '1', 'raza' =>'Basset leonado de Bretaña']);
 		Raza::create([
-		            'raza' =>'Beagle ']);
+		            'id_especie' => '1', 'raza' =>'Beagle']);
 		Raza::create([
-		            'raza' =>'Bearded Collie ']);
+		            'id_especie' => '1', 'raza' =>'Bearded Collie']);
 		Raza::create([
-		            'raza' =>'Bichón Maltés ']);
+		            'id_especie' => '1', 'raza' =>'Bichón Maltés']);
 		Raza::create([
-		            'raza' =>'Bobtail ']);
+		            'id_especie' => '1', 'raza' =>'Bobtail']);
 		Raza::create([
-		            'raza' =>'Border Collie ']);
+		            'id_especie' => '1', 'raza' =>'Border Collie']);
 		Raza::create([
-		            'raza' =>'Boston Terrier ']);
+		            'id_especie' => '1', 'raza' =>'Boston Terrier']);
 		Raza::create([
-		            'raza' =>'Boxer ']);
+		            'id_especie' => '1', 'raza' =>'Boxer']);
 		Raza::create([
-		            'raza' =>'Bull Terrier ']);
+		            'id_especie' => '1', 'raza' =>'Bull Terrier']);
 		Raza::create([
-		            'raza' =>'Bulldog Americano ']);
+		            'id_especie' => '1', 'raza' =>'Bulldog Americano']);
 		Raza::create([
-		            'raza' =>'Bulldog Francés ']);
+		            'id_especie' => '1', 'raza' =>'Bulldog Francés']);
 		Raza::create([
-		            'raza' =>'Bulldog Inglés']);
+		            'id_especie' => '1', 'raza' =>'Bulldog Inglés']);
 		Raza::create([
-		            'raza' =>'Criollo']);
+		            'id_especie' => '1', 'raza' =>'Criollo']);
 		Raza::create([
-		            'raza' =>'Caniche ']);
+		            'id_especie' => '1', 'raza' =>'Caniche']);
 		Raza::create([
-		            'raza' =>'Carlino']);
+		            'id_especie' => '1', 'raza' =>'Carlino']);
 		Raza::create([
-		            'raza' =>'Chihuahua']);
+		            'id_especie' => '1', 'raza' =>'Chihuahua']);
 		Raza::create([
-		            'raza' =>'Cirneco del Etna']);
+		            'id_especie' => '1', 'raza' =>'Cirneco del Etna']);
 		Raza::create([
-		            'raza' =>'Chow Chow ']);
+		            'id_especie' => '1', 'raza' =>'Chow Chow']);
 		Raza::create([
-		            'raza' =>'Cocker Spaniel Americano ']);
+		            'id_especie' => '1', 'raza' =>'Cocker Spaniel Americano']);
 		Raza::create([
-		            'raza' =>'Cocker Spaniel Inglés']);
+		            'id_especie' => '1', 'raza' =>'Cocker Spaniel Inglés']);
 		Raza::create([
-		            'raza' =>'Dálmata ']);
+		            'id_especie' => '1', 'raza' =>'Dálmata']);
 		Raza::create([
-		            'raza' =>'Dobermann ']);
+		            'id_especie' => '1', 'raza' =>'Dobermann']);
 		Raza::create([
-		            'raza' =>'Dogo Alemán']);
+		            'id_especie' => '1', 'raza' =>'Dogo Alemán']);
 		Raza::create([
-		            'raza' =>'Dogo Argentino']);
+		            'id_especie' => '1', 'raza' =>'Dogo Argentino']);
 		Raza::create([
-		            'raza' =>'Dogo de Burdeos']);
+		            'id_especie' => '1', 'raza' =>'Dogo de Burdeos']);
 		Raza::create([
-		            'raza' =>'French poodle']);
+		            'id_especie' => '1', 'raza' =>'French poodle']);
 		Raza::create([
-		            'raza' =>'Finlandés']);
+		            'id_especie' => '1', 'raza' =>'Finlandés']);
 		Raza::create([
-		            'raza' =>'Fox Terrier de pelo liso ']);
+		            'id_especie' => '1', 'raza' =>'Fox Terrier de pelo liso']);
 		Raza::create([
-		            'raza' =>'Fox Terrier ']);
+		            'id_especie' => '1', 'raza' =>'Fox Terrier']);
 		Raza::create([
-		            'raza' =>'Foxhound Americano']);
+		            'id_especie' => '1', 'raza' =>'Foxhound Americano']);
 		Raza::create([
-		            'raza' =>'Foxhound Inglés']);
+		            'id_especie' => '1', 'raza' =>'Foxhound Inglés']);
 		Raza::create([
-		            'raza' =>'Galgo Afgano ']);
+		            'id_especie' => '1', 'raza' =>'Galgo Afgano']);
 		Raza::create([
-		            'raza' =>'Gigante de los Pirineos']);
+		            'id_especie' => '1', 'raza' =>'Gigante de los Pirineos']);
 		Raza::create([
-		            'raza' =>'Golden Retriever ']);
+		            'id_especie' => '1', 'raza' =>'Golden Retriever']);
 		Raza::create([
-		            'raza' =>'Gos dAtura']);
+		            'id_especie' => '1', 'raza' =>'Gos dAtura']);
 		Raza::create([
-		            'raza' =>'Gran Danés']);
+		            'id_especie' => '1', 'raza' =>'Gran Danés']);
 		Raza::create([
-		            'raza' =>'Husky Siberiano']);
+		            'id_especie' => '1', 'raza' =>'Husky Siberiano']);
 		Raza::create([
-		            'raza' =>'Laika de Siberia Occidental']);
+		            'id_especie' => '1', 'raza' =>'Laika de Siberia Occidental']);
 		Raza::create([
-		            'raza' =>'Laika Ruso-europeo']);
+		            'id_especie' => '1', 'raza' =>'Laika Ruso-europeo']);
 		Raza::create([
-		            'raza' =>'Labrador Retriever']);
+		            'id_especie' => '1', 'raza' =>'Labrador Retriever']);
 		Raza::create([
-		            'raza' =>'Mastín del Pirineo']);
+		            'id_especie' => '1', 'raza' =>'Mastín del Pirineo']);
 		Raza::create([
-		            'raza' =>'Mastin del Tibet']);
+		            'id_especie' => '1', 'raza' =>'Mastin del Tibet']);
 		Raza::create([
-		            'raza' =>'Mastín Español']);
+		            'id_especie' => '1', 'raza' =>'Mastín Español']);
 		Raza::create([
-		            'raza' =>'Mastín Napolitano']);
+		            'id_especie' => '1', 'raza' =>'Mastín Napolitano']);
 		Raza::create([
-		            'raza' =>'Pastor Alemán']);
+		            'id_especie' => '1', 'raza' =>'Pastor Alemán']);
 		Raza::create([
-		            'raza' =>'Pastor Australiano']);
+		            'id_especie' => '1', 'raza' =>'Pastor Australiano']);
 		Raza::create([
-		            'raza' =>'Pastor Belga ']);
+		            'id_especie' => '1', 'raza' =>'Pastor Belga']);
 		Raza::create([
-		            'raza' =>'Pastor de Brie']);
+		            'id_especie' => '1', 'raza' =>'Pastor de Brie']);
 		Raza::create([
-		            'raza' =>'Pastor de los Pirineos de Cara Rosa ']);
+		            'id_especie' => '1', 'raza' =>'Pastor de los Pirineos de Cara Rosa']);
 		Raza::create([
-		            'raza' =>'Pekinés']);
+		            'id_especie' => '1', 'raza' =>'Pekinés']);
 		Raza::create([
-		            'raza' =>'Perdiguero Chesapeake Bay']);
+		            'id_especie' => '1', 'raza' =>'Perdiguero Chesapeake Bay']);
 		Raza::create([
-		            'raza' =>'Perdiguero de Drentse']);
+		            'id_especie' => '1', 'raza' =>'Perdiguero de Drentse']);
 		Raza::create([
-		            'raza' =>'Perdiguero de Pelo lido']);
+		            'id_especie' => '1', 'raza' =>'Perdiguero de Pelo lido']);
 		Raza::create([
-		            'raza' =>'Perdiguero de pelo rizado']);
+		            'id_especie' => '1', 'raza' =>'Perdiguero de pelo rizado']);
 		Raza::create([
-		            'raza' =>'Perdiguero Portugués']);
+		            'id_especie' => '1', 'raza' =>'Perdiguero Portugués']);
 		Raza::create([
-		            'raza' =>'Pitbull ']);
+		            'id_especie' => '1', 'raza' =>'Pitbull']);
 		Raza::create([
-		            'raza' =>'Podenco Ibicenco']);
+		            'id_especie' => '1', 'raza' =>'Podenco Ibicenco']);
 		Raza::create([
-		            'raza' =>'Podenco Portugués']);
+		            'id_especie' => '1', 'raza' =>'Podenco Portugués']);
 		Raza::create([
-		            'raza' =>'presa canario ']);
+		            'id_especie' => '1', 'raza' =>'presa canario']);
 		Raza::create([
-		            'raza' =>'Presa Mallorquin']);
+		            'id_especie' => '1', 'raza' =>'Presa Mallorquin']);
 		Raza::create([
-		            'raza' =>'Rottweiler ']);
+		            'id_especie' => '1', 'raza' =>'Rottweiler']);
 		Raza::create([
-		            'raza' =>'Rough Collie']);
+		            'id_especie' => '1', 'raza' =>'Rough Collie']);
 		Raza::create([
-		            'raza' =>'Sabueso Español']);
+		            'id_especie' => '1', 'raza' =>'Sabueso Español']);
 		Raza::create([
-		            'raza' =>'Sabueso Hélenico']);
+		            'id_especie' => '1', 'raza' =>'Sabueso Hélenico']);
 		Raza::create([
-		            'raza' =>'Sabueso Italiano']);
+		            'id_especie' => '1', 'raza' =>'Sabueso Italiano']);
 		Raza::create([
-		            'raza' =>'Sabueso Suizo']);
+		            'id_especie' => '1', 'raza' =>'Sabueso Suizo']);
 		Raza::create([
-		            'raza' =>'Samoyedo ']);
+		            'id_especie' => '1', 'raza' =>'Samoyedo']);
 		Raza::create([
-		            'raza' =>'San Bernardo ']);
+		            'id_especie' => '1', 'raza' =>'San Bernardo']);
 		Raza::create([
-		            'raza' =>'Scottish Terrier ']);
+		            'id_especie' => '1', 'raza' =>'Scottish Terrier']);
 		Raza::create([
-		            'raza' =>'Setter Irlandés ']);
+		            'id_especie' => '1', 'raza' =>'Setter Irlandés']);
 		Raza::create([
-		            'raza' =>'Shar Pei ']);
+		            'id_especie' => '1', 'raza' =>'Shar Pei']);
 		Raza::create([
-		            'raza' =>'Shiba Inu ']);
+		            'id_especie' => '1', 'raza' =>'Shiba Inu']);
 		Raza::create([
-		            'raza' =>'Siberian Husky ']);
+		            'id_especie' => '1', 'raza' =>'Siberian Husky']);
 		Raza::create([
-		            'raza' =>'Staffordshire Bull Terrier']);
+		            'id_especie' => '1', 'raza' =>'Staffordshire Bull Terrier']);
 		Raza::create([
-		            'raza' =>'Teckel']);
+		            'id_especie' => '1', 'raza' =>'Teckel']);
 		Raza::create([
-		            'raza' =>'Terranova ']);
-		Raza::create([
-		            'raza' =>'Terrier Australiano']);
-		Raza::create([
-		            'raza' =>'Terrier Escocés ']);
-		Raza::create([
-		            'raza' =>'Terrier Irlandés ']);
-		Raza::create([
-		            'raza' =>'Terrier Japonés']);
-		Raza::create([
-		            'raza' =>'Terrier Negro Ruso']);
-		Raza::create([
-		            'raza' =>'Terrier Norfolk']);
-		Raza::create([
-		            'raza' =>'Terrier Norwich']);
-		Raza::create([
-		            'raza' =>'Yorkshire Terrier']);
+		            'id_especie' => '1', 'raza' =>'Terranova']);
+		Raza::create([
+		            'id_especie' => '1', 'raza' =>'Terrier Australiano']);
+		Raza::create([
+		            'id_especie' => '1', 'raza' =>'Terrier Escocés']);
+		Raza::create([
+		            'id_especie' => '1', 'raza' =>'Terrier Irlandés']);
+		Raza::create([
+		            'id_especie' => '1', 'raza' =>'Terrier Japonés']);
+		Raza::create([
+		            'id_especie' => '1', 'raza' =>'Terrier Negro Ruso']);
+		Raza::create([
+		            'id_especie' => '1', 'raza' =>'Terrier Norfolk']);
+		Raza::create([
+		            'id_especie' => '1', 'raza' =>'Terrier Norwich']);
+		Raza::create([
+		            'id_especie' => '1', 'raza' =>'Yorkshire Terrier']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Abisinio']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Angora']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Azul Ruso']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Balines']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Bengalí']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Bobtail Japonés']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Bombay']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Bosque De Noruega']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Británico']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Burmés']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Burmilla']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Cartujo']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Curl Americano']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Criollo']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Esfinge']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Europeo']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Gato De Ceylan']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Gato De Manx']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Habana']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Himalayo']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Javanés O Mandarin']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Korat']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Maine Coon']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Mau Egipcio']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Munchkin']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Ocicat']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Oriental']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Pelo Corto Americano']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Pelo Corto Exótico']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Perm']);
+		Raza::create([
+					'id_especie' => '2', 'raza' =>'Persa']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Pudel']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Ragdoll']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Rex']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Sagrado De Birmania']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Scottish Fold']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Selkirk']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Siamés']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Singapura']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Snowshoe']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Sokoke']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Somalí']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Tonkines']);
+		Raza::create([ 
+					'id_especie' => '2', 'raza' =>'Van Turco']);
     }
 }
