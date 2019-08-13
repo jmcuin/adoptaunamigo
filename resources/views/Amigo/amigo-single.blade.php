@@ -47,7 +47,7 @@
             <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
             @for($i = 1; $i < count($foto_amigo); $i++)
               <div class="carousel-item-b">
-                <img src="{{ Storage::url($foto_amigo[$i]) }}" alt="" style="background-size: contain;">
+                <img @if(Auth::user() -> rescatista -> foto == 'public/images/default.jpg') src="{{ URL::asset('images/default.jpg') }}" @else src="{{ Storage::url($foto_amigo[$i]) }}" @elsefif alt="" style="background-size: contain;">
               </div>
             @endfor
           </div>
