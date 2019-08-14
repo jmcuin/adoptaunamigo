@@ -110,8 +110,8 @@ class AmigoController extends Controller
         array_filter($request -> fotos);
         $fotos = $request -> fotos;
         for($i = 0; $i < count($fotos); $i++ ) {
-            $fotos_amigo = $fotos_amigo.'&'.'public/amigos/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension();
-            $request -> fotos[$i] -> storeAs('public/amigos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension());
+            $fotos_amigo = $fotos_amigo.'&'.'public/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension();
+            $request -> fotos[$i] -> storeAs('public', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension());
         }
         $amigo -> fotos = $fotos_amigo;
         
