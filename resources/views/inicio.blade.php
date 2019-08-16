@@ -441,7 +441,7 @@
             <div class="carousel-item-b" style="height: 260px !important;">
               <div class="card-box-a card-shadow" style="height: 260px !important;">
                 <div class="img-box-a">
-                  <img src="{{ Storage::url($evento -> imagen) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
+                  <img src="{{ Storage::disk('s3') -> url($evento -> imagen) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
                 </div>
                 <div class="card-overlay">
                   <div class="card-overlay-a-content">
@@ -822,7 +822,7 @@
             <div class="carousel-item-b" style="height: 260px !important;">
               <div class="card-box-a card-shadow" style="height: 260px !important;">
                 <div class="img-box-a">
-                  <img src="{{ Storage::url($servicio -> foto) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
+                  <img src="{{ Storage::disk('s3') -> url($servicio -> foto) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
                 </div>
                 <div class="card-overlay">
                   <div class="card-overlay-a-content">
@@ -1082,7 +1082,7 @@
               <div class="card-box-a card-shadow" style="height: 260px !important;">
                 <div class="img-box-a">
                   <?php $foto_extravio = explode('&', $extravio -> fotos); ?>
-                  <img src="{{ Storage::url($foto_extravio[1]) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
+                  <img src="{{ Storage::disk('s3') -> url($foto_extravio[1]) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
                 </div>
                 <div class="card-overlay">
                   <div class="card-overlay-a-content">
