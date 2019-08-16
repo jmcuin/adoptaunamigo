@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AmigoRequest;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Auth;
 use App\Events\NuevaSolicitud;
 use App\Events\NuevoAmigo;
@@ -112,14 +111,7 @@ class AmigoController extends Controller
         $fotos = $request -> fotos;
         for($i = 0; $i < count($fotos); $i++ ) {
             $fotos_amigo = $fotos_amigo.'&'.'public/amigos/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension();
-            $s3 = \Storage::disk('s3');
-            $filePath = '/amigos/' . auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension();
-            $s3->put($filePath, file_get_contents($fotos[$i]), 'public');
-
-
-
-            /*$fotos_amigo = $fotos_amigo.'&'.'public/amigos/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension();
-            $request -> fotos[$i] -> storeAs('public', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension());*/
+            $request -> fotos[$i] -> storeAs('public/amigos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension(), 's3');
         }
         $amigo -> fotos = $fotos_amigo;
         

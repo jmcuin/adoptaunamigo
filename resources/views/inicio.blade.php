@@ -9,7 +9,7 @@
       @if(count($amigos) > 0)
         @foreach($amigos as $amigo)
           <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
-          <div class="carousel-item-a intro-item bg-image" style="background-image: url({{ Storage::url($foto_amigo[1]) }}); margin-top: 100px;">
+          <div class="carousel-item-a intro-item bg-image" style="background-image: url({{ Storage::disk('s3') -> url($foto_amigo[1]) }}); margin-top: 100px;">
           <div class="overlay overlay-a"></div>
             <div class="intro-content display-table">
               <div class="table-cell">
@@ -173,7 +173,7 @@
               <div class="card-box-a card-shadow" style="height: 260px !important;">
                 <div class="img-box-a">
                   <?php $foto_amigo = explode('&', $amigo -> fotos); ?>
-                  <img src="{{ Storage::url($foto_amigo[1]) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
+                  <img src="{{ Storage::disk('s3') -> url($foto_amigo[1]) }}" alt="" class="img-a img-fluid" style="height: 260px !important;">
                 </div>
                 <div class="card-overlay">
                   <div class="card-overlay-a-content">
