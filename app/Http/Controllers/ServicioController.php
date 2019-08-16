@@ -79,7 +79,7 @@ class ServicioController extends Controller
         $servicio -> telefono = $request -> telefono;
         if($request -> hasFile('foto')){
             $servicio -> foto = 'public/servicios/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> servicio).'.'.$request -> file('foto') -> extension();
-            $request -> file('foto') -> storeAs('public/servicios', auth()->user()->id_rescatista.'_'.strtoupper($request -> servicio).'.'.$request -> file('foto') -> extension());
+            $request -> file('foto') -> storeAs('public/servicios', auth()->user()->id_rescatista.'_'.strtoupper($request -> servicio).'.'.$request -> file('foto') -> extension(), 's3');
         }
             
         $guardado = $servicio -> save();
@@ -138,9 +138,9 @@ class ServicioController extends Controller
         $servicio -> email = $request -> email;
         $servicio -> telefono = $request -> telefono;
         if($request -> hasFile('foto')){
-            Storage::delete($servicio -> foto);
+            //Storage::delete($servicio -> foto);
             $servicio -> foto = 'public/servicios/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> servicio).'.'.$request -> file('foto') -> extension();
-            $request -> file('foto') -> storeAs('public/servicios', auth()->user()->id_rescatista.'_'.strtoupper($request -> servicio).'.'.$request -> file('foto') -> extension());
+            $request -> file('foto') -> storeAs('public/servicios', auth()->user()->id_rescatista.'_'.strtoupper($request -> servicio).'.'.$request -> file('foto') -> extension(), 's3');
         }
         
         $guardado = $servicio -> save();
@@ -164,7 +164,7 @@ class ServicioController extends Controller
         $destruido = null;
 
         $servicio = Servicio::findOrFail($id);
-        Storage::delete($servicio -> foto);
+        //Storage::delete($servicio -> foto);
         
         $destruido = Servicio::destroy($id);
 

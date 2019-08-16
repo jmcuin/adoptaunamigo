@@ -189,14 +189,14 @@ class AmigoController extends Controller
         $amigo -> solicita_ayuda_medica = $request -> solicita_ayuda_medica;
         $amigo -> solicita_ayuda_alimenticia = $request -> solicita_ayuda_alimenticia;
         $fotos = explode('&', $amigo -> fotos);
-        array_filter($fotos);
+        /*array_filter($fotos);
         for($i = 0; $i < count($fotos); $i++ ) {
             Storage::delete($fotos[$i]);
-        }
+        }*/
         $fotos = $request -> fotos;
         for($i = 0; $i < count($fotos); $i++ ) {
             $fotos_amigo = $fotos_amigo.'&'.'public/amigos/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension();
-            $request -> fotos[$i] -> storeAs('public/amigos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension());
+            $request -> fotos[$i] -> storeAs('public/amigos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension(), 's3');
         }
         $amigo -> fotos = $fotos_amigo;
         $guardado = $amigo -> save();
@@ -220,11 +220,11 @@ class AmigoController extends Controller
         $destruido = null;
 
         $amigo = Amigo::findOrFail($id);
-        $fotos = explode('&', $amigo -> fotos);
+        /*$fotos = explode('&', $amigo -> fotos);
         array_filter($fotos);
         for($i = 0; $i < count($fotos); $i++ ) {
             Storage::delete($fotos[$i]);
-        }
+        }*/
                 
         $destruido = Amigo::destroy($id);
 

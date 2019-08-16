@@ -100,7 +100,7 @@ class ExtravioController extends Controller
         $fotos = $request -> fotos;
         for($i = 0; $i < count($fotos); $i++ ) {
             $fotos_extravio = $fotos_extravio.'&'.'public/extravios/'.$nextId.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension();
-            $request -> fotos[$i] -> storeAs('public/extravios',$nextId.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension());
+            $request -> fotos[$i] -> storeAs('public/extravios',$nextId.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension(), 's3');
         }
         $extravio -> fotos = $fotos_extravio;
         
@@ -164,9 +164,9 @@ class ExtravioController extends Controller
         $extravio -> contacto = $request -> contacto;
         $extravio -> recompenza = $request -> recompenza;
         if($request -> hasFile('foto')){
-            Storage::delete($extravio -> fotos);
+            //Storage::delete($extravio -> fotos);
             $extravio -> foto = strtoupper($request -> nombre).'.'.$request -> file('foto') -> extension();
-            $request -> file('foto') -> storeAs('public/extravios', strtoupper($request -> nombre).'.'.$request -> file('foto') -> extension());
+            $request -> file('foto') -> storeAs('public/extravios', strtoupper($request -> nombre).'.'.$request -> file('foto') -> extension(), 's3');
         }
         $guardado = $extravio -> save();
 
@@ -189,7 +189,7 @@ class ExtravioController extends Controller
         $destruido = null;
 
         $extravio = Extravio::findOrFail($id);
-        Storage::delete($extravio -> foto);
+        //Storage::delete($extravio -> foto);
         
         $destruido = Extravio::destroy($id);
 
@@ -216,10 +216,10 @@ class ExtravioController extends Controller
             $extravio -> activo = false;
             $extravio -> conclusion = $request -> conclusion;
             $fotos = explode('&', $extravio -> fotos);
-            array_filter($fotos);
+            /*array_filter($fotos);
             for($i = 0; $i < count($fotos); $i++ ) {
                 Storage::delete($fotos[$i]);
-            }
+            }*/
             $desactivado = $extravio -> save();
             return redirect() -> back() -> with('info','Gracias por desactivar la búsqueda. Esperamos que todo haya salido bien.');
         }else

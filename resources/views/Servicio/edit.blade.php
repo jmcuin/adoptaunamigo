@@ -12,7 +12,8 @@
 					<div class="col-sm-12 form-group" align="center"> 
 						 <label for="foto" class="label-foto">
 							Imagen del Servicio
-							<input type="file" name="foto" id="foto" placeholder="Imagen del Evento" accept="image/*" required="required">
+							<img width="130px" src="{{ Storage::disk('s3') -> url($servicio -> foto) }}">
+							<input type="file" name="foto" id="foto" placeholder="Imagen del Servicio" accept="image/*" required="required">
 						</label>
 						<div class="preview">
 						</div>

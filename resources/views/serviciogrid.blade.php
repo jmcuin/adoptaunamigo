@@ -24,7 +24,7 @@
         <div class="col-md-4" style="height: 260px !important; margin-bottom: 20px;">
           <div class="card-box-a card-shadow" style="height: 260px !important;">
             <div class="img-box-a">
-              <img src="{{ Storage::url($servicio -> foto) }}" alt="" class="img-a img-fluid">
+              <img src="{{ Storage::disk('s3') -> url($servicio -> foto) }}" alt="" class="img-a img-fluid">
             </div>
             <div class="card-overlay">
               <div class="card-overlay-a-content">

@@ -15,7 +15,7 @@
                     $fotos = explode('&',$adopcion -> evidencias); 
                   ?>
                   @for($i = 1; $i < count($fotos); $i++)
-                    <img width="200px" src="{{ Storage::url('public/evidencias/'.$fotos[$i]) }}">
+                    <img width="200px" src="{{ Storage::disk('s3') -> url('public/evidencias/'.$fotos[$i]) }}">
                   @endfor
                 </div>
                 <div class=" col-md-12 col-lg-12 "> 

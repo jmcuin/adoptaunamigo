@@ -101,7 +101,7 @@ class RescatistaController extends Controller
         $rescatista -> historia = $request -> historia;
 
         if($request -> hasFile('foto')){
-            $rescatista -> foto = $request -> file('foto') -> storeAs('public/rescatistas', strtoupper($request -> alias).'.'.$request -> file('foto') -> extension());
+            $rescatista -> foto = $request -> file('foto') -> storeAs('public/rescatistas', strtoupper($request -> alias).'.'.$request -> file('foto') -> extension(), 's3');
         }
 
         try{
@@ -182,8 +182,8 @@ class RescatistaController extends Controller
         $rescatista -> historia = $request -> historia;
         
         if($request -> hasFile('foto')){
-            Storage::delete($rescatista -> foto);
-            $rescatista -> foto = $request -> file('foto') -> storeAs('public/rescatistas', strtoupper($request -> alias).'.'.$request -> file('foto') -> extension());
+            //Storage::delete($rescatista -> foto);
+            $rescatista -> foto = $request -> file('foto') -> storeAs('public/rescatistas', strtoupper($request -> alias).'.'.$request -> file('foto') -> extension(), 's3');
         }
 
         $this -> updateUserRole($id, $request -> id_rol);
@@ -207,7 +207,7 @@ class RescatistaController extends Controller
         //
         $destruido = null;
         $rescatista = Rescatista::findOrFail($id);
-        Storage::delete($rescatista -> foto);
+        //Storage::delete($rescatista -> foto);
 
         $destruido = Rescatista::destroy($id);
         if($destruido)
@@ -296,7 +296,7 @@ class RescatistaController extends Controller
             $archivos = $request -> evidencias;
             for($i = 0; $i < count($request -> evidencias); $i++ ) {
                 $fotos_evidencia = $fotos_evidencia.'&'.$request -> id_amigo.'_'.$i.'.'.$request -> evidencias[$i] -> extension();
-                $request -> evidencias[$i] -> storeAs('public/evidencias', $request -> id_amigo.'_'.$i.'.'.$archivos[$i] -> extension());
+                $request -> evidencias[$i] -> storeAs('public/evidencias', $request -> id_amigo.'_'.$i.'.'.$archivos[$i] -> extension(), 's3');
             }
             $adopcion -> evidencias = $fotos_evidencia;
         }

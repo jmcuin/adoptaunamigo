@@ -44,7 +44,7 @@
         <div class="col-sm-12">
           <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
             <div class="carousel-item-b">
-              <img src="{{ Storage::url($evento -> imagen) }}" alt="" style="width: 1110px;">
+              <img src="{{ Storage::disk('s3') -> url($evento -> imagen) }}" alt="" style="width: 1110px;">
             </div>
           </div>
           <div class="row justify-content-between">

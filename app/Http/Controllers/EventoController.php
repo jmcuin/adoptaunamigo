@@ -75,7 +75,7 @@ class EventoController extends Controller
         $evento -> telefono = $request -> telefono;
         if($request -> hasFile('imagen')){
             $evento -> imagen = 'public/eventos/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension();
-            $request -> file('imagen') -> storeAs('public/eventos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
+            $request -> file('imagen') -> storeAs('public/eventos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension(), 's3');
         }
         $evento -> donativos_alimento = $request -> donativos_alimento;
         $evento -> donativos_objetos = $request -> donativos_objetos;
@@ -139,9 +139,9 @@ class EventoController extends Controller
         $evento -> email = $request -> email;
         $evento -> telefono = $request -> telefono;
         if($request -> hasFile('imagen')){
-            Storage::delete($evento -> imagen);
+            //Storage::delete($evento -> imagen);
             $evento -> imagen = 'public/eventos/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension();
-            $request -> file('imagen') -> storeAs('public/eventos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension());
+            $request -> file('imagen') -> storeAs('public/eventos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'.'.$request -> file('imagen') -> extension(), 's3');
         }
         $evento -> donativos_alimento = $request -> donativos_alimento;
         $evento -> donativos_objetos = $request -> donativos_objetos;
@@ -170,7 +170,7 @@ class EventoController extends Controller
         $destruido = null;
 
         $evento = Evento::findOrFail($id);
-        Storage::delete($evento -> imagen);
+        //Storage::delete($evento -> imagen);
         
         $destruido = Evento::destroy($id);
 

@@ -11,7 +11,7 @@
 				<div class="row" align="center">
 					<div class="form-group" align="center">
 						<label for="foto">
-							<img width="130px" src="{{ Storage::url($rescatista -> foto) }}"><input type="file" name="foto" value="{{old('foto')}}"  placeholder="foto(s) del Alumno" accept="image/*">
+							<img width="130px" src="{{ Storage::disk('s3') -> url($rescatista -> foto) }}"><input type="file" name="foto" value="{{old('foto')}}"  placeholder="foto(s) del Alumno" accept="image/*">
 							{{ $errors -> first('foto') }} 
 						</label>
 					</div>

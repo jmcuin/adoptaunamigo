@@ -47,7 +47,7 @@
             <?php $foto_extravio = explode('&', $extravio -> fotos); ?>
             @for($i = 1; $i < count($foto_extravio); $i++)
               <div class="carousel-item-b">
-                <img src="{{ Storage::url($foto_extravio[$i]) }}" alt="" style="background-size: contain;">
+                <img src="{{ Storage::disk('s3') -> url($foto_extravio[$i]) }}" alt="" style="background-size: contain;">
               </div>
             @endfor
           </div>

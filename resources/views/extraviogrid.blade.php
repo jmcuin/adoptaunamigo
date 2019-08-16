@@ -25,7 +25,7 @@
           <div class="card-box-a card-shadow" style="height: 260px !important;">
             <div class="img-box-a">
               <?php $foto_amigo = explode('&', $extravio -> fotos); ?>
-              <img src="{{ Storage::url($foto_amigo[1]) }}" alt="" class="img-a img-fluid">
+              <img src="{{ Storage::disk('s3') -> url($foto_amigo[1]) }}" alt="" class="img-a img-fluid">
             </div>
             <div class="card-overlay">
               <div class="card-overlay-a-content">
