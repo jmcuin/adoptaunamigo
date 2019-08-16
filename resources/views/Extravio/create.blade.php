@@ -106,7 +106,7 @@
 					<div class="col-sm-4 form-group">
 						<label for="recompenza_monto">
 							Monto de recompenza
-							<input type="text" name="recompenza_monto" value="{{old('recompenza_monto')}}" class="form-control" placeholder="Monto de la recompenza">
+							<input type="text" name="recompenza_monto" value="0" class="form-control" placeholder="Monto de la recompenza">
 							{{ $errors -> first('recompenza_monto') }}
 						</label>
 					</div>
