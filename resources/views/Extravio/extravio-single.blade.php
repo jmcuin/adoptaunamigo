@@ -78,6 +78,10 @@
                       <span>{{ $extravio -> contacto_persona }}</span>
                     </li>
                     <li class="d-flex justify-content-between">
+                      <strong>Al correo:</strong>
+                      <span>{{ $extravio -> email }}</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
                       <strong>Al número:</strong>
                       <span>{{ $extravio -> telefono }}</span>
                     </li>
