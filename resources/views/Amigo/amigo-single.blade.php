@@ -190,10 +190,6 @@
                 </p>
                 <ul class="list-unstyled">
                   <li class="d-flex justify-content-between">
-                    <strong>Teléfono:</strong>
-                    <span class="color-text-a">{{ $amigo -> rescatista -> telefono }}</span>
-                  </li>
-                  <li class="d-flex justify-content-between">
                     <strong>Correo Electrónico:</strong>
                     <span class="color-text-a">{{ $amigo -> rescatista -> email }}</span>
                   </li>

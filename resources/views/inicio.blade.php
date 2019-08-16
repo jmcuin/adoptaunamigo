@@ -1101,13 +1101,13 @@
                         <li>
                           <h4 class="card-info-title">Visto en:</h4>
                           <span>
-                            {{ $extravio -> ultimo_avistamiento_lugar }}
+                            {{ substr($extravio -> ultimo_avistamiento_lugar,0,15) }}...
                           </span>
                         </li>
                         <li>
                           <h4 class="card-info-title">Visto el:</h4>
                           <span>
-                            {{ $extravio -> ultimo_avistamiento_fecha }}
+                            {{ substr($extravio -> ultimo_avistamiento_fecha,0,15) }}...
                           </span>
                         </li>
                       </ul>
