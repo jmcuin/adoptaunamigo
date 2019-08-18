@@ -21,7 +21,7 @@
                           <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}" class="intro-title mb-4" target="_blank">{{ $amigo -> nombre }}</a>
                         </h1>
                         <p class="intro-subtitle intro-price">
-                          <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}"><span class="price-a">{{ $amigo -> caracter }}</span></a>
+                          <a href="{{ route('amigo-single', $amigo -> id_amigo ) }}"><span class="price-a">{{ substr($amigo -> caracter,0,10) }}...</span></a>
                         </p>
                       </div>
                     </div>
@@ -201,13 +201,7 @@
                         <li>
                           <h4 class="card-info-title">Carácter</h4>
                           <span>
-                            {{ $amigo -> caracter }}
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Convivencia</h4>
-                          <span>
-                            {{ $amigo -> convivencia }}
+                            {{ substr($amigo -> caracter,0,8) }}...
                           </span>
                         </li>
                       </ul>
@@ -841,7 +835,7 @@
                         <li>
                           <h4 class="card-info-title">Servicio</h4>
                           <span>
-                            {{ $servicio -> servicio }}
+                            {{ substr($servicio -> servicio,0,10) }}...
                           </span>
                         </li>
                         <li>

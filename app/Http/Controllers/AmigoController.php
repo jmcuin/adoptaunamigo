@@ -193,12 +193,12 @@ class AmigoController extends Controller
         for($i = 0; $i < count($fotos); $i++ ) {
             Storage::delete($fotos[$i]);
         }*/
-        $fotos = $request -> fotos;
+        /*$fotos = $request -> fotos;
         for($i = 0; $i < count($fotos); $i++ ) {
             $fotos_amigo = $fotos_amigo.'&'.'public/amigos/'.auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension();
             $request -> fotos[$i] -> storeAs('public/amigos', auth()->user()->id_rescatista.'_'.strtoupper($request -> nombre).'_'.$i.'.'.$fotos[$i] -> extension(), 's3');
         }
-        $amigo -> fotos = $fotos_amigo;
+        $amigo -> fotos = $fotos_amigo;*/
         $guardado = $amigo -> save();
 
         if($guardado)

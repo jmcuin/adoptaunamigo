@@ -192,7 +192,7 @@
             @endif
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img width="20px" height="20px" @if(Auth::user() -> rescatista -> foto == 'public/images/default.jpg') src="{{ URL::asset('images/default.jpg') }}" @else src="{{ Storage::url(Auth::user() -> rescatista -> foto ) }}" @endif > 
+                <img width="20px" height="20px" @if(Auth::user() -> rescatista -> foto == 'public/images/default.jpg') src="{{ URL::asset('images/default.jpg') }}" @else src="{{ Storage::disk('s3') -> url(Auth::user() -> rescatista -> foto ) }}" @endif > 
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="property-single.html">Config.</a>
