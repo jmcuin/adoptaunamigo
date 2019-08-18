@@ -182,7 +182,7 @@
           </div>
           <div class="row">
             <div class="col-md-6 col-lg-4">
-              <img @if($amigo -> rescatista -> foto == 'public/images/default.jpg') src="{{ URL::asset('images/default.jpg') }}" @else src="{{ Storage::url($amigo -> rescatista -> foto) }}" @endif alt="" class="img-fluid">
+              <img @if($amigo -> rescatista -> foto == 'public/images/default.jpg') src="{{ URL::asset('images/default.jpg') }}" @else src="{{ Storage::disk('s3') -> url($amigo -> rescatista -> foto) }}" @endif alt="" class="img-fluid">
             </div>
             <div class="col-md-6 col-lg-4">
               <div class="property-agent">
