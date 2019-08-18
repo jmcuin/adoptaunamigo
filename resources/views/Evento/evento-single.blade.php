@@ -110,13 +110,15 @@
                   {{ $evento -> descripcion }}
                 </p>
               </div>
-              <div class="row section-t3">
-                <div class="col-sm-12">
-                  <div class="title-box-d">
-                    <h3 class="title-d">También puedes participar:</h3>
+              @if($evento -> donativos_alimento == true || $evento -> donativos_objetos == true || $evento -> donativos_juguetes == true || $evento -> donativos_efectivo == true || $evento -> donativos_paseos == true)
+                <div class="row section-t3">
+                  <div class="col-sm-12">
+                    <div class="title-box-d">
+                      <h3 class="title-d">También puedes participar:</h3>
+                    </div>
                   </div>
                 </div>
-              </div>
+               @endif 
               <div class="amenities-list color-text-a">
                 <ul class="" >
                   @if($evento -> donativos_alimento == true) <li>Trayendo tu donativo de alimento</li> @endif

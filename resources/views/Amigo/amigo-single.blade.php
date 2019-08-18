@@ -121,13 +121,15 @@
                   {{ $amigo -> recomendaciones }}
                 </p>
               </div>
-              <div class="row section-t3">
-                <div class="col-sm-12">
-                  <div class="title-box-d">
-                    <h3 class="title-d">También lo puedes ayudar donándole:</h3>
+              @if($amigo -> solicita_esterilizacion == true || $amigo -> solicita_hogar_temporal == true || $amigo -> solicita_ayuda_medica == true || $amigo -> solicita_ayuda_alimenticia == true)
+                <div class="row section-t3">
+                  <div class="col-sm-12">
+                    <div class="title-box-d">
+                      <h3 class="title-d">También lo puedes ayudar donándole:</h3>
+                    </div>
                   </div>
                 </div>
-              </div>
+              @endif
               <div class="amenities-list color-text-a">
                 <ul class="" >
                   @if($amigo -> solicita_esterilizacion == true) <li>Su esterilización</li> @endif
